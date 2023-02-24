@@ -8,3 +8,8 @@
 Développé par l'équipe OurResearch, les mêmes qui sont derrière Unpaywall
 
 There are five types of entities: works, authors, venues, institutions an concepts
+
+
+## Idées
+
+* Construction du réseau thématique de la recherche française ?
