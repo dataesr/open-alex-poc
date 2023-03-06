@@ -10,6 +10,7 @@ function App() {
   useEffect(() => {
     const getData = async () => {
       const data = await load('publication_year:2016-,raw_affiliation_string.search:beta cnrs');
+      console.log(data);
       setData(data);
     }
     getData();
