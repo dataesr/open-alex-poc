@@ -4,7 +4,7 @@
 * Descrption : An open and comprehensive catalog of scholarly papers, authors, institutions, and more.
 * Gitbook : https://docs.openalex.org/
 * Twitter : https://twitter.com/openalex_org
-* Explore : http://explore.openalex.org/
+* Explore : https://explore.openalex.org/
 
 Développé par l'équipe OurResearch, les mêmes qui sont derrière Unpaywall
 
