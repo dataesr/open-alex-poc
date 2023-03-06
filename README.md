@@ -4,13 +4,14 @@
 * Descrption : An open and comprehensive catalog of scholarly papers, authors, institutions, and more.
 * Gitbook : https://docs.openalex.org/
 * Twitter : https://twitter.com/openalex_org
+* Explore : https://explore.openalex.org/
 
 Développé par l'équipe OurResearch, les mêmes qui sont derrière Unpaywall
 
 
 ## Entités
 
-5 types d'entitées sont présentes dans OpenAlex :
+7 types d'entitées sont présentes dans OpenAlex :
 * works
 * authors
 * sources
