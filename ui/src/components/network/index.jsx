@@ -4,13 +4,27 @@ import "@react-sigma/core/lib/react-sigma.min.css"
 import { MultiDirectedGraph } from "graphology";
 import { SigmaContainer, useLoadGraph } from "@react-sigma/core";
 import { useWorkerLayoutForceAtlas2 } from "@react-sigma/layout-forceatlas2";
-
+import './index.scss'
 import data from '../../../data/huawei_france.json';
+
+const colorByType = {
+  'company': '#a9983d',
+  'education': '#bc5bbc',
+  'facility': '#5ca759',
+  'government': '#7976c9',
+  'healthcare': '#cb673e',
+  'nonprofit': '#47b2c4',
+  'other': '#c95779',
+}
 
 const LoadGraph = () => {
   const loadGraph = useLoadGraph();
   const nodes = {};
   let edges = [];
+
+  const getNodeColor = (type) => {
+    return colorByType?.[type];
+  }
 
   const getNodePosition = () => {
     const max = 100;
@@ -29,7 +43,7 @@ const LoadGraph = () => {
       authorship?.institutions?.forEach((institution) => {
         if (institution.id !== null) {
           if (!Object.keys(nodes).includes(institution.id)) {
-            nodes[institution.id] = { label: institution?.display_name || institution.id, size: 1 };
+            nodes[institution.id] = { label: institution?.display_name || institution.id, size: 1, type: institution?.type };
           } else {
             nodes[institution.id].size += 1;
           }
@@ -62,7 +76,7 @@ const LoadGraph = () => {
     const graph = new MultiDirectedGraph();
     Object.keys(nodes).forEach((nodeId) => {
       const { x, y } = getNodePosition();
-      graph.addNode(nodeId, { x, y, label: nodes[nodeId].label, size: getNodeSize(nodes[nodeId].size) });
+      graph.addNode(nodeId, { x, y, label: nodes[nodeId].label, size: getNodeSize(nodes[nodeId].size), color: getNodeColor(nodes[nodeId].type) });
     });
     Object.keys(uniqEdges).forEach((edgeId) => {
       const source = uniqEdges[edgeId]?.source;
@@ -78,7 +92,7 @@ const LoadGraph = () => {
 
   export const DisplayGraph = () => {
   const Fa2 = () => {
-    const { kill, start, stop } = useWorkerLayoutForceAtlas2({ iterations: 5, settings: { adjustSizes: true, scalingRatio: 5, slowDown: 3 } });
+    const { kill, start, stop } = useWorkerLayoutForceAtlas2({ settings: { adjustSizes: true, scalingRatio: 5 } });
   
     useEffect(() => {
       start();
@@ -92,9 +106,19 @@ const LoadGraph = () => {
   };
 
   return (
-    <SigmaContainer style={{ height: "500px", width: "500px" }}>
+    <SigmaContainer style={{ height: "1000px", width: "1000px" }} className="network">
       <LoadGraph />
       <Fa2 />
+      <div className="legend">
+        <ul>
+          {Object.keys(colorByType).map((type) => (
+            <li style={{backgroundColor: colorByType[type]}}>
+              {type}
+            </li>
+          ))}
+          <li style={{backgroundColor: '#999999'}}>unknown</li>
+        </ul>
+      </div>
     </SigmaContainer>
   );
 };
