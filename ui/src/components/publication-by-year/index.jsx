@@ -1,5 +1,5 @@
 import React from "react";
-import data from "../../data/huawei_france.json"
+import data from "../../../data/huawei_france.json"
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
