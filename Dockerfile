@@ -1,6 +1,5 @@
 FROM node:18-alpine
 WORKDIR /app
-COPY server ./
-COPY package-lock.json .
-RUN npm ci
+COPY . .
+RUN npm ci --silent
 EXPOSE 3000

@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "dev": "vite serve ui",
-    "build": "vite build --mode $npm_config_mode ui"
+    "build": "vite build --mode $npm_config_mode ui",
+    "start": "NODE_ENV=production node --experimental-specifier-resolution=node server/index.js"
   },
   "repository": {
     "type": "git",

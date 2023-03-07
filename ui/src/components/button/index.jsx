@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Icon } from '@dataesr/react-dsfr';
 
-import './button.css';
+import './button.scss';
 
 const iconSize = {
   sm: '1x',

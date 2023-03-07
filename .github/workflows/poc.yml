@@ -8,7 +8,7 @@ on:
 env:
   # Must match k8s deployment name
   DEPLOYMENT: openalexpoc
-  DEPLOYMENT_NAMESPACE: openalexpoc
+  DEPLOYMENT_NAMESPACE: poc
   DEPLOYMENT_URL: https://openalex.poc.dataesr.ovh
   MM_NOTIFICATION_CHANNEL: 'openalexpoc-bot'
 
