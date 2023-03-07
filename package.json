@@ -1,0 +1,26 @@
+{
+  "name": "openalexpoc",
+  "version": "1.0.0",
+  "description": "Proof of concept: Application d'exploration de la base de données OpenAlex",
+  "workspaces": [
+    "ui",
+    "server"
+  ],
+  "scripts": {
+    "dev": "vite serve ui",
+    "build": "vite build --mode $npm_config_mode ui"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dataesr/OpenAlexPOC.git"
+  },
+  "keywords": [
+    "react", "OpenAlex"
+  ],
+  "author": "dataesr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dataesr/OpenAlexPOC/issues"
+  },
+  "homepage": "https://github.com/dataesr/OpenAlexPOC#readme"
+}

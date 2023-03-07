@@ -1,11 +1,11 @@
 {
-  "name": "openalex-poke-ui",
+  "name": "openalex-ui",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "rm -rf ../server/dist && vite build --mode $npm_config_mode && mv dist ../server",
     "preview": "vite preview"
   },
   "dependencies": {
