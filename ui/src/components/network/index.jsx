@@ -19,15 +19,19 @@ const LoadGraph = () => {
     return { x, y };
   }
 
+  const getNodeSize = (size) => {
+    return Math.log(size);
+  }
+
   data?.results?.forEach((work) => {
     let coInstitutions = [];
     work?.authorships?.forEach((authorship) => {
       authorship?.institutions?.forEach((institution) => {
         if (institution.id !== null) {
           if (!Object.keys(nodes).includes(institution.id)) {
-            nodes[institution.id] = { label: institution?.display_name || institution.id, weight: 1 };
+            nodes[institution.id] = { label: institution?.display_name || institution.id, size: 1 };
           } else {
-            nodes[institution.id].weight += 1;
+            nodes[institution.id].size += 1;
           }
           coInstitutions.push(institution.id);
         }
@@ -58,7 +62,7 @@ const LoadGraph = () => {
     const graph = new MultiDirectedGraph();
     Object.keys(nodes).forEach((nodeId) => {
       const { x, y } = getNodePosition();
-      graph.addNode(nodeId, { x, y, label: nodes[nodeId].label, size: nodes[nodeId].weight / 20 });
+      graph.addNode(nodeId, { x, y, label: nodes[nodeId].label, size: getNodeSize(nodes[nodeId].size) });
     });
     Object.keys(uniqEdges).forEach((edgeId) => {
       const source = uniqEdges[edgeId]?.source;
@@ -74,7 +78,7 @@ const LoadGraph = () => {
 
   export const DisplayGraph = () => {
   const Fa2 = () => {
-    const { kill, start, stop } = useWorkerLayoutForceAtlas2({ iterations: 5, settings: { slowDown: 3, adjustSizes: true } });
+    const { kill, start, stop } = useWorkerLayoutForceAtlas2({ iterations: 5, settings: { adjustSizes: true, scalingRatio: 5, slowDown: 3 } });
   
     useEffect(() => {
       start();
