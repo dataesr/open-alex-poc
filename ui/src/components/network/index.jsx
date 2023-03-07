@@ -47,7 +47,7 @@ const LoadGraph = () => {
   const uniqEdges = {};
   edges.forEach((edge) => {
     const edgeId = `${edge.source}${edge.target}`;
-    if(!Object.keys(uniqEdges).includes(edgeId)) {
+    if((edge.source !== edge.target) && !Object.keys(uniqEdges).includes(edgeId)) {
       uniqEdges[edgeId] = { ...edge, weight: 1 }
     } else {
       uniqEdges[edgeId].weight += 1;
@@ -73,25 +73,24 @@ const LoadGraph = () => {
 };
 
   export const DisplayGraph = () => {
-//   const Fa2 = () => {
-//     const { start, kill } = useWorkerLayoutForceAtlas2({ settings: { slowDown: 10, iterationsPerRender: 1, timeout: 10 } });
+  const Fa2 = () => {
+    const { kill, start, stop } = useWorkerLayoutForceAtlas2({ iterations: 5, settings: { slowDown: 3, adjustSizes: true } });
   
-//     useEffect(() => {
-//       // start FA2
-//       start();
-//       return () => {
-//         // Kill FA2 on unmount
-//         kill();
-//       };
-//     }, [start, kill]);
+    useEffect(() => {
+      start();
+      setTimeout(stop, '15000');
+      return () => {
+        kill();
+      };
+    }, [kill, start, stop]);
   
-//     return null;
-//   };
+    return null;
+  };
 
   return (
     <SigmaContainer style={{ height: "500px", width: "500px" }}>
       <LoadGraph />
-      {/* <Fa2 /> */}
+      <Fa2 />
     </SigmaContainer>
   );
 };
