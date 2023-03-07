@@ -5,7 +5,7 @@ import { MultiDirectedGraph } from "graphology";
 import { SigmaContainer, useLoadGraph } from "@react-sigma/core";
 import { useWorkerLayoutForceAtlas2 } from "@react-sigma/layout-forceatlas2";
 
-import data from '../data/huawei_france.json';
+import data from '../../../data/huawei_france.json';
 
 const LoadGraph = () => {
   const loadGraph = useLoadGraph();
