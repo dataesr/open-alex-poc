@@ -12,7 +12,7 @@ app.disable('x-powered-by');
 if (process.env.NODE_ENV === 'development') {
   app.use(cors({ origin: '*', methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'] }));
 }
-app.use(express.static(path.join(path.resolve(), 'dist')));
+app.use(express.static(path.join(path.resolve(), '/ui/dist')));
 
 async function cleanup() {
   app.isReady = false;
