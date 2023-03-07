@@ -26,7 +26,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: npm run build --mode=poc
+      - run: npm ci --silent && npm run build --mode=poc
 
       - name: Build image
         run: docker build -t ${{ github.repository }} .
