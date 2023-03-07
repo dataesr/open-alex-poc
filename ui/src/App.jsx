@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-import { DisplayGraph } from './components/network';
+// import { DisplayGraph } from './components/network';
 import PublicationByYear from './components/publication-by-year';
 import TopRevues from './components/top-revues';
 import Layout from './layout';
 import load from './load';
 import HomePage from './pages/home';
+// import { DisplayGraph } from './network'
+
 
 export default function App() {
   return (
@@ -46,7 +48,7 @@ function Draft() {
 
   return (
     <div>
-      <DisplayGraph />
+      {/* <DisplayGraph /> */}
       <PublicationByYear />
       <TopRevues />
     </div>

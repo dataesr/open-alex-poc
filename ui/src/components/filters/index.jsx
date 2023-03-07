@@ -1,7 +1,7 @@
 import { Container, TextInput, Row, Col, Button, Select, Checkbox } from "@dataesr/react-dsfr";
 import { useState } from "react";
 
-export default function Filters() {
+export default function Filters({ onSetFiltersHandler }) {
     const [startDate, setStartDate] = useState(2016);
     const [endDate, setEndDate] = useState(2022);
 
@@ -19,7 +19,7 @@ export default function Filters() {
     const [query, setQuery] = useState('empty');
 
     const createQuery = () => {
-        let q = '&filter=';
+        let q = '';
 
         if (startDate || endDate) q += 'publication_year:';
         if (startDate) q += startDate + '-';
@@ -39,6 +39,7 @@ export default function Filters() {
         console.log('create query');
         // https://api.openalex.org/works?filter=publication_year:2016-,raw_affiliation_string.search:Huawei,raw_affiliation_string.search:france&sample=1000&seed=0
         setQuery(q);
+        onSetFiltersHandler(q);
     }
 
     return (
@@ -126,7 +127,9 @@ export default function Filters() {
                     </Col>
                 </Row>
             </Container>
-            {query}
+            <br />
+            <hr />
+            {/* {query} */}
         </section>
     )
 }
