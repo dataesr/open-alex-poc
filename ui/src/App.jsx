@@ -1,11 +1,23 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import { DisplayGraph } from './network'
+import PublicationByYear from "../src/Components/publication-by-year"
+import TopRevues from "../src/Components/topRevues"
 
-import Load from './load'
+import load from './load'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      const data = await load('publication_year:2016-,raw_affiliation_string.search:beta cnrs');
+      console.log(data);
+      setData(data);
+    }
+    getData();
+  }, []);
 
   return (
     <div className="App">
@@ -29,7 +41,9 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <Load />
+      <DisplayGraph />
+      <PublicationByYear/>
+      <TopRevues/>
     </div>
   )
 }

@@ -32,3 +32,20 @@ Développé par l'équipe OurResearch, les mêmes qui sont derrière Unpaywall
 | **Cartographie des communautés de recherche sur un sujet donné** <br> - dans le monde - en France - ou se positionne la France dans la cartographie mondiale ? ex https://www.kenelyze.com/whos-who-in-large-language-model-science-mapping-science-as-a-graph/ <br> aussi https://github.com/filipinascimento/openalexnet |  | réseaux, graphes standards, listes  |  |
 | **Identification de liens d’intérêts particuliers** Pays / Institution / Sujet<br> - par ex co-publication CEA x russie par exemple ? - ou encore CNRS x Philip Morris ? https://api.openalex.org/works?filter=raw_affiliation_string.search:philip%20morris,institutions.country_code:FR |  |  |  |
 | **Estimation de la porosité public-privé** <br> - par ex co-publication d'une liste de nom d'entreprise, ou suffixe (ltd, sarl, gmbh...)  avec la france ?  par discipline, top entreprise, top labo ?|  |  |  |
+
+
+## Web app
+
+### Stack
+
+* React
+* Vite
+* Highchart
+
+### Install and run
+
+```sh
+cd ui
+npm i
+npm run dev
+```
