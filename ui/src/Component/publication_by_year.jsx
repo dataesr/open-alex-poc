@@ -15,28 +15,31 @@ function publicationByYear() {
 
 }, {});
 const years = Object.entries(publicationsGroupedByYear).map(([year, publications]) => ({
-  name: year,
+  year: year,
   y: publications.length,
 }));
 
 const options = {
+   chart: {
+    type: 'column'
+  },
  title: {text: 'Évolution des publications par année'},
  xAxis: {type: 'category',title: {text: 'Année'}},
  yAxis: {title: {text: 'Nombre de publications'}},
- series: [{name: 'Nombre de publications',data: years}]
+ series: [{year: 'Nombre de publications',data: years}]
 } ;
 
   return (
     <div>
       <h1> Nombre total de publication : {data.results.length}</h1>
   <div>
-    {years.map(({name, y}) => (
-      <div key={name}>
-        <p>{name}        Nombre de publications: {y}</p>
+    {years.map(({year, y}) => (
+      <div key={year}>
+        <p>{year} : {y}</p>
       </div>
     ))}
   </div>
-  <div id="container">
+  <div>
             <HighchartsReact highcharts={Highcharts} options={options} />
   </div>
   </div>
