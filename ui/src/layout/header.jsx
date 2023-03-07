@@ -42,7 +42,7 @@ export default function Header() {
         />
         <NavItem
           title="Draft"
-          asLink={<RouterLink to="/draft">A propos</RouterLink>}
+          asLink={<RouterLink to="/draft">Draft</RouterLink>}
           current={pathname === '/draft'}
         />
       </HeaderNav>
