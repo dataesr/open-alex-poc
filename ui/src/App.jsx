@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-import { DisplayGraph } from './components/network';
+import DisplayGraph from './components/network';
 import PublicationByYear from './components/publication-by-year';
 import TopRevues from './components/top-revues';
 import Layout from './layout';
