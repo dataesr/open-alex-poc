@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import { DisplayGraph } from './network'
+import PublicationByYear from "../src/Component/publication_by_year"
 
 import load from './load'
 
@@ -40,6 +41,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <DisplayGraph />
+      <PublicationByYear/>
     </div>
   )
 }

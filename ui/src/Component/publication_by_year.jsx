@@ -24,7 +24,7 @@ const options = {
     type: 'column'
   },
  title: {text: 'Évolution des publications par année'},
- xAxis: {type: 'category',title: {text: 'Année'}},
+ xAxis: {title: {text: 'Année'}},
  yAxis: {title: {text: 'Nombre de publications'}},
  series: [{year: 'Nombre de publications',data: years}]
 } ;
