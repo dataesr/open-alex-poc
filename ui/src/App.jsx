@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import { DisplayGraph } from './network'
-import PublicationByYear from "../src/Component/publication_by_year"
+import PublicationByYear from "../src/Components/publication-by-year"
+import TopRevues from "../src/Components/topRevues"
 
 import load from './load'
 
@@ -42,6 +43,7 @@ function App() {
       </p>
       <DisplayGraph />
       <PublicationByYear/>
+      <TopRevues/>
     </div>
   )
 }

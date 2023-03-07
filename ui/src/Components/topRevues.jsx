@@ -4,7 +4,7 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
 
-function topRevues() {
+function TopRevues() {
 
 
 let revues = data.results.reduce(function(acc, publication) {
@@ -46,4 +46,4 @@ const options = {
   </div>
   );
     }
-  export default topRevues
+  export default TopRevues
