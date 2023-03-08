@@ -38,14 +38,16 @@ const DisplayGraph = () => {
   data?.results?.forEach((work) => {
     let coInstitutions = [];
     work?.authorships?.forEach((authorship) => {
-      authorship?.institutions?.forEach((institution) => {
-        if (institution.id !== null) {
-          const nodeId = institution.id;
-          // 1. Create the institution node if it does not exist
-          if (!graph.hasNode(nodeId)) graph.addNode(nodeId, { institution, label: getLabelFromInstitution(institution), color: getColorFromInsitution(institution) });
-          coInstitutions.push(institution.id);
-        }
-      });
+      if (authorship?.institutions?.length <= 25) {
+        authorship?.institutions?.forEach((institution) => {
+          if (institution.id !== null) {
+            const nodeId = institution.id;
+            // 1. Create the institution node if it does not exist
+            if (!graph.hasNode(nodeId)) graph.addNode(nodeId, { institution, label: getLabelFromInstitution(institution), color: getColorFromInsitution(institution) });
+            coInstitutions.push(institution.id);
+          }
+        });
+      }
     });
     // Remove duplicates
     coInstitutions = [...new Set(coInstitutions)];
@@ -76,6 +78,12 @@ const DisplayGraph = () => {
   graph.forEachNode((node) => {
     const degree = graph.degree(node);
     graph.setNodeAttribute(node, 'size', minSize + ((degree - minDegree) / (maxDegree - minDegree)) * (maxSize - minSize));
+  });
+
+  // 5. Remove nodes with degree inferior to 5
+  graph.forEachNode((node) => {
+    const degree = graph.degree(node);
+    if (degree < 5) graph.dropNode(node);
   });
 
   // 5. Position nodes on a circle, then run Force Atlas 2 for a while to get proper graph layout
