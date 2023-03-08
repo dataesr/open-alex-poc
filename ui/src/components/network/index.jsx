@@ -16,6 +16,19 @@ const colorByType = {
   'healthcare': '#cb673e',
   'nonprofit': '#47b2c4',
   'other': '#c95779',
+};
+
+const getColorFromInsitution = (institution) => {
+  if (institution?.type === 'education' && institution?.country_code === 'FR') return '#000091';
+  if (institution?.country_code === 'FR') return '#e1000f';
+  return '#999999';
+}
+
+const getLabelFromInstitution = (institution) => {
+  let label = '';
+  label += institution?.display_name ? institution.display_name : institution.id;
+  label += institution?.country_code ? ` (${institution.country_code})` : '';
+  return label;
 }
 
 const DisplayGraph = () => {
@@ -29,7 +42,7 @@ const DisplayGraph = () => {
         if (institution.id !== null) {
           const nodeId = institution.id;
           // 1. Create the institution node if it does not exist
-          if (!graph.hasNode(nodeId)) graph.addNode(nodeId, { label: institution?.display_name || institution.id, color: colorByType?.[institution?.type] });
+          if (!graph.hasNode(nodeId)) graph.addNode(nodeId, { institution, label: getLabelFromInstitution(institution), color: getColorFromInsitution(institution) });
           coInstitutions.push(institution.id);
         }
       });
@@ -50,8 +63,10 @@ const DisplayGraph = () => {
     const { source, target } = edge;
     if(source !== target && !graph.hasEdge(source, target)) graph.addEdge(source, target);
   });
+
   // 3. Only keep the main connected component:
   cropToLargestConnectedComponent(graph);
+
   // 4. Use degrees for node sizes:
   const degrees = graph.nodes().map((node) => graph.degree(node));
   const minDegree = Math.min(...degrees);
@@ -62,6 +77,7 @@ const DisplayGraph = () => {
     const degree = graph.degree(node);
     graph.setNodeAttribute(node, 'size', minSize + ((degree - minDegree) / (maxDegree - minDegree)) * (maxSize - minSize));
   });
+
   // 5. Position nodes on a circle, then run Force Atlas 2 for a while to get proper graph layout
   circular.assign(graph);
   const settings = forceAtlas2.inferSettings(graph);
@@ -72,12 +88,9 @@ const DisplayGraph = () => {
       <SigmaContainer style={{ height: "1000px", width: "1000px" }} className="network" graph={graph}>
         <div className="legend">
           <ul>
-            {Object.keys(colorByType).map((type) => (
-              <li style={{backgroundColor: colorByType[type]}} key={type}>
-                {type}
-              </li>
-            ))}
-            <li style={{backgroundColor: '#999999'}}>unknown</li>
+            <li style={{backgroundColor: '#000091'}}>Université française</li>
+            <li style={{backgroundColor: '#e1000f'}}>Autre français</li>
+            <li style={{backgroundColor: '#999999'}}>Autre</li>
           </ul>
         </div>
       </SigmaContainer>
