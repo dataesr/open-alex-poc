@@ -19,4 +19,6 @@ export default {
     ContentType: 'application/json',
     ACL: 'public-read'
   })),
+  get: async (key) => getSignedUrl(s3, new GetObjectCommand({ Bucket: bucket, Key: key })),
+  delete: async (key) => s3.send(new DeleteObjectCommand({ Bucket: bucket, Key: key })),
 };

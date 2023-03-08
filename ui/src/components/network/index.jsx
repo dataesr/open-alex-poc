@@ -1,34 +1,48 @@
-import { useEffect } from "react";
 import "@react-sigma/core/lib/react-sigma.min.css"
+import { SigmaContainer } from "@react-sigma/core";
+import Graph from "graphology";
+import { cropToLargestConnectedComponent } from "graphology-components";
+import circular from "graphology-layout/circular";
+import forceAtlas2 from "graphology-layout-forceatlas2";
 
-import { MultiDirectedGraph } from "graphology";
-import { SigmaContainer, useLoadGraph } from "@react-sigma/core";
-import { useWorkerLayoutForceAtlas2 } from "@react-sigma/layout-forceatlas2";
+import "./index.scss";
+import data from "../../../data/huawei_france.json";
 
-import data from '../../../data/huawei_france.json';
+const colorByType = {
+  'company': '#a9983d',
+  'education': '#bc5bbc',
+  'facility': '#5ca759',
+  'government': '#7976c9',
+  'healthcare': '#cb673e',
+  'nonprofit': '#47b2c4',
+  'other': '#c95779',
+};
 
-const LoadGraph = () => {
-  const loadGraph = useLoadGraph();
-  const nodes = {};
+const getColorFromInsitution = (institution) => {
+  if (institution?.type === 'education' && institution?.country_code === 'FR') return '#000091';
+  if (institution?.country_code === 'FR') return '#e1000f';
+  return '#999999';
+}
+
+const getLabelFromInstitution = (institution) => {
+  let label = '';
+  label += institution?.display_name ? institution.display_name : institution.id;
+  label += institution?.country_code ? ` (${institution.country_code})` : '';
+  return label;
+}
+
+const DisplayGraph = () => {
   let edges = [];
-
-  const getNodePosition = () => {
-    const max = 100;
-    const x = Math.floor(Math.random() * max);
-    const y = Math.floor(Math.random() * max);
-    return { x, y };
-  }
+  const graph = new Graph();
 
   data?.results?.forEach((work) => {
     let coInstitutions = [];
     work?.authorships?.forEach((authorship) => {
       authorship?.institutions?.forEach((institution) => {
         if (institution.id !== null) {
-          if (!Object.keys(nodes).includes(institution.id)) {
-            nodes[institution.id] = { label: institution?.display_name || institution.id, weight: 1 };
-          } else {
-            nodes[institution.id].weight += 1;
-          }
+          const nodeId = institution.id;
+          // 1. Create the institution node if it does not exist
+          if (!graph.hasNode(nodeId)) graph.addNode(nodeId, { institution, label: getLabelFromInstitution(institution), color: getColorFromInsitution(institution) });
           coInstitutions.push(institution.id);
         }
       });
@@ -36,61 +50,52 @@ const LoadGraph = () => {
     // Remove duplicates
     coInstitutions = [...new Set(coInstitutions)];
     // Generate pairs of coInstitutions
-    const tmp = coInstitutions.flatMap(
+    const pairs = coInstitutions.flatMap(
       (v, i) => coInstitutions.slice(i + 1).map((w) => {
         return w < v ? { source: w, target: v } : { source: v, target: w };
       })
     );
-    edges = edges.concat(tmp);
+    edges = edges.concat(pairs);
   });
 
-  const uniqEdges = {};
+  // 2. Create the uniq coAuthorship edges
   edges.forEach((edge) => {
-    const edgeId = `${edge.source}${edge.target}`;
-    if((edge.source !== edge.target) && !Object.keys(uniqEdges).includes(edgeId)) {
-      uniqEdges[edgeId] = { ...edge, weight: 1 }
-    } else {
-      uniqEdges[edgeId].weight += 1;
-    }
+    const { source, target } = edge;
+    if(source !== target && !graph.hasEdge(source, target)) graph.addEdge(source, target);
   });
 
-  useEffect(() => {
-    const graph = new MultiDirectedGraph();
-    Object.keys(nodes).forEach((nodeId) => {
-      const { x, y } = getNodePosition();
-      graph.addNode(nodeId, { x, y, label: nodes[nodeId].label, size: nodes[nodeId].weight / 20 });
-    });
-    Object.keys(uniqEdges).forEach((edgeId) => {
-      const source = uniqEdges[edgeId]?.source;
-      const target = uniqEdges[edgeId]?.target;
-      const weight = uniqEdges[edgeId]?.weight;
-      graph.addEdge(source, target, { weight });
-    });
-    loadGraph(graph);
-  }, [loadGraph]);
+  // 3. Only keep the main connected component:
+  cropToLargestConnectedComponent(graph);
 
-  return null;
-};
+  // 4. Use degrees for node sizes:
+  const degrees = graph.nodes().map((node) => graph.degree(node));
+  const minDegree = Math.min(...degrees);
+  const maxDegree = Math.max(...degrees);
+  const minSize = 2,
+    maxSize = 15;
+  graph.forEachNode((node) => {
+    const degree = graph.degree(node);
+    graph.setNodeAttribute(node, 'size', minSize + ((degree - minDegree) / (maxDegree - minDegree)) * (maxSize - minSize));
+  });
 
-  export const DisplayGraph = () => {
-  const Fa2 = () => {
-    const { kill, start, stop } = useWorkerLayoutForceAtlas2({ iterations: 5, settings: { slowDown: 3, adjustSizes: true } });
-  
-    useEffect(() => {
-      start();
-      setTimeout(stop, '15000');
-      return () => {
-        kill();
-      };
-    }, [kill, start, stop]);
-  
-    return null;
-  };
+  // 5. Position nodes on a circle, then run Force Atlas 2 for a while to get proper graph layout
+  circular.assign(graph);
+  const settings = forceAtlas2.inferSettings(graph);
+  forceAtlas2.assign(graph, { settings, iterations: 600 });
 
   return (
-    <SigmaContainer style={{ height: "500px", width: "500px" }}>
-      <LoadGraph />
-      <Fa2 />
-    </SigmaContainer>
+    <div>
+      <SigmaContainer style={{ height: "1000px", width: "1000px" }} className="network" graph={graph}>
+        <div className="legend">
+          <ul>
+            <li style={{backgroundColor: '#000091'}}>Université française</li>
+            <li style={{backgroundColor: '#e1000f'}}>Autre français</li>
+            <li style={{backgroundColor: '#999999'}}>Autre</li>
+          </ul>
+        </div>
+      </SigmaContainer>
+    </div>
   );
 };
+
+export default DisplayGraph;
