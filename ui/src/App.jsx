@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-// import DisplayGraph from './components/network';
-import PublicationByYear from './components/publication-by-year';
-import TopRevues from './components/top-revues';
-import Layout from './layout';
-import load from './load';
-import HomePage from './pages/home';
+import ConceptByYear from "./components/publication-by-concept";
+import DisplayGraph from "./components/network";
+import PublicationByYear from "./components/publication-by-year";
+import TopAuthors from "./components/top-authors";
+import TopRevues from "./components/top-revues";
+import Layout from "./layout";
+import load from "./load";
+import HomePage from "./pages/home";
 
 export default function App() {
   return (
-
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -37,10 +38,12 @@ function Draft() {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await load('publication_year:2016-,raw_affiliation_string.search:beta cnrs');
+      const data = await load(
+        "publication_year:2016-,raw_affiliation_string.search:beta cnrs"
+      );
       // console.log(data);
       setData(data);
-    }
+    };
     getData();
   }, []);
 
@@ -49,10 +52,11 @@ function Draft() {
       {/* <DisplayGraph /> */}
       <PublicationByYear />
       <TopRevues />
+      <TopAuthors />
+      <ConceptByYear />
     </div>
   );
 }
-
 
 function NoMatch() {
   return (
