@@ -1,5 +1,6 @@
-notebooks/cache
 notebooks/.ipynb_checkpoints
+notebooks/cache
+notebooks/data
 node_modules
 *.env
 .vscode
