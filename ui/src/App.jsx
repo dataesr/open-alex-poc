@@ -49,7 +49,7 @@ function Draft() {
 
   return (
     <div>
-      {/* <DisplayGraph /> */}
+      <DisplayGraph />
       <PublicationByYear />
       <TopRevues />
       <TopAuthors />

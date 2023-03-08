@@ -20,8 +20,6 @@ function TopAuthors() {
     .slice(0, 10)
     .map(([author, count]) => ({ name: author, y: count }));
 
-  console.log(topAuthors);
-
   const options = {
     chart: { type: "column" },
     credits: { enabled: false },
