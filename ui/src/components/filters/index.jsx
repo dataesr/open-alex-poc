@@ -30,13 +30,13 @@ export default function Filters({ onSetFiltersHandler }) {
         if (endDate && !startDate) q += '-' + endDate;
         if (endDate && startDate) q += endDate;
 
-        if ((startDate || endDate) && affiliation1Str) q += ',';
+        if ((startDate || endDate) && (affiliation1Str || affiliation1ISO)) q += ',';
         if (affiliation1Type === types[0] && affiliation1Str) q += 'raw_affiliation_string.search:' + affiliation1Str;
-        if (affiliation1Type === types[1]) q += '&institutions.country_code=' + affiliation1ISO;
+        if (affiliation1Type === types[1]) q += 'institutions.country_code:' + affiliation1ISO;
 
-        if ((startDate || endDate) && affiliation2Str) q += ',';
+        if ((startDate || endDate) && (affiliation2Str || affiliation2ISO)) q += ',';
         if (affiliation2Type === types[0] && affiliation2Str) q += 'raw_affiliation_string.search:' + affiliation2Str;
-        if (affiliation2Type === types[1]) q += '&institutions.country_code=' + affiliation2ISO;
+        if (affiliation2Type === types[1]) q += 'institutions.country_code' + affiliation2ISO;
 
         if (onSample) q += '&sample=' + sampleLength;
 
@@ -116,10 +116,10 @@ export default function Filters({ onSetFiltersHandler }) {
                         {
                             (affiliation1Type === 'institutions.country_code') ? (
                                 <Select
-                                    label="Country selction"
+                                    label="Country selection"
                                     id="affiliation1ISO"
                                     onChange={(e) => setAffiliation1ISO(e.target.value)}
-                                    options={countriesList.map((el) => ({ label: el.Pays_eng, value: el.ISO_alpha3 }))}
+                                    options={countriesList.map((el) => ({ label: el.name, value: el.code }))}
                                     selected={affiliation1ISO}
                                 />
                             ) : (
@@ -147,10 +147,10 @@ export default function Filters({ onSetFiltersHandler }) {
                         {
                             (affiliation2Type === 'institutions.country_code') ? (
                                 <Select
-                                    label="Country selction"
+                                    label="Country selection"
                                     id="affiliation2ISO"
                                     onChange={(e) => setAffiliation2ISO(e.target.value)}
-                                    options={countriesList.map((el) => ({ label: el.Pays_eng, value: el.ISO_alpha3 }))}
+                                    options={countriesList.map((el) => ({ label: el.name, value: el.code }))}
                                     selected={affiliation2ISO}
                                 />
                             ) : (
