@@ -1,0 +1,1787 @@
+[
+    {
+        "ISO_alpha3": "AFG",
+        "Pays": "Afghanistan",
+        "Pays_eng": "Afghanistan",
+        "hasData": "TRUE",
+        "Pays_search": "afghanistan"
+    },
+    {
+        "ISO_alpha3": "ZAF",
+        "Pays": "Afrique du Sud",
+        "Pays_eng": "South Africa",
+        "hasData": "TRUE",
+        "Pays_search": "afrique du Sud"
+    },
+    {
+        "ISO_alpha3": "ALB",
+        "Pays": "Albanie",
+        "Pays_eng": "Albania",
+        "hasData": "TRUE",
+        "Pays_search": "albanie"
+    },
+    {
+        "ISO_alpha3": "DZA",
+        "Pays": "Alg\u00e9rie",
+        "Pays_eng": "Algeria",
+        "hasData": "TRUE",
+        "Pays_search": "algerie"
+    },
+    {
+        "ISO_alpha3": "DEU",
+        "Pays": "Allemagne",
+        "Pays_eng": "Germany",
+        "hasData": "TRUE",
+        "Pays_search": "allemagne"
+    },
+    {
+        "ISO_alpha3": "AND",
+        "Pays": "Andorre",
+        "Pays_eng": "Andorra",
+        "hasData": "TRUE",
+        "Pays_search": "andorre"
+    },
+    {
+        "ISO_alpha3": "AGO",
+        "Pays": "Angola",
+        "Pays_eng": "Angola",
+        "hasData": "TRUE",
+        "Pays_search": "angola"
+    },
+    {
+        "ISO_alpha3": "AIA",
+        "Pays": "Anguilla",
+        "Pays_eng": "Anguilla",
+        "hasData": null,
+        "Pays_search": "anguilla"
+    },
+    {
+        "ISO_alpha3": "ATA",
+        "Pays": "Antarctique",
+        "Pays_eng": "Antarctica",
+        "hasData": null,
+        "Pays_search": "antarctique"
+    },
+    {
+        "ISO_alpha3": "ATG",
+        "Pays": "Antigua-et-Barbuda",
+        "Pays_eng": "Antigua and Barbuda",
+        "hasData": "TRUE",
+        "Pays_search": "antigua-et-Barbuda"
+    },
+    {
+        "ISO_alpha3": "SAU",
+        "Pays": "Arabie Saoudite",
+        "Pays_eng": "Saudi Arabia",
+        "hasData": "TRUE",
+        "Pays_search": "arabie Saoudite"
+    },
+    {
+        "ISO_alpha3": "ARG",
+        "Pays": "Argentine",
+        "Pays_eng": "Argentina",
+        "hasData": "TRUE",
+        "Pays_search": "argentine"
+    },
+    {
+        "ISO_alpha3": "ARM",
+        "Pays": "Arm\u00e9nie",
+        "Pays_eng": "Armenia",
+        "hasData": "TRUE",
+        "Pays_search": "armenie"
+    },
+    {
+        "ISO_alpha3": "ABW",
+        "Pays": "Aruba",
+        "Pays_eng": "Aruba",
+        "hasData": null,
+        "Pays_search": "aruba"
+    },
+    {
+        "ISO_alpha3": "AUS",
+        "Pays": "Australie",
+        "Pays_eng": "Australia",
+        "hasData": "TRUE",
+        "Pays_search": "australie"
+    },
+    {
+        "ISO_alpha3": "AUT",
+        "Pays": "Autriche",
+        "Pays_eng": "Austria",
+        "hasData": "TRUE",
+        "Pays_search": "autriche"
+    },
+    {
+        "ISO_alpha3": "AZE",
+        "Pays": "Azerba\u00efdjan",
+        "Pays_eng": "Azerbaijan",
+        "hasData": "TRUE",
+        "Pays_search": "azerbaidjan"
+    },
+    {
+        "ISO_alpha3": "BHS",
+        "Pays": "Bahamas",
+        "Pays_eng": "Bahamas",
+        "hasData": null,
+        "Pays_search": "bahamas"
+    },
+    {
+        "ISO_alpha3": "BHR",
+        "Pays": "Bahre\u00efn",
+        "Pays_eng": "Bahrain",
+        "hasData": "TRUE",
+        "Pays_search": "bahrein"
+    },
+    {
+        "ISO_alpha3": "BGD",
+        "Pays": "Bangladesh",
+        "Pays_eng": "Bangladesh",
+        "hasData": "TRUE",
+        "Pays_search": "bangladesh"
+    },
+    {
+        "ISO_alpha3": "BRB",
+        "Pays": "Barbade",
+        "Pays_eng": "Barbados",
+        "hasData": "TRUE",
+        "Pays_search": "barbade"
+    },
+    {
+        "ISO_alpha3": "BEL",
+        "Pays": "Belgique",
+        "Pays_eng": "Belgium",
+        "hasData": "TRUE",
+        "Pays_search": "belgique"
+    },
+    {
+        "ISO_alpha3": "BLZ",
+        "Pays": "B\u00e9lize",
+        "Pays_eng": "Belize",
+        "hasData": null,
+        "Pays_search": "belize"
+    },
+    {
+        "ISO_alpha3": "BEN",
+        "Pays": "B\u00e9nin",
+        "Pays_eng": "Benin",
+        "hasData": "TRUE",
+        "Pays_search": "benin"
+    },
+    {
+        "ISO_alpha3": "BMU",
+        "Pays": "Bermudes",
+        "Pays_eng": "Bermuda",
+        "hasData": null,
+        "Pays_search": "bermudes"
+    },
+    {
+        "ISO_alpha3": "BTN",
+        "Pays": "Bhoutan",
+        "Pays_eng": "Bhutan",
+        "hasData": null,
+        "Pays_search": "bhoutan"
+    },
+    {
+        "ISO_alpha3": "BLR",
+        "Pays": "Bi\u00e9lorussie",
+        "Pays_eng": "Belarus",
+        "hasData": "TRUE",
+        "Pays_search": "bielorussie"
+    },
+    {
+        "ISO_alpha3": "MMR",
+        "Pays": "Birmanie",
+        "Pays_eng": "Myanmar",
+        "hasData": "TRUE",
+        "Pays_search": "birmanie"
+    },
+    {
+        "ISO_alpha3": "BOL",
+        "Pays": "Bolivie",
+        "Pays_eng": "Bolivia",
+        "hasData": "TRUE",
+        "Pays_search": "bolivie"
+    },
+    {
+        "ISO_alpha3": "BES",
+        "Pays": "Bonaire, Saint-Eustache et Saba",
+        "Pays_eng": "Bonaire, Sint Eustatius and Saba",
+        "hasData": null,
+        "Pays_search": "bonaire, Saint-Eustache et Saba"
+    },
+    {
+        "ISO_alpha3": "BIH",
+        "Pays": "Bosnie-Herz\u00e9govine",
+        "Pays_eng": "Bosnia and Herzegovina",
+        "hasData": "TRUE",
+        "Pays_search": "bosnie-Herzegovine"
+    },
+    {
+        "ISO_alpha3": "BWA",
+        "Pays": "Botswana",
+        "Pays_eng": "Botswana",
+        "hasData": "TRUE",
+        "Pays_search": "botswana"
+    },
+    {
+        "ISO_alpha3": "BRA",
+        "Pays": "Br\u00e9sil",
+        "Pays_eng": "Brazil",
+        "hasData": "TRUE",
+        "Pays_search": "bresil"
+    },
+    {
+        "ISO_alpha3": "BRN",
+        "Pays": "Brunei",
+        "Pays_eng": "Brunei Darussalam",
+        "hasData": "TRUE",
+        "Pays_search": "brunei"
+    },
+    {
+        "ISO_alpha3": "BGR",
+        "Pays": "Bulgarie",
+        "Pays_eng": "Bulgaria",
+        "hasData": "TRUE",
+        "Pays_search": "bulgarie"
+    },
+    {
+        "ISO_alpha3": "BFA",
+        "Pays": "Burkina Faso",
+        "Pays_eng": "Burkina Faso",
+        "hasData": "TRUE",
+        "Pays_search": "burkina Faso"
+    },
+    {
+        "ISO_alpha3": "BDI",
+        "Pays": "Burundi",
+        "Pays_eng": "Burundi",
+        "hasData": "TRUE",
+        "Pays_search": "burundi"
+    },
+    {
+        "ISO_alpha3": "CPV",
+        "Pays": "Cabo Verde",
+        "Pays_eng": "Cabo Verde",
+        "hasData": "TRUE",
+        "Pays_search": "cabo Verde"
+    },
+    {
+        "ISO_alpha3": "KHM",
+        "Pays": "Cambodge",
+        "Pays_eng": "Cambodia",
+        "hasData": "TRUE",
+        "Pays_search": "cambodge"
+    },
+    {
+        "ISO_alpha3": "CMR",
+        "Pays": "Cameroun",
+        "Pays_eng": "Cameroon",
+        "hasData": "TRUE",
+        "Pays_search": "cameroun"
+    },
+    {
+        "ISO_alpha3": "CAN",
+        "Pays": "Canada",
+        "Pays_eng": "Canada",
+        "hasData": "TRUE",
+        "Pays_search": "canada"
+    },
+    {
+        "ISO_alpha3": "CHL",
+        "Pays": "Chili",
+        "Pays_eng": "Chile",
+        "hasData": "TRUE",
+        "Pays_search": "chili"
+    },
+    {
+        "ISO_alpha3": "CHN",
+        "Pays": "Chine",
+        "Pays_eng": "China",
+        "hasData": "TRUE",
+        "Pays_search": "chine"
+    },
+    {
+        "ISO_alpha3": "HKG",
+        "Pays": "Hong-Kong",
+        "Pays_eng": "Hong-Kong",
+        "hasData": "TRUE",
+        "Pays_search": "hong Kong"
+    },
+    {
+        "ISO_alpha3": "MAC",
+        "Pays": "Macao",
+        "Pays_eng": "Macao",
+        "hasData": "TRUE",
+        "Pays_search": "macao"
+    },
+    {
+        "ISO_alpha3": "CYP",
+        "Pays": "Chypre",
+        "Pays_eng": "Cyprus",
+        "hasData": "TRUE",
+        "Pays_search": "chypre"
+    },
+    {
+        "ISO_alpha3": "COL",
+        "Pays": "Colombie",
+        "Pays_eng": "Colombia",
+        "hasData": "TRUE",
+        "Pays_search": "colombie"
+    },
+    {
+        "ISO_alpha3": "COM",
+        "Pays": "Comores",
+        "Pays_eng": "Comoros",
+        "hasData": "TRUE",
+        "Pays_search": "comores"
+    },
+    {
+        "ISO_alpha3": "COG",
+        "Pays": "Congo",
+        "Pays_eng": "Congo",
+        "hasData": "TRUE",
+        "Pays_search": "congo"
+    },
+    {
+        "ISO_alpha3": "KOR",
+        "Pays": "Cor\u00e9e du Sud",
+        "Pays_eng": "South Korea",
+        "hasData": "TRUE",
+        "Pays_search": "coree du Sud"
+    },
+    {
+        "ISO_alpha3": "CRI",
+        "Pays": "Costa Rica",
+        "Pays_eng": "Costa Rica",
+        "hasData": "TRUE",
+        "Pays_search": "costa Rica"
+    },
+    {
+        "ISO_alpha3": "CIV",
+        "Pays": "C\u00f4te d'Ivoire",
+        "Pays_eng": "C\u00f4te D'Ivoire",
+        "hasData": "TRUE",
+        "Pays_search": "cote d'Ivoire"
+    },
+    {
+        "ISO_alpha3": "HRV",
+        "Pays": "Croatie",
+        "Pays_eng": "Croatia",
+        "hasData": "TRUE",
+        "Pays_search": "croatie"
+    },
+    {
+        "ISO_alpha3": "CUB",
+        "Pays": "Cuba",
+        "Pays_eng": "Cuba",
+        "hasData": "TRUE",
+        "Pays_search": "cuba"
+    },
+    {
+        "ISO_alpha3": "CUW",
+        "Pays": "Cura\u00e7ao",
+        "Pays_eng": "Cura\u00e7ao",
+        "hasData": null,
+        "Pays_search": "curacao"
+    },
+    {
+        "ISO_alpha3": "DNK",
+        "Pays": "Danemark",
+        "Pays_eng": "Denmark",
+        "hasData": "TRUE",
+        "Pays_search": "danemark"
+    },
+    {
+        "ISO_alpha3": "DJI",
+        "Pays": "Djibouti",
+        "Pays_eng": "Djibouti",
+        "hasData": "TRUE",
+        "Pays_search": "djibouti"
+    },
+    {
+        "ISO_alpha3": "DMA",
+        "Pays": "Dominique",
+        "Pays_eng": "Dominica",
+        "hasData": null,
+        "Pays_search": "dominique"
+    },
+    {
+        "ISO_alpha3": "EGY",
+        "Pays": "Égypte",
+        "Pays_eng": "Egypt",
+        "hasData": "TRUE",
+        "Pays_search": "egypte"
+    },
+    {
+        "ISO_alpha3": "ARE",
+        "Pays": "Émirats arabes unis",
+        "Pays_eng": "United Arab Emirates",
+        "hasData": "TRUE",
+        "Pays_search": "emirats arabes unis"
+    },
+    {
+        "ISO_alpha3": "ECU",
+        "Pays": "Equateur",
+        "Pays_eng": "Ecuador",
+        "hasData": "TRUE",
+        "Pays_search": "equateur"
+    },
+    {
+        "ISO_alpha3": "ERI",
+        "Pays": "Erythr\u00e9e",
+        "Pays_eng": "Eritrea",
+        "hasData": "TRUE",
+        "Pays_search": "erythree"
+    },
+    {
+        "ISO_alpha3": "ESP",
+        "Pays": "Espagne",
+        "Pays_eng": "Spain",
+        "hasData": "TRUE",
+        "Pays_search": "espagne"
+    },
+    {
+        "ISO_alpha3": "EST",
+        "Pays": "Estonie",
+        "Pays_eng": "Estonia",
+        "hasData": "TRUE",
+        "Pays_search": "estonie"
+    },
+    {
+        "ISO_alpha3": "PSE",
+        "Pays": "Territoires palestiniens",
+        "Pays_eng": "State of Palestine",
+        "hasData": "TRUE",
+        "Pays_search": "territoires palestiniens"
+    },
+    {
+        "ISO_alpha3": "USA",
+        "Pays": "Etats-Unis",
+        "Pays_eng": "United States of America",
+        "hasData": "TRUE",
+        "Pays_search": "etats-Unis"
+    },
+    {
+        "ISO_alpha3": "ETH",
+        "Pays": "Ethiopie",
+        "Pays_eng": "Ethiopia",
+        "hasData": "TRUE",
+        "Pays_search": "ethiopie"
+    },
+    {
+        "ISO_alpha3": "FIN",
+        "Pays": "Finlande",
+        "Pays_eng": "Finland",
+        "hasData": "TRUE",
+        "Pays_search": "finlande"
+    },
+    {
+        "ISO_alpha3": "FRA",
+        "Pays": "France",
+        "Pays_eng": "France",
+        "hasData": "FALSE",
+        "Pays_search": "france"
+    },
+    {
+        "ISO_alpha3": "GAB",
+        "Pays": "Gabon",
+        "Pays_eng": "Gabon",
+        "hasData": "TRUE",
+        "Pays_search": "gabon"
+    },
+    {
+        "ISO_alpha3": "GMB",
+        "Pays": "Gambie",
+        "Pays_eng": "Gambia",
+        "hasData": "TRUE",
+        "Pays_search": "gambie"
+    },
+    {
+        "ISO_alpha3": "GEO",
+        "Pays": "G\u00e9orgie",
+        "Pays_eng": "Georgia",
+        "hasData": "TRUE",
+        "Pays_search": "georgie"
+    },
+    {
+        "ISO_alpha3": "SGS",
+        "Pays": "G\u00e9orgie du Sud-et-les \u00celes Sandwich du Sud",
+        "Pays_eng": "South Georgia and the South Sandwich Islands",
+        "hasData": null,
+        "Pays_search": "georgie du Sud-et-les Iles Sandwich du Sud"
+    },
+    {
+        "ISO_alpha3": "GHA",
+        "Pays": "Ghana",
+        "Pays_eng": "Ghana",
+        "hasData": "TRUE",
+        "Pays_search": "ghana"
+    },
+    {
+        "ISO_alpha3": "GIB",
+        "Pays": "Gibraltar",
+        "Pays_eng": "Gibraltar",
+        "hasData": null,
+        "Pays_search": "gibraltar"
+    },
+    {
+        "ISO_alpha3": "GRC",
+        "Pays": "Gr\u00e8ce",
+        "Pays_eng": "Greece",
+        "hasData": "TRUE",
+        "Pays_search": "grece"
+    },
+    {
+        "ISO_alpha3": "GRD",
+        "Pays": "Grenade",
+        "Pays_eng": "Grenada",
+        "hasData": null,
+        "Pays_search": "grenade"
+    },
+    {
+        "ISO_alpha3": "GRL",
+        "Pays": "Groenland",
+        "Pays_eng": "Greenland",
+        "hasData": null,
+        "Pays_search": "groenland"
+    },
+    {
+        "ISO_alpha3": "GLP",
+        "Pays": "Guadeloupe",
+        "Pays_eng": "Guadeloupe",
+        "hasData": null,
+        "Pays_search": "guadeloupe"
+    },
+    {
+        "ISO_alpha3": "GUM",
+        "Pays": "Guam",
+        "Pays_eng": "Guam",
+        "hasData": null,
+        "Pays_search": "guam"
+    },
+    {
+        "ISO_alpha3": "GTM",
+        "Pays": "Guatemala",
+        "Pays_eng": "Guatemala",
+        "hasData": "TRUE",
+        "Pays_search": "guatemala"
+    },
+    {
+        "ISO_alpha3": "GGY",
+        "Pays": "Guernesey",
+        "Pays_eng": "Guernsey",
+        "hasData": null,
+        "Pays_search": "guernesey"
+    },
+    {
+        "ISO_alpha3": "GIN",
+        "Pays": "Guin\u00e9e",
+        "Pays_eng": "Guinea",
+        "hasData": "TRUE",
+        "Pays_search": "guinee"
+    },
+    {
+        "ISO_alpha3": "GNB",
+        "Pays": "Guin\u00e9e-Bissao",
+        "Pays_eng": "Guinea-Bissau",
+        "hasData": "TRUE",
+        "Pays_search": "guinee-Bissao"
+    },
+    {
+        "ISO_alpha3": "GNQ",
+        "Pays": "Guin\u00e9e Equatoriale",
+        "Pays_eng": "Equatorial Guinea",
+        "hasData": "TRUE",
+        "Pays_search": "guinee Equatoriale"
+    },
+    {
+        "ISO_alpha3": "GUY",
+        "Pays": "Guyana",
+        "Pays_eng": "Guyana",
+        "hasData": "TRUE",
+        "Pays_search": "guyana"
+    },
+    {
+        "ISO_alpha3": "GUF",
+        "Pays": "Guyane fran\u00e7aise",
+        "Pays_eng": "French Guiana",
+        "hasData": null,
+        "Pays_search": "guyane francaise"
+    },
+    {
+        "ISO_alpha3": "HTI",
+        "Pays": "Ha\u00efti",
+        "Pays_eng": "Haiti",
+        "hasData": "TRUE",
+        "Pays_search": "haiti"
+    },
+    {
+        "ISO_alpha3": "HND",
+        "Pays": "Honduras",
+        "Pays_eng": "Honduras",
+        "hasData": "TRUE",
+        "Pays_search": "honduras"
+    },
+    {
+        "ISO_alpha3": "HUN",
+        "Pays": "Hongrie",
+        "Pays_eng": "Hungary",
+        "hasData": "TRUE",
+        "Pays_search": "hongrie"
+    },
+    {
+        "ISO_alpha3": "BVT",
+        "Pays": "\u00cele Bouvet",
+        "Pays_eng": "Bouvet Island",
+        "hasData": null,
+        "Pays_search": "ile Bouvet"
+    },
+    {
+        "ISO_alpha3": "CXR",
+        "Pays": "\u00cele Christmas",
+        "Pays_eng": "Christmas Island",
+        "hasData": null,
+        "Pays_search": "ile Christmas"
+    },
+    {
+        "ISO_alpha3": "IMN",
+        "Pays": "\u00cele de Man",
+        "Pays_eng": "Isle of Man",
+        "hasData": null,
+        "Pays_search": "ile de Man"
+    },
+    {
+        "ISO_alpha3": "HMD",
+        "Pays": "\u00cele Heard-et-\u00celes MacDonald",
+        "Pays_eng": "Heard Island and McDonald Islands",
+        "hasData": null,
+        "Pays_search": "ile Heard-et-Iles MacDonald"
+    },
+    {
+        "ISO_alpha3": "NFK",
+        "Pays": "\u00cele Norfolk",
+        "Pays_eng": "Norfolk Island",
+        "hasData": null,
+        "Pays_search": "ile Norfolk"
+    },
+    {
+        "ISO_alpha3": "CYM",
+        "Pays": "\u00celes Ca\u00efmanes",
+        "Pays_eng": "Cayman Islands",
+        "hasData": null,
+        "Pays_search": "iles Caimanes"
+    },
+    {
+        "ISO_alpha3": "COK",
+        "Pays": "Iles Cook",
+        "Pays_eng": "Cook Islands",
+        "hasData": "TRUE",
+        "Pays_search": "iles Cook"
+    },
+    {
+        "ISO_alpha3": "ALA",
+        "Pays": "\u00celes d'\u00c5land",
+        "Pays_eng": "\u00c5land Islands",
+        "hasData": null,
+        "Pays_search": "iles d'Aland"
+    },
+    {
+        "ISO_alpha3": "CCK",
+        "Pays": "\u00celes des Cocos (Keeling)",
+        "Pays_eng": "Cocos (Keeling) Islands",
+        "hasData": null,
+        "Pays_search": "iles des Cocos (Keeling)"
+    },
+    {
+        "ISO_alpha3": "FLK",
+        "Pays": "\u00celes Falkland (Malvinas)",
+        "Pays_eng": "Falkland Islands (Malvinas)",
+        "hasData": null,
+        "Pays_search": "iles Falkland (Malvinas)"
+    },
+    {
+        "ISO_alpha3": "FRO",
+        "Pays": "\u00celes F\u00e9ro\u00e9",
+        "Pays_eng": "Faroe Islands",
+        "hasData": null,
+        "Pays_search": "iles Feroe"
+    },
+    {
+        "ISO_alpha3": "FJI",
+        "Pays": "Iles Fidji",
+        "Pays_eng": "Marshall Islands",
+        "hasData": "TRUE",
+        "Pays_search": "iles Fidji"
+    },
+    {
+        "ISO_alpha3": "MNP",
+        "Pays": "\u00celes Mariannes du Nord",
+        "Pays_eng": "Northern Mariana Islands",
+        "hasData": null,
+        "Pays_search": "iles Mariannes du Nord"
+    },
+    {
+        "ISO_alpha3": "MHL",
+        "Pays": "\u00celes Marshall",
+        "Pays_eng": "Marshall Islands",
+        "hasData": null,
+        "Pays_search": "iles Marshall"
+    },
+    {
+        "ISO_alpha3": "UMI",
+        "Pays": "\u00celes mineures \u00e9loign\u00e9es des \u00c9tats-Unis",
+        "Pays_eng": "United States Minor Outlying Islands",
+        "hasData": null,
+        "Pays_search": "iles mineures eloignees des Etats-Unis"
+    },
+    {
+        "ISO_alpha3": "SLB",
+        "Pays": "Iles Salomon",
+        "Pays_eng": "Solomon Islands",
+        "hasData": "TRUE",
+        "Pays_search": "iles Salomon"
+    },
+    {
+        "ISO_alpha3": "SJM",
+        "Pays": "\u00celes Svalbard-et-Jan Mayen",
+        "Pays_eng": "Svalbard and Jan Mayen Islands",
+        "hasData": null,
+        "Pays_search": "iles Svalbard-et-Jan Mayen"
+    },
+    {
+        "ISO_alpha3": "TCA",
+        "Pays": "\u00celes Turques-et-Ca\u00efques",
+        "Pays_eng": "Turks and Caicos Islands",
+        "hasData": null,
+        "Pays_search": "iles Turques-et-Caiques"
+    },
+    {
+        "ISO_alpha3": "VIR",
+        "Pays": "\u00celes Vierges am\u00e9ricaines",
+        "Pays_eng": "United States Virgin Islands",
+        "hasData": null,
+        "Pays_search": "iles Vierges americaines"
+    },
+    {
+        "ISO_alpha3": "VGB",
+        "Pays": "\u00celes Vierges britanniques",
+        "Pays_eng": "British Virgin Islands",
+        "hasData": null,
+        "Pays_search": "iles Vierges britanniques"
+    },
+    {
+        "ISO_alpha3": "WLF",
+        "Pays": "\u00celes Wallis-et-Futuna",
+        "Pays_eng": "Wallis and Futuna Islands",
+        "hasData": null,
+        "Pays_search": "iles Wallis-et-Futuna"
+    },
+    {
+        "ISO_alpha3": "IND",
+        "Pays": "Inde",
+        "Pays_eng": "India",
+        "hasData": "TRUE",
+        "Pays_search": "inde"
+    },
+    {
+        "ISO_alpha3": "IDN",
+        "Pays": "Indon\u00e9sie",
+        "Pays_eng": "Indonesia",
+        "hasData": "TRUE",
+        "Pays_search": "indonesie"
+    },
+    {
+        "ISO_alpha3": "IRQ",
+        "Pays": "Irak",
+        "Pays_eng": "Iraq",
+        "hasData": "TRUE",
+        "Pays_search": "irak"
+    },
+    {
+        "ISO_alpha3": "IRN",
+        "Pays": "Iran",
+        "Pays_eng": "Iran",
+        "hasData": "TRUE",
+        "Pays_search": "iran"
+    },
+    {
+        "ISO_alpha3": "IRL",
+        "Pays": "Irlande",
+        "Pays_eng": "Ireland",
+        "hasData": "TRUE",
+        "Pays_search": "irlande"
+    },
+    {
+        "ISO_alpha3": "ISL",
+        "Pays": "Islande",
+        "Pays_eng": "Iceland",
+        "hasData": "TRUE",
+        "Pays_search": "islande"
+    },
+    {
+        "ISO_alpha3": "ISR",
+        "Pays": "Isra\u00ebl",
+        "Pays_eng": "Israel",
+        "hasData": "TRUE",
+        "Pays_search": "israel"
+    },
+    {
+        "ISO_alpha3": "ITA",
+        "Pays": "Italie",
+        "Pays_eng": "Italy",
+        "hasData": "TRUE",
+        "Pays_search": "italie"
+    },
+    {
+        "ISO_alpha3": "JAM",
+        "Pays": "Jama\u00efque",
+        "Pays_eng": "Jamaica",
+        "hasData": "TRUE",
+        "Pays_search": "jamaique"
+    },
+    {
+        "ISO_alpha3": "JPN",
+        "Pays": "Japon",
+        "Pays_eng": "Japan",
+        "hasData": "TRUE",
+        "Pays_search": "japon"
+    },
+    {
+        "ISO_alpha3": "JEY",
+        "Pays": "Jersey",
+        "Pays_eng": "Jersey",
+        "hasData": null,
+        "Pays_search": "jersey"
+    },
+    {
+        "ISO_alpha3": "JOR",
+        "Pays": "Jordanie",
+        "Pays_eng": "Jordan",
+        "hasData": "TRUE",
+        "Pays_search": "jordanie"
+    },
+    {
+        "ISO_alpha3": "KAZ",
+        "Pays": "Kazakhstan",
+        "Pays_eng": "Kazakhstan",
+        "hasData": "TRUE",
+        "Pays_search": "kazakhstan"
+    },
+    {
+        "ISO_alpha3": "KEN",
+        "Pays": "Kenya",
+        "Pays_eng": "Kenya",
+        "hasData": "TRUE",
+        "Pays_search": "kenya"
+    },
+    {
+        "ISO_alpha3": "KGZ",
+        "Pays": "Kirghizstan",
+        "Pays_eng": "Kyrgyzstan",
+        "hasData": "TRUE",
+        "Pays_search": "kirghizstan"
+    },
+    {
+        "ISO_alpha3": "KIR",
+        "Pays": "Kiribati",
+        "Pays_eng": "Kiribati",
+        "hasData": null,
+        "Pays_search": "kiribati"
+    },
+    {
+        "ISO_alpha3": "KOS",
+        "Pays": "Kosovo",
+        "Pays_eng": "Kosovo",
+        "hasData": "TRUE",
+        "Pays_search": "kosovo"
+    },
+    {
+        "ISO_alpha3": "KWT",
+        "Pays": "Kowe\u00eft",
+        "Pays_eng": "Kuwait",
+        "hasData": "TRUE",
+        "Pays_search": "koweit"
+    },
+    {
+        "ISO_alpha3": "LAO",
+        "Pays": "Laos",
+        "Pays_eng": "Laos",
+        "hasData": "TRUE",
+        "Pays_search": "laos"
+    },
+    {
+        "ISO_alpha3": "LSO",
+        "Pays": "Lesotho",
+        "Pays_eng": "Lesotho",
+        "hasData": "TRUE",
+        "Pays_search": "lesotho"
+    },
+    {
+        "ISO_alpha3": "LVA",
+        "Pays": "Lettonie",
+        "Pays_eng": "Latvia",
+        "hasData": "TRUE",
+        "Pays_search": "lettonie"
+    },
+    {
+        "ISO_alpha3": "LBN",
+        "Pays": "Liban",
+        "Pays_eng": "Lebanon",
+        "hasData": "TRUE",
+        "Pays_search": "liban"
+    },
+    {
+        "ISO_alpha3": "LBR",
+        "Pays": "Lib\u00e9ria",
+        "Pays_eng": "Liberia",
+        "hasData": "TRUE",
+        "Pays_search": "liberia"
+    },
+    {
+        "ISO_alpha3": "LBY",
+        "Pays": "Libye",
+        "Pays_eng": "Libya",
+        "hasData": "TRUE",
+        "Pays_search": "libye"
+    },
+    {
+        "ISO_alpha3": "LIE",
+        "Pays": "Liechtenstein",
+        "Pays_eng": "Liechtenstein",
+        "hasData": "TRUE",
+        "Pays_search": "liechtenstein"
+    },
+    {
+        "ISO_alpha3": "LTU",
+        "Pays": "Lituanie",
+        "Pays_eng": "Lithuania",
+        "hasData": "TRUE",
+        "Pays_search": "lituanie"
+    },
+    {
+        "ISO_alpha3": "LUX",
+        "Pays": "Luxembourg",
+        "Pays_eng": "Luxembourg",
+        "hasData": "TRUE",
+        "Pays_search": "luxembourg"
+    },
+    {
+        "ISO_alpha3": "MKD",
+        "Pays": "Mac\u00e9doine du Nord",
+        "Pays_eng": "Macedonia",
+        "hasData": "TRUE",
+        "Pays_search": "macedoine du Nord"
+    },
+    {
+        "ISO_alpha3": "MDG",
+        "Pays": "Madagascar",
+        "Pays_eng": "Madagascar",
+        "hasData": "TRUE",
+        "Pays_search": "madagascar"
+    },
+    {
+        "ISO_alpha3": "MYS",
+        "Pays": "Malaisie",
+        "Pays_eng": "Malaysia",
+        "hasData": "TRUE",
+        "Pays_search": "malaisie"
+    },
+    {
+        "ISO_alpha3": "MWI",
+        "Pays": "Malawi",
+        "Pays_eng": "Malawi",
+        "hasData": "TRUE",
+        "Pays_search": "malawi"
+    },
+    {
+        "ISO_alpha3": "MDV",
+        "Pays": "Maldives",
+        "Pays_eng": "Maldives",
+        "hasData": "TRUE",
+        "Pays_search": "maldives"
+    },
+    {
+        "ISO_alpha3": "MLI",
+        "Pays": "Mali",
+        "Pays_eng": "Mali",
+        "hasData": "TRUE",
+        "Pays_search": "mali"
+    },
+    {
+        "ISO_alpha3": "MLT",
+        "Pays": "Malte",
+        "Pays_eng": "Malta",
+        "hasData": "TRUE",
+        "Pays_search": "malte"
+    },
+    {
+        "ISO_alpha3": "MAR",
+        "Pays": "Maroc",
+        "Pays_eng": "Morocco",
+        "hasData": "TRUE",
+        "Pays_search": "maroc"
+    },
+    {
+        "ISO_alpha3": "MTQ",
+        "Pays": "Martinique",
+        "Pays_eng": "Martinique",
+        "hasData": null,
+        "Pays_search": "martinique"
+    },
+    {
+        "ISO_alpha3": "MUS",
+        "Pays": "Ile Maurice",
+        "Pays_eng": "Mauritius",
+        "hasData": "TRUE",
+        "Pays_search": "ile Maurice"
+    },
+    {
+        "ISO_alpha3": "MRT",
+        "Pays": "Mauritanie",
+        "Pays_eng": "Mauritania",
+        "hasData": "TRUE",
+        "Pays_search": "mauritanie"
+    },
+    {
+        "ISO_alpha3": "MYT",
+        "Pays": "Mayotte",
+        "Pays_eng": "Mayotte",
+        "hasData": null,
+        "Pays_search": "mayotte"
+    },
+    {
+        "ISO_alpha3": "MEX",
+        "Pays": "Mexique",
+        "Pays_eng": "Mexico",
+        "hasData": "TRUE",
+        "Pays_search": "mexique"
+    },
+    {
+        "ISO_alpha3": "FSM",
+        "Pays": "Etats f\u00e9d\u00e9r\u00e9s de Micron\u00e9sie",
+        "Pays_eng": "Micronesia (Federated States of)",
+        "hasData": null,
+        "Pays_search": "etats federes de Micronesie"
+    },
+    {
+        "ISO_alpha3": "MDA",
+        "Pays": "Moldavie",
+        "Pays_eng": "Moldova",
+        "hasData": "TRUE",
+        "Pays_search": "moldavie"
+    },
+    {
+        "ISO_alpha3": "MCO",
+        "Pays": "Monaco",
+        "Pays_eng": "Monaco",
+        "hasData": "TRUE",
+        "Pays_search": "monaco"
+    },
+    {
+        "ISO_alpha3": "WLD",
+        "Pays": "Monde",
+        "Pays_eng": "World",
+        "hasData": "FALSE",
+        "Pays_search": "monde"
+    },
+    {
+        "ISO_alpha3": "MNG",
+        "Pays": "Mongolie",
+        "Pays_eng": "Mongolia",
+        "hasData": "TRUE",
+        "Pays_search": "mongolie"
+    },
+    {
+        "ISO_alpha3": "MNE",
+        "Pays": "Mont\u00e9n\u00e9gro",
+        "Pays_eng": "Montenegro",
+        "hasData": "TRUE",
+        "Pays_search": "montenegro"
+    },
+    {
+        "ISO_alpha3": "MSR",
+        "Pays": "Montserrat",
+        "Pays_eng": "Montserrat",
+        "hasData": null,
+        "Pays_search": "montserrat"
+    },
+    {
+        "ISO_alpha3": "MOZ",
+        "Pays": "Mozambique",
+        "Pays_eng": "Mozambique",
+        "hasData": "TRUE",
+        "Pays_search": "mozambique"
+    },
+    {
+        "ISO_alpha3": "NAM",
+        "Pays": "Namibie",
+        "Pays_eng": "Namibia",
+        "hasData": "TRUE",
+        "Pays_search": "namibie"
+    },
+    {
+        "ISO_alpha3": "NRU",
+        "Pays": "Nauru",
+        "Pays_eng": "Nauru",
+        "hasData": null,
+        "Pays_search": "nauru"
+    },
+    {
+        "ISO_alpha3": "NPL",
+        "Pays": "N\u00e9pal",
+        "Pays_eng": "Nepal",
+        "hasData": "TRUE",
+        "Pays_search": "nepal"
+    },
+    {
+        "ISO_alpha3": "NIC",
+        "Pays": "Nicaragua",
+        "Pays_eng": "Nicaragua",
+        "hasData": "TRUE",
+        "Pays_search": "nicaragua"
+    },
+    {
+        "ISO_alpha3": "NER",
+        "Pays": "Niger",
+        "Pays_eng": "Niger",
+        "hasData": "TRUE",
+        "Pays_search": "niger"
+    },
+    {
+        "ISO_alpha3": "NGA",
+        "Pays": "Nig\u00e9ria",
+        "Pays_eng": "Nigeria",
+        "hasData": "TRUE",
+        "Pays_search": "nigeria"
+    },
+    {
+        "ISO_alpha3": "NIU",
+        "Pays": "Niou\u00e9",
+        "Pays_eng": "Niue",
+        "hasData": null,
+        "Pays_search": "nioue"
+    },
+    {
+        "ISO_alpha3": "NOR",
+        "Pays": "Norv\u00e8ge",
+        "Pays_eng": "Norway",
+        "hasData": "TRUE",
+        "Pays_search": "norvege"
+    },
+    {
+        "ISO_alpha3": "NCL",
+        "Pays": "Nouvelle-Cal\u00e9donie",
+        "Pays_eng": "New Caledonia",
+        "hasData": null,
+        "Pays_search": "nouvelle-Caledonie"
+    },
+    {
+        "ISO_alpha3": "NZL",
+        "Pays": "Nouvelle-Z\u00e9lande",
+        "Pays_eng": "New Zealand",
+        "hasData": "TRUE",
+        "Pays_search": "nouvelle-Zelande"
+    },
+    {
+        "ISO_alpha3": "OED",
+        "Pays": "OCDE",
+        "Pays_eng": "OECD",
+        "hasData": "FALSE",
+        "Pays_search": "oCDE"
+    },
+    {
+        "ISO_alpha3": "OMN",
+        "Pays": "Oman",
+        "Pays_eng": "Oman",
+        "hasData": "TRUE",
+        "Pays_search": "oman"
+    },
+    {
+        "ISO_alpha3": "UGA",
+        "Pays": "Ouganda",
+        "Pays_eng": "Uganda",
+        "hasData": "TRUE",
+        "Pays_search": "ouganda"
+    },
+    {
+        "ISO_alpha3": "UZB",
+        "Pays": "Ouzbekistan",
+        "Pays_eng": "Uzbekistan",
+        "hasData": "TRUE",
+        "Pays_search": "ouzbekistan"
+    },
+    {
+        "ISO_alpha3": "PAK",
+        "Pays": "Pakistan",
+        "Pays_eng": "Pakistan",
+        "hasData": "TRUE",
+        "Pays_search": "pakistan"
+    },
+    {
+        "ISO_alpha3": "PAN",
+        "Pays": "Panama",
+        "Pays_eng": "Panama",
+        "hasData": "TRUE",
+        "Pays_search": "panama"
+    },
+    {
+        "ISO_alpha3": "PNG",
+        "Pays": "Papouasie-Nouvelle-Guin\u00e9e",
+        "Pays_eng": "Papua New Guinea",
+        "hasData": "TRUE",
+        "Pays_search": "papouasie-Nouvelle-Guinee"
+    },
+    {
+        "ISO_alpha3": "PRY",
+        "Pays": "Paraguay",
+        "Pays_eng": "Paraguay",
+        "hasData": "TRUE",
+        "Pays_search": "paraguay"
+    },
+    {
+        "ISO_alpha3": "NLD",
+        "Pays": "Pays-Bas",
+        "Pays_eng": "Netherlands",
+        "hasData": "TRUE",
+        "Pays_search": "pays-Bas"
+    },
+    {
+        "ISO_alpha3": "PER",
+        "Pays": "P\u00e9rou",
+        "Pays_eng": "Peru",
+        "hasData": "TRUE",
+        "Pays_search": "perou"
+    },
+    {
+        "ISO_alpha3": "PHL",
+        "Pays": "Philippines",
+        "Pays_eng": "Philippines",
+        "hasData": "TRUE",
+        "Pays_search": "philippines"
+    },
+    {
+        "ISO_alpha3": "PCN",
+        "Pays": "Pitcairn",
+        "Pays_eng": "Pitcairn",
+        "hasData": null,
+        "Pays_search": "pitcairn"
+    },
+    {
+        "ISO_alpha3": "POL",
+        "Pays": "Pologne",
+        "Pays_eng": "Poland",
+        "hasData": "TRUE",
+        "Pays_search": "pologne"
+    },
+    {
+        "ISO_alpha3": "PYF",
+        "Pays": "Polyn\u00e9sie fran\u00e7aise",
+        "Pays_eng": "French Polynesia",
+        "hasData": null,
+        "Pays_search": "polynesie francaise"
+    },
+    {
+        "ISO_alpha3": "PRI",
+        "Pays": "Porto Rico",
+        "Pays_eng": "Puerto Rico",
+        "hasData": null,
+        "Pays_search": "porto Rico"
+    },
+    {
+        "ISO_alpha3": "PRT",
+        "Pays": "Portugal",
+        "Pays_eng": "Portugal",
+        "hasData": "TRUE",
+        "Pays_search": "portugal"
+    },
+    {
+        "ISO_alpha3": "QAT",
+        "Pays": "Qatar",
+        "Pays_eng": "Qatar",
+        "hasData": "TRUE",
+        "Pays_search": "Qatar"
+    },
+    {
+        "ISO_alpha3": "CAF",
+        "Pays": "République Centrafricaine",
+        "Pays_eng": "Central African Republic",
+        "hasData": "TRUE",
+        "Pays_search": "republique Centrafricaine"
+    },
+    {
+        "ISO_alpha3": "COD",
+        "Pays": "R\u00e9publique Democratique Du Congo",
+        "Pays_eng": "Democratic Republic of the Congo",
+        "hasData": "TRUE",
+        "Pays_search": "republique Democratique Du Congo"
+    },
+    {
+        "ISO_alpha3": "PLW",
+        "Pays": "R\u00e9publique Des Palaos",
+        "Pays_eng": "Lao People's Democratic Republic",
+        "hasData": "TRUE",
+        "Pays_search": "republique Des Palaos"
+    },
+    {
+        "ISO_alpha3": "DOM",
+        "Pays": "R\u00e9publique Dominicaine",
+        "Pays_eng": "Dominican Republic",
+        "hasData": "TRUE",
+        "Pays_search": "republique Dominicaine"
+    },
+    {
+        "ISO_alpha3": "PRK",
+        "Pays": "R\u00e9publique populaire d\u00e9mocratique de Cor\u00e9e",
+        "Pays_eng": "Democratic People's Republic of Korea",
+        "hasData": "TRUE",
+        "Pays_search": "republique populaire democratique de Coree"
+    },
+    {
+        "ISO_alpha3": "CZE",
+        "Pays": "R\u00e9publique Tch\u00e8que",
+        "Pays_eng": "Czech Republic",
+        "hasData": "TRUE",
+        "Pays_search": "republique Tcheque"
+    },
+    {
+        "ISO_alpha3": "REU",
+        "Pays": "R\u00e9union",
+        "Pays_eng": "R\u00e9union",
+        "hasData": null,
+        "Pays_search": "reunion"
+    },
+    {
+        "ISO_alpha3": "ROU",
+        "Pays": "Roumanie",
+        "Pays_eng": "Romania",
+        "hasData": "TRUE",
+        "Pays_search": "roumanie"
+    },
+    {
+        "ISO_alpha3": "GBR",
+        "Pays": "Royaume-Uni",
+        "Pays_eng": "United Kingdom",
+        "hasData": "TRUE",
+        "Pays_search": "royaume-Uni"
+    },
+    {
+        "ISO_alpha3": "RUS",
+        "Pays": "Russie",
+        "Pays_eng": "Russia",
+        "hasData": "TRUE",
+        "Pays_search": "russie"
+    },
+    {
+        "ISO_alpha3": "RWA",
+        "Pays": "Rwanda",
+        "Pays_eng": "Rwanda",
+        "hasData": "TRUE",
+        "Pays_search": "rwanda"
+    },
+    {
+        "ISO_alpha3": "ESH",
+        "Pays": "Sahara occidental",
+        "Pays_eng": "Western Sahara",
+        "hasData": null,
+        "Pays_search": "sahara occidental"
+    },
+    {
+        "ISO_alpha3": "BLM",
+        "Pays": "Saint-Barth\u00e9lemy",
+        "Pays_eng": "Saint Barth\u00e9lemy",
+        "hasData": null,
+        "Pays_search": "saint-Barthelemy"
+    },
+    {
+        "ISO_alpha3": "KNA",
+        "Pays": "Saint-Kitts-et-Nevis",
+        "Pays_eng": "Saint Kitts and Nevis",
+        "hasData": null,
+        "Pays_search": "saint-Kitts-et-Nevis"
+    },
+    {
+        "ISO_alpha3": "SMR",
+        "Pays": "Saint-Marin",
+        "Pays_eng": "San Marino",
+        "hasData": null,
+        "Pays_search": "saint-Marin"
+    },
+    {
+        "ISO_alpha3": "MAF",
+        "Pays": "Saint-Martin (partie fran\u00e7aise)",
+        "Pays_eng": "Saint Martin (French Part)",
+        "hasData": null,
+        "Pays_search": "saint-Martin (partie francaise)"
+    },
+    {
+        "ISO_alpha3": "SXM",
+        "Pays": "Saint-Martin (partie n\u00e9erlandaise)",
+        "Pays_eng": "Sint Maarten (Dutch part)",
+        "hasData": null,
+        "Pays_search": "saint-Martin (partie neerlandaise)"
+    },
+    {
+        "ISO_alpha3": "SPM",
+        "Pays": "Saint-Pierre-et-Miquelon",
+        "Pays_eng": "Saint Pierre and Miquelon",
+        "hasData": null,
+        "Pays_search": "saint-Pierre-et-Miquelon"
+    },
+    {
+        "ISO_alpha3": "VAT",
+        "Pays": "Saint-Si\u00e8ge",
+        "Pays_eng": "Holy See",
+        "hasData": null,
+        "Pays_search": "saint-Siege"
+    },
+    {
+        "ISO_alpha3": "VCT",
+        "Pays": "Saint-Vincent-et-les Grenadines",
+        "Pays_eng": "Saint Vincent and the Grenadines",
+        "hasData": null,
+        "Pays_search": "saint-Vincent-et-les Grenadines"
+    },
+    {
+        "ISO_alpha3": "SHN",
+        "Pays": "Sainte-H\u00e9l\u00e8ne",
+        "Pays_eng": "Saint Helena",
+        "hasData": null,
+        "Pays_search": "sainte-Helene"
+    },
+    {
+        "ISO_alpha3": "LCA",
+        "Pays": "Sainte-Lucie",
+        "Pays_eng": "Saint Lucia",
+        "hasData": "TRUE",
+        "Pays_search": "sainte-Lucie"
+    },
+    {
+        "ISO_alpha3": "SLV",
+        "Pays": "Salvador",
+        "Pays_eng": "El Salvador",
+        "hasData": "TRUE",
+        "Pays_search": "salvador"
+    },
+    {
+        "ISO_alpha3": "WSM",
+        "Pays": "Samoa",
+        "Pays_eng": "Samoa",
+        "hasData": "TRUE",
+        "Pays_search": "samoa"
+    },
+    {
+        "ISO_alpha3": "ASM",
+        "Pays": "Samoa am\u00e9ricaines",
+        "Pays_eng": "American Samoa",
+        "hasData": null,
+        "Pays_search": "samoa americaines"
+    },
+    {
+        "ISO_alpha3": "STP",
+        "Pays": "Sao Tom\u00e9-et-Principe",
+        "Pays_eng": "Sao Tome and Principe",
+        "hasData": null,
+        "Pays_search": "sao Tome-et-Principe"
+    },
+    {
+        "ISO_alpha3": "SEN",
+        "Pays": "S\u00e9n\u00e9gal",
+        "Pays_eng": "Senegal",
+        "hasData": "TRUE",
+        "Pays_search": "senegal"
+    },
+    {
+        "ISO_alpha3": "SRB",
+        "Pays": "Serbie",
+        "Pays_eng": "Serbia",
+        "hasData": "TRUE",
+        "Pays_search": "serbie"
+    },
+    {
+        "ISO_alpha3": "",
+        "Pays": "Sercq",
+        "Pays_eng": "Sark",
+        "hasData": null,
+        "Pays_search": "sercq"
+    },
+    {
+        "ISO_alpha3": "SYC",
+        "Pays": "Seychelles",
+        "Pays_eng": "Seychelles",
+        "hasData": "TRUE",
+        "Pays_search": "seychelles"
+    },
+    {
+        "ISO_alpha3": "SLE",
+        "Pays": "Sierra Leone",
+        "Pays_eng": "Sierra Leone",
+        "hasData": "TRUE",
+        "Pays_search": "sierra Leone"
+    },
+    {
+        "ISO_alpha3": "SGP",
+        "Pays": "Singapour",
+        "Pays_eng": "Singapore",
+        "hasData": "TRUE",
+        "Pays_search": "singapour"
+    },
+    {
+        "ISO_alpha3": "SVK",
+        "Pays": "Slovaquie",
+        "Pays_eng": "Slovakia",
+        "hasData": "TRUE",
+        "Pays_search": "slovaquie"
+    },
+    {
+        "ISO_alpha3": "SVN",
+        "Pays": "Slov\u00e9nie",
+        "Pays_eng": "Slovenia",
+        "hasData": "TRUE",
+        "Pays_search": "slovenie"
+    },
+    {
+        "ISO_alpha3": "SOM",
+        "Pays": "Somalie",
+        "Pays_eng": "Somalia",
+        "hasData": "TRUE",
+        "Pays_search": "somalie"
+    },
+    {
+        "ISO_alpha3": "SDN",
+        "Pays": "Soudan",
+        "Pays_eng": "Sudan",
+        "hasData": "TRUE",
+        "Pays_search": "soudan"
+    },
+    {
+        "ISO_alpha3": "SSD",
+        "Pays": "Soudan Du Sud",
+        "Pays_eng": "South Sudan",
+        "hasData": "TRUE",
+        "Pays_search": "soudan Du Sud"
+    },
+    {
+        "ISO_alpha3": "LKA",
+        "Pays": "Sri Lanka",
+        "Pays_eng": "Sri Lanka",
+        "hasData": "TRUE",
+        "Pays_search": "sri Lanka"
+    },
+    {
+        "ISO_alpha3": "SWE",
+        "Pays": "Su\u00e8de",
+        "Pays_eng": "Sweden",
+        "hasData": "TRUE",
+        "Pays_search": "suede"
+    },
+    {
+        "ISO_alpha3": "CHE",
+        "Pays": "Suisse",
+        "Pays_eng": "Switzerland",
+        "hasData": "TRUE",
+        "Pays_search": "suisse"
+    },
+    {
+        "ISO_alpha3": "SUR",
+        "Pays": "Suriname",
+        "Pays_eng": "Suriname",
+        "hasData": "TRUE",
+        "Pays_search": "suriname"
+    },
+    {
+        "ISO_alpha3": "SWZ",
+        "Pays": "Eswatini",
+        "Pays_eng": "Swaziland",
+        "hasData": "TRUE",
+        "Pays_search": "eswatini"
+    },
+    {
+        "ISO_alpha3": "SYR",
+        "Pays": "Syrie",
+        "Pays_eng": "Syria",
+        "hasData": "TRUE",
+        "Pays_search": "syrie"
+    },
+    {
+        "ISO_alpha3": "TJK",
+        "Pays": "Tadjikistan",
+        "Pays_eng": "Tajikistan",
+        "hasData": "TRUE",
+        "Pays_search": "tadjikistan"
+    },
+    {
+        "ISO_alpha3": "TWN",
+        "Pays": "Ta\u00efwan",
+        "Pays_eng": "Taiwan",
+        "hasData": "TRUE",
+        "Pays_search": "taiwan"
+    },
+    {
+        "ISO_alpha3": "TZA",
+        "Pays": "Tanzanie",
+        "Pays_eng": "Tanzania",
+        "hasData": "TRUE",
+        "Pays_search": "tanzanie"
+    },
+    {
+        "ISO_alpha3": "TCD",
+        "Pays": "Tchad",
+        "Pays_eng": "Chad",
+        "hasData": "TRUE",
+        "Pays_search": "tchad"
+    },
+    {
+        "ISO_alpha3": "ATF",
+        "Pays": "Terres australes fran\u00e7aises",
+        "Pays_eng": "French Southern Territories",
+        "hasData": null,
+        "Pays_search": "terres australes francaises"
+    },
+    {
+        "ISO_alpha3": "IOT",
+        "Pays": "Territoire britannique de l'oc\u00e9an Indien",
+        "Pays_eng": "British Indian Ocean Territory",
+        "hasData": null,
+        "Pays_search": "territoire britannique de l'ocean Indien"
+    },
+    {
+        "ISO_alpha3": "THA",
+        "Pays": "Tha\u00eflande",
+        "Pays_eng": "Thailand",
+        "hasData": "TRUE",
+        "Pays_search": "thailande"
+    },
+    {
+        "ISO_alpha3": "TLS",
+        "Pays": "Timor Est",
+        "Pays_eng": "Timor-Leste",
+        "hasData": "TRUE",
+        "Pays_search": "timor Est"
+    },
+    {
+        "ISO_alpha3": "TGO",
+        "Pays": "Togo",
+        "Pays_eng": "Togo",
+        "hasData": "TRUE",
+        "Pays_search": "togo"
+    },
+    {
+        "ISO_alpha3": "TKL",
+        "Pays": "Tok\u00e9laou",
+        "Pays_eng": "Tokelau",
+        "hasData": null,
+        "Pays_search": "tokelaou"
+    },
+    {
+        "ISO_alpha3": "TON",
+        "Pays": "Tonga",
+        "Pays_eng": "Tonga",
+        "hasData": "TRUE",
+        "Pays_search": "tonga"
+    },
+    {
+        "ISO_alpha3": "TTO",
+        "Pays": "Trinité-et-Tobago",
+        "Pays_eng": "Trinidad and Tobago",
+        "hasData": "TRUE",
+        "Pays_search": "trinite Et Tobago"
+    },
+    {
+        "ISO_alpha3": "TUN",
+        "Pays": "Tunisie",
+        "Pays_eng": "Tunisia",
+        "hasData": "TRUE",
+        "Pays_search": "tunisie"
+    },
+    {
+        "ISO_alpha3": "TKM",
+        "Pays": "Turkménistan",
+        "Pays_eng": "Turkmenistan",
+        "hasData": "TRUE",
+        "Pays_search": "turkmenistan"
+    },
+    {
+        "ISO_alpha3": "TUR",
+        "Pays": "Turquie",
+        "Pays_eng": "Turkey",
+        "hasData": "TRUE",
+        "Pays_search": "turquie"
+    },
+    {
+        "ISO_alpha3": "TUV",
+        "Pays": "Tuvalu",
+        "Pays_eng": "Tuvalu",
+        "hasData": null,
+        "Pays_search": "tuvalu"
+    },
+    {
+        "ISO_alpha3": "UKR",
+        "Pays": "Ukraine",
+        "Pays_eng": "Ukraine",
+        "hasData": "TRUE",
+        "Pays_search": "ukraine"
+    },
+    {
+        "ISO_alpha3": "EUU",
+        "Pays": "Union Europ\u00e9enne",
+        "Pays_eng": "European Union",
+        "hasData": "FALSE",
+        "Pays_search": "union Europeenne"
+    },
+    {
+        "ISO_alpha3": "URY",
+        "Pays": "Uruguay",
+        "Pays_eng": "Uruguay",
+        "hasData": "TRUE",
+        "Pays_search": "uruguay"
+    },
+    {
+        "ISO_alpha3": "VUT",
+        "Pays": "Vanuatu",
+        "Pays_eng": "Vanuatu",
+        "hasData": "TRUE",
+        "Pays_search": "vanuatu"
+    },
+    {
+        "ISO_alpha3": "VEN",
+        "Pays": "V\u00e9n\u00e9zu\u00e9la",
+        "Pays_eng": "Venezuela",
+        "hasData": "TRUE",
+        "Pays_search": "venezuela"
+    },
+    {
+        "ISO_alpha3": "VNM",
+        "Pays": "Vietnam",
+        "Pays_eng": "Viet Nam",
+        "hasData": "TRUE",
+        "Pays_search": "vietnam"
+    },
+    {
+        "ISO_alpha3": "YEM",
+        "Pays": "Y\u00e9men",
+        "Pays_eng": "Yemen",
+        "hasData": "TRUE",
+        "Pays_search": "yemen"
+    },
+    {
+        "ISO_alpha3": "ZMB",
+        "Pays": "Zambie",
+        "Pays_eng": "Zambia",
+        "hasData": "TRUE",
+        "Pays_search": "zambie"
+    },
+    {
+        "ISO_alpha3": "ZWE",
+        "Pays": "Zimbabw\u00e9",
+        "Pays_eng": "Zimbabwe",
+        "hasData": "TRUE",
+        "Pays_search": "zimbabwe"
+    },
+    {
+        "ISO_alpha3": "CA-QC",
+        "Pays": "Qu\u00e9bec",
+        "Pays_eng": "Quebec",
+        "hasData": "TRUE",
+        "Pays_search": "Quebec"
+    }
+]
