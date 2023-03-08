@@ -1,9 +1,9 @@
 import React from "react";
-import data from "../../data/huawei_france.json"
+import data from "../../../data/huawei_france.json"
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
-function publicationByYear() {
+function PublicationByYear() {
 
  let publicationsGroupedByYear = data?.results?.reduce(function(acc, publication) {
   let year = publication.publication_year;
@@ -46,4 +46,4 @@ const options = {
   );
 }
 
-export default publicationByYear;
+export default PublicationByYear;

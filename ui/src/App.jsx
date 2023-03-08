@@ -1,49 +1,66 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-import { DisplayGraph } from './network'
-import PublicationByYear from "../src/Component/publication_by_year"
+import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-import load from './load'
+import { DisplayGraph } from './components/network';
+import PublicationByYear from './components/publication-by-year';
+import TopRevues from './components/top-revues';
+import Layout from './layout';
+import load from './load';
+import HomePage from './pages/home';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  return (
+
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="about" element={<About />} />
+          <Route path="draft" element={<Draft />} />
+          <Route path="*" element={<NoMatch />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function About() {
+  return (
+    <div>
+      <h2>About</h2>
+    </div>
+  );
+}
+
+function Draft() {
   const [data, setData] = useState([]);
+
   useEffect(() => {
     const getData = async () => {
       const data = await load('publication_year:2016-,raw_affiliation_string.search:beta cnrs');
-      console.log(data);
+      // console.log(data);
       setData(data);
     }
     getData();
   }, []);
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div>
       <DisplayGraph />
-      <PublicationByYear/>
+      <PublicationByYear />
+      <TopRevues />
     </div>
-  )
+  );
 }
 
-export default App
+
+function NoMatch() {
+  return (
+    <div>
+      <h2>404</h2>
+      <p>
+        <Link to="/">Go to the home page</Link>
+      </p>
+    </div>
+  );
+}
