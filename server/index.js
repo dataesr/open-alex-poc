@@ -2,6 +2,9 @@ import 'dotenv/config';
 import path from 'path';
 import express from 'express';
 import cors from 'cors';
+import S3Cache from './storage';
+import data from './data/huawei_france.json' assert { type: 'json' };
+
 
 let httpServer;
 
@@ -13,6 +16,9 @@ if (process.env.NODE_ENV === 'development') {
   app.use(cors({ origin: '*', methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'] }));
 }
 app.use(express.static(path.join(path.resolve(), '/ui/dist')));
+app.use('/api', async (req, res) => {
+  const { oaq } = req.query
+});
 
 async function cleanup() {
   app.isReady = false;
@@ -30,4 +36,7 @@ function createAPIServer(port) {
   });
 }
 
-createAPIServer(3000);
+S3Cache.set('test.json', Buffer.from(JSON.stringify(data)))
+
+// createAPIServer(3000);
+
