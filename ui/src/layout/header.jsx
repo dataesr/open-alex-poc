@@ -31,13 +31,18 @@ export default function Header() {
       </HeaderBody>
       <HeaderNav path={pathname}>
         <NavItem
-          title="Accueil"
-          asLink={<RouterLink to="/">Accueil</RouterLink>}
+          title="Home"
+          asLink={<RouterLink to="/">Home</RouterLink>}
           current={pathname === '/'}
         />
         <NavItem
+          title="Explore"
+          asLink={<RouterLink to="/explore">Explore</RouterLink>}
+          current={pathname === '/explore'}
+        />
+        <NavItem
           title="About"
-          asLink={<RouterLink to="/about">A propos</RouterLink>}
+          asLink={<RouterLink to="/about">About</RouterLink>}
           current={pathname === '/about'}
         />
         <NavItem

@@ -1,10 +1,12 @@
 import React from "react";
-import data from "../../../data/huawei_france.json";
+import dataJson from "../../../data/huawei_france.json";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-function TopRevues() {
-  let revues = data.results.reduce(function (acc, publication) {
+function TopRevues({ dataLoaded }) {
+  const data = (dataLoaded?.length > 0) ? dataLoaded : dataJson.results;
+
+  let revues = data.reduce(function (acc, publication) {
     let revue = publication.host_venue.display_name;
     if (!acc[revue]) {
       acc[revue] = 0;
