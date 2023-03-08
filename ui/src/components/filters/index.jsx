@@ -6,7 +6,7 @@ export default function Filters({ onSetFiltersHandler }) {
     const [startDate, setStartDate] = useState(2016);
     const [endDate, setEndDate] = useState(2022);
 
-    const types = ["raw_affiliation_string", "institutions.country_code"];
+    const types = ["raw_affiliation_string", "institutions.country_code", "institutions.ror"];
     const [affiliation1Type, setAffiliation1Type] = useState(types[0]);
     const [affiliation1Str, setAffiliation1Str] = useState(null);
     const [affiliation2Type, setAffiliation2Type] = useState(types[0]);
@@ -59,8 +59,8 @@ export default function Filters({ onSetFiltersHandler }) {
     return (
         <section>
             <Container>
-                <Row gutters>
-                    <Col n="6">
+                <Row gutters alignItems="bottom">
+                    <Col n="2">
                         <TextInput
                             name="startDateInput"
                             value={startDate} label="Start year"
@@ -68,7 +68,7 @@ export default function Filters({ onSetFiltersHandler }) {
                             onChange={(e) => setStartDate(e.target.value)}
                         />
                     </Col>
-                    <Col n="6">
+                    <Col n="2">
                         <TextInput
                             name="endDateInput"
                             value={endDate}
@@ -77,9 +77,28 @@ export default function Filters({ onSetFiltersHandler }) {
                             onChange={(e) => setEndDate(e.target.value)}
                         />
                     </Col>
+                    <Col n="4">
+                        <TextInput
+                            name="thematic"
+                            value={thematic}
+                            label="Thematic"
+                            onChange={(e) => setThematic(e.target.value)}
+                        />
+                    </Col>
+                    <Col n="1">
+                        <Checkbox label="Sample" checked={onSample} onChange={() => setOnSample(!onSample)} />
+                    </Col>
+                    <Col n="1">
+                        <TextInput
+                            name="sampleLength"
+                            value={sampleLength}
+                            onChange={(e) => setSampleLength(e.target.value)}
+                            disabled={!onSample}
+                        />
+                    </Col>
                 </Row>
                 <Row gutters>
-                    <Col n="6">
+                    <Col n="3">
                         <Select
                             label="affiliation1_type"
                             id="affiliation1_type"
@@ -88,7 +107,7 @@ export default function Filters({ onSetFiltersHandler }) {
                             selected={affiliation1Type}
                         />
                     </Col>
-                    <Col n="6">
+                    <Col n="7">
                         {
                             (affiliation1Type === 'institutions.country_code') ? (
                                 <Select
@@ -109,8 +128,8 @@ export default function Filters({ onSetFiltersHandler }) {
                         }
                     </Col>
                 </Row>
-                <Row gutters>
-                    <Col n="6">
+                <Row gutters alignItems="bottom">
+                    <Col n="3">
                         <Select
                             label="affiliation2_type"
                             id="affiliation2_type"
@@ -119,31 +138,12 @@ export default function Filters({ onSetFiltersHandler }) {
                             selected={affiliation2Type}
                         />
                     </Col>
-                    <Col n="6">
+                    <Col n="7">
                         <TextInput
                             name="affiliation2_str"
                             value={affiliation2Str}
                             label="affiliation2_str"
                             onChange={(e) => setAffiliation2Str(e.target.value)}
-                        />
-                    </Col>
-                </Row>
-                <Row gutters>
-                    <Col n="6">
-                        <TextInput
-                            name="thematic"
-                            value={thematic}
-                            label="Thematic"
-                            onChange={(e) => setThematic(e.target.value)}
-                        />
-                    </Col>
-                    <Col n="3">
-                        <Checkbox label="Search on sample" checked={onSample} onChange={() => setOnSample(!onSample)} />
-                        <TextInput
-                            name="sampleLength"
-                            value={sampleLength}
-                            onChange={(e) => setSampleLength(e.target.value)}
-                            disabled={!onSample}
                         />
                     </Col>
                     <Col>
