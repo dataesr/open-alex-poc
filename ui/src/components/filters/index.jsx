@@ -8,8 +8,11 @@ export default function Filters({ onSetFiltersHandler }) {
 
     const types = ["raw_affiliation_string", "institutions.country_code", "institutions.ror"];
     const [affiliation1Type, setAffiliation1Type] = useState(types[0]);
+    const [affiliation1ISO, setAffiliation1ISO] = useState(null);
     const [affiliation1Str, setAffiliation1Str] = useState(null);
+
     const [affiliation2Type, setAffiliation2Type] = useState(types[0]);
+    const [affiliation2ISO, setAffiliation2ISO] = useState(null);
     const [affiliation2Str, setAffiliation2Str] = useState(null);
 
     const [thematic, setThematic] = useState(null);
@@ -29,9 +32,11 @@ export default function Filters({ onSetFiltersHandler }) {
 
         if ((startDate || endDate) && affiliation1Str) q += ',';
         if (affiliation1Type === types[0] && affiliation1Str) q += 'raw_affiliation_string.search:' + affiliation1Str;
+        if (affiliation1Type === types[1]) q += '&institutions.country_code=' + affiliation1ISO;
 
         if ((startDate || endDate) && affiliation2Str) q += ',';
         if (affiliation2Type === types[0] && affiliation2Str) q += 'raw_affiliation_string.search:' + affiliation2Str;
+        if (affiliation2Type === types[1]) q += '&institutions.country_code=' + affiliation2ISO;
 
         if (onSample) q += '&sample=' + sampleLength;
 
@@ -43,8 +48,8 @@ export default function Filters({ onSetFiltersHandler }) {
         onSetFiltersHandler(
             {
                 details: {
-                    affiliationOne: { type: affiliation1Type, query: affiliation1Str },
-                    affiliationTwo: { type: affiliation2Type, query: affiliation2Str },
+                    affiliationOne: { type: affiliation1Type, query: (affiliation1Type === types[1]) ? affiliation1ISO : affiliation1Str },
+                    affiliationTwo: { type: affiliation2Type, query: (affiliation2Type === types[1]) ? affiliation2ISO : affiliation2Str },
                     startDate,
                     endDate,
                     thematic,
@@ -57,7 +62,7 @@ export default function Filters({ onSetFiltersHandler }) {
     }
 
     return (
-        <section>
+        <section className="fr-mt-1w">
             <Container>
                 <Row gutters alignItems="bottom">
                     <Col n="2">
@@ -72,7 +77,7 @@ export default function Filters({ onSetFiltersHandler }) {
                         <TextInput
                             name="endDateInput"
                             value={endDate}
-                            label="End year"
+                            label="End year (empty = max)"
                             maxLength="4"
                             onChange={(e) => setEndDate(e.target.value)}
                         />
@@ -102,7 +107,7 @@ export default function Filters({ onSetFiltersHandler }) {
                         <Select
                             label="affiliation1_type"
                             id="affiliation1_type"
-                            onChange={(e) => setAffiliation1Type(e.target.value)}
+                            onChange={(e) => [setAffiliation1Type(e.target.value), setAffiliation1Str(null)]}
                             options={types.map((el) => ({ label: el, name: el }))}
                             selected={affiliation1Type}
                         />
@@ -112,10 +117,10 @@ export default function Filters({ onSetFiltersHandler }) {
                             (affiliation1Type === 'institutions.country_code') ? (
                                 <Select
                                     label="Country selction"
-                                    id="affiliation1_type"
-                                    onChange={(e) => setAffiliation1Type(e.target.value)}
-                                    options={countriesList.map((el) => ({ label: el.Pays_eng, name: el.ISO_alpha3 }))}
-                                    selected={affiliation1Type}
+                                    id="affiliation1ISO"
+                                    onChange={(e) => setAffiliation1ISO(e.target.value)}
+                                    options={countriesList.map((el) => ({ label: el.Pays_eng, value: el.ISO_alpha3 }))}
+                                    selected={affiliation1ISO}
                                 />
                             ) : (
                                 <TextInput
@@ -133,18 +138,30 @@ export default function Filters({ onSetFiltersHandler }) {
                         <Select
                             label="affiliation2_type"
                             id="affiliation2_type"
-                            onChange={(e) => setAffiliation2Type(e.target.value)}
+                            onChange={(e) => [setAffiliation2Type(e.target.value), setAffiliation2Str(null)]}
                             options={types.map((el) => ({ label: el, name: el }))}
                             selected={affiliation2Type}
                         />
                     </Col>
                     <Col n="7">
-                        <TextInput
-                            name="affiliation2_str"
-                            value={affiliation2Str}
-                            label="affiliation2_str"
-                            onChange={(e) => setAffiliation2Str(e.target.value)}
-                        />
+                        {
+                            (affiliation2Type === 'institutions.country_code') ? (
+                                <Select
+                                    label="Country selction"
+                                    id="affiliation2ISO"
+                                    onChange={(e) => setAffiliation2ISO(e.target.value)}
+                                    options={countriesList.map((el) => ({ label: el.Pays_eng, value: el.ISO_alpha3 }))}
+                                    selected={affiliation2ISO}
+                                />
+                            ) : (
+                                <TextInput
+                                    name="affiliation2_str"
+                                    value={affiliation2Str}
+                                    label="affiliation2_str"
+                                    onChange={(e) => setAffiliation2Str(e.target.value)}
+                                />
+                            )
+                        }
                     </Col>
                     <Col>
                         <Button onClick={createQuery}>
@@ -155,7 +172,6 @@ export default function Filters({ onSetFiltersHandler }) {
             </Container>
             <br />
             <hr />
-            {/* {query} */}
         </section>
     )
 }
