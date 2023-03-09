@@ -1,11 +1,5 @@
-import { useEffect, useState } from 'react'
-import {
-    Container, Row, Col, Button, Alert
-} from '@dataesr/react-dsfr';
+import { Container, Row, Col, Button, Alert } from '@dataesr/react-dsfr';
 
-import Filters from "../components/filters";
-import PublicationByYear from '../components/publication-by-year';
-import loadData from "../utils/loadData";
 import useFetch from '../hooks/useFetch';
 import { hashQuery } from '../utils/hash';
 
