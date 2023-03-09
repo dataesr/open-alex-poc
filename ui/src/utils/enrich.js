@@ -28,6 +28,7 @@ function isInAuthorship(filter, authorship) {
 }
 
 function enrichWorksAuthorships(data, filters) {
+  if (!filters) return data;
   return data.map((work) => {
     if (!work?.authorships?.length) return work;
     const enrichedAuthorships = work.authorships.map((authorship) => ({

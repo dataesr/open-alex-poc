@@ -24,6 +24,9 @@ export default function useFetch(filters) {
       setIsLoading(false);
       setError(false);
       setData(defaultData);
+    } else if (!filters){
+      setIsLoading(false);
+      setError(false);
     } else {
       fetchData();
     }

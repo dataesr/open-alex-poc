@@ -6,25 +6,20 @@ import loadData from "../utils/loadData";
 import TopRevues from "../components/top-revues";
 import TopAuthors from "../components/top-authors";
 import ConceptByYear from "../components/publication-by-concept";
+import useFetch from "../hooks/useFetch";
+import enrichWorksAuthorships from "../utils/enrich";
 
 export default function ExplorePage() {
-  const [data, setData] = useState(null);
-  const [filters, setFilters] = useState("");
+  const [filters, setFilters] = useState(null);
+  const {isLoading, error, data: fetchedData } = useFetch(filters?.details);
+  if (isLoading) return 'Loading...'
+  if (error) return 'Error';
+  if (!fetchedData) return 'NULL';
+  const data = enrichWorksAuthorships(fetchedData?.results, filters)
 
-  useEffect(() => {
-    const getData = async () => {
-      const data = await loadData(filters);
-      setData(data);
-    };
-    if (filters) getData();
-  }, [filters]);
-
-  const onSetFiltersHandler = (f) => {
-    setFilters(f);
-  };
   return (
     <main>
-      <Filters onSetFiltersHandler={onSetFiltersHandler} />
+      <Filters onSetFiltersHandler={(f) => setFilters(f)} />
       <section>
         <Container>
           <Row>
