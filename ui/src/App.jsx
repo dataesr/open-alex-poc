@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 import ConceptByYear from "./components/publication-by-concept";
-import DisplayGraph from "./components/network";
+import Network from "./components/network";
+import Signatures from "./components/signatures";
 import TopAuthors from "./components/top-authors";
 import Layout from "./layout";
 import load from "./load";
@@ -49,9 +50,10 @@ function Draft() {
 
   return (
     <div>
-      <DisplayGraph />
+      <Network />
       <TopAuthors dataLoaded={data || []} />
       <ConceptByYear dataLoaded={data || []} />
+      <Signatures />
     </div>
   );
 }

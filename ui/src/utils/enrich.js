@@ -1,5 +1,3 @@
-import data from '../../data/huawei_france.json' assert { type: 'json' };
-
 function normalize(string) {
   return string
     .normalize('NFD')
@@ -35,19 +33,10 @@ function enrichWorksAuthorships(data, inputs) {
     const enrichedAuthorships = work.authorships.map((authorship) => ({
       ...authorship,
       isAffiliationOne: isInAuthorship(inputs.affiliationOne, authorship),
-      isAffiliationTwo: isInAuthorship(inputs.affiliationTwo, authorship),
+      isAffiliationTwo: inputs?.affiliationTwo ? isInAuthorship(inputs.affiliationTwo, authorship) : null,
     }))
     return { ...work, authorships: enrichedAuthorships };
   })
 }
 
-const fakequery = {
-  affiliationOne: {type: "raw_affiliation_string", query: 'France'},
-  affiliationTwo: {type: "raw_affiliation_string", query: 'Huawei'},
-}
-const fakequery2 = {
-  affiliationOne: { type: "institutions.country_code", query: 'Fr'},
-  affiliationTwo: {type: "raw_affiliation_string", query: 'Huawei'},
-}
-console.log(JSON.stringify(enrichWorksAuthorships(data.results, fakequery)[0].authorships, null, 2))
-console.log(JSON.stringify(enrichWorksAuthorships(data.results, fakequery2)[0].authorships, null, 2))
+export default enrichWorksAuthorships;
