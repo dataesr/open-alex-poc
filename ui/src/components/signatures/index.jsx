@@ -3,10 +3,7 @@ import React from "react";
 import data from "../../../data/huawei_france.json";
 import enrichWorksAuthorships from '../../utils/enrich'
 
-const Signatures = () => {
-  const filters = {
-    affiliationOne: { type: "raw_affiliation_string", query: 'Huawei' },
-  };
+const Signatures = ({ filters }) => {
   const enrichedData = enrichWorksAuthorships(data.results, filters);
   const authorsAffiliationOne = [];
   enrichedData.forEach((work) => {

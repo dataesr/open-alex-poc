@@ -11,19 +11,15 @@ export default function ExplorePage() {
   const [data, setData] = useState(null);
   const [filters, setFilters] = useState("");
 
-  console.log(filters);
-
   useEffect(() => {
     const getData = async () => {
       const data = await loadData(filters);
-      console.log(data);
       setData(data);
     };
     if (filters) getData();
   }, [filters]);
 
   const onSetFiltersHandler = (f) => {
-    console.log("my filters", f);
     setFilters(f);
   };
   return (

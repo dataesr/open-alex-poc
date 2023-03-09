@@ -3,8 +3,6 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 function PublicationByYear({ dataLoaded }) {
-  console.log(dataLoaded)
-
   let publicationsGroupedByYear = dataLoaded?.reduce(function (
     acc,
     publication

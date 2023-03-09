@@ -28,6 +28,7 @@ const Network = () => {
   data?.results?.forEach((work) => {
     let coInstitutions = [];
     work?.authorships?.forEach((authorship) => {
+      // Filter works that have 25 or more authorship
       if (authorship?.institutions?.length <= 25) {
         authorship?.institutions?.forEach((institution) => {
           if (institution.id !== null) {
