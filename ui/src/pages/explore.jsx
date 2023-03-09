@@ -36,7 +36,7 @@ export default function ExplorePage() {
                         </Highlight>
                     </Col>
                 </Row>
-                <Row>
+                <Row className="fr-mt-5w">
                     <Col>
                         <GraphTitle filters={filters} title="Top sources with the most publications" />
                         <TopRevues dataLoaded={data || []} />
@@ -45,10 +45,28 @@ export default function ExplorePage() {
                         </Highlight>
                     </Col>
                 </Row>
-                <Row>
+                <Row className="fr-mt-5w">
                     <Col>
                         <GraphTitle filters={filters} title="Top 10 of signatures" />
                         <Signatures dataLoaded={data || []} filters={{ details: { affiliationOne: { type: "raw_affiliation_string", query: 'Paris Research Center' } } }} />
+                        <Highlight colorFamily="yellow-tournesol">
+                            texte explicatif du graph
+                        </Highlight>
+                    </Col>
+                </Row>
+                <Row className="fr-mt-5w">
+                    <Col>
+                        <GraphTitle filters={filters} title="Top 10 of authors with the most publications" />
+                        <TopAuthors dataLoaded={data || []} />
+                        <Highlight colorFamily="yellow-tournesol">
+                            texte explicatif du graph
+                        </Highlight>
+                    </Col>
+                </Row>
+                <Row className="fr-mt-5w">
+                    <Col>
+                        <GraphTitle filters={filters} title="Number of publications by concepts" />
+                        <ConceptByYear dataLoaded={data || []} />
                         <Highlight colorFamily="yellow-tournesol">
                             texte explicatif du graph
                         </Highlight>

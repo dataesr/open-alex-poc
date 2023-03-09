@@ -2,8 +2,7 @@ import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-function ConceptByYear({dataLoaded}) {
-
+function ConceptByYear({ dataLoaded }) {
   let publicationsGroupedByYear = dataLoaded?.reduce(function (
     acc,
     publication
@@ -15,7 +14,7 @@ function ConceptByYear({dataLoaded}) {
     acc[year].push(publication);
     return acc;
   },
-  {});
+    {});
 
   let publicationsCountByYear = {};
 
@@ -102,12 +101,12 @@ function ConceptByYear({dataLoaded}) {
       zoomType: "x",
     },
     title: {
-      text: "Publications par concept",
+      text: "",
     },
     xAxis: {
       type: "category",
       title: {
-        text: "Années",
+        text: "Years",
       },
     },
     yAxis: {

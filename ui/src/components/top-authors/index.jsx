@@ -2,8 +2,7 @@ import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-function TopAuthors({dataLoaded}) {
-
+function TopAuthors({ dataLoaded }) {
   let authors = dataLoaded?.reduce(function (acc, publication) {
     publication.authorships.forEach((el) => {
       let authorName = el.author.display_name;
@@ -30,7 +29,7 @@ function TopAuthors({dataLoaded}) {
         name: "Nombre de publications",
       },
     ],
-    title: { text: "Top 10 des auteurs avec le plus de publications" },
+    title: { text: "" },
     xAxis: { categories: topAuthors.map((item) => item.name) }, // Affiche tous les noms des 10 premiers auteurs
     yAxis: { title: { text: "Nombre de publications" } },
   };
