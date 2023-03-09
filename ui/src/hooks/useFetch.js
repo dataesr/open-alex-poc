@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import defaultData from '../../data/huawei_france.json';
 
-const endpoint = import.meta.env.VITE_API_ENDPOINT;
+const { VITE_API_ENDPOINT } = import.meta.env;
 
 export default function useFetch(filters) {
   const [data, setData] = useState(null);
