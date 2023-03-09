@@ -38,7 +38,7 @@ export default function Filters({ onSetFiltersHandler }) {
         if (affiliation2Type === types[0] && affiliation2Str) q += 'raw_affiliation_string.search:' + affiliation2Str;
         if (affiliation2Type === types[1]) q += 'institutions.country_code' + affiliation2ISO;
 
-        if (onSample) q += '&sample=' + sampleLength;
+        if (onSample) q += '&seed=0&sample=' + sampleLength;
 
         if (thematic) q += '&search=' + thematic;
 

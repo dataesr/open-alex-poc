@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_ENDPOINT = 'https://api.openalex.org/works';
 
 const loadData = async (filters) => {
-    const url = `${API_ENDPOINT}?filter=${filters.query}&seed=0&per-page=200`;
+    const url = `${API_ENDPOINT}?filter=${filters.query}&per-page=200`;
     const response = await axios.get(url);
     const nbResults = response?.data?.meta?.count;
     const perPage = response?.data?.meta?.per_page;
