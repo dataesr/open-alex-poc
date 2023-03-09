@@ -27,7 +27,7 @@ export default function ExplorePage() {
             <Container as="section">
                 <Row alignItems='bottom'>
                     <Col n="7">
-                        <GraphTitle filters={filters} title="Evolution of publications by year" />
+                        <GraphTitle filters={filters} title="Evolution of publications by year" iconName="ri-bar-chart-fill" />
                         <PublicationByYear dataLoaded={data || []} />
                     </Col>
                     <Col>
@@ -38,7 +38,7 @@ export default function ExplorePage() {
                 </Row>
                 <Row className="fr-mt-5w">
                     <Col>
-                        <GraphTitle filters={filters} title="Top sources with the most publications" />
+                        <GraphTitle filters={filters} title="Top sources with the most publications" iconName="ri-file-list-line" />
                         <TopRevues dataLoaded={data || []} />
                         <Highlight colorFamily="yellow-tournesol">
                             texte explicatif du graph
@@ -47,7 +47,7 @@ export default function ExplorePage() {
                 </Row>
                 <Row className="fr-mt-5w">
                     <Col>
-                        <GraphTitle filters={filters} title="Top 10 of signatures" />
+                        <GraphTitle filters={filters} title="Top 10 of signatures" iconName="ri-file-list-line" />
                         <Signatures dataLoaded={data || []} filters={{ details: { affiliationOne: { type: "raw_affiliation_string", query: 'Paris Research Center' } } }} />
                         <Highlight colorFamily="yellow-tournesol">
                             texte explicatif du graph
@@ -56,7 +56,7 @@ export default function ExplorePage() {
                 </Row>
                 <Row className="fr-mt-5w">
                     <Col>
-                        <GraphTitle filters={filters} title="Top 10 of authors with the most publications" />
+                        <GraphTitle filters={filters} title="Top 10 of authors with the most publications" iconName="ri-bar-chart-fill" />
                         <TopAuthors dataLoaded={data || []} />
                         <Highlight colorFamily="yellow-tournesol">
                             texte explicatif du graph
@@ -65,7 +65,7 @@ export default function ExplorePage() {
                 </Row>
                 <Row className="fr-mt-5w">
                     <Col>
-                        <GraphTitle filters={filters} title="Number of publications by concepts" />
+                        <GraphTitle filters={filters} title="Number of publications by concepts" iconName="ri-bar-chart-fill" />
                         <ConceptByYear dataLoaded={data || []} />
                         <Highlight colorFamily="yellow-tournesol">
                             texte explicatif du graph

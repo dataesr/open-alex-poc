@@ -1,6 +1,6 @@
 import { Icon, Text, Title } from "@dataesr/react-dsfr";
 
-export default function GraphTitle({ filters, title }) {
+export default function GraphTitle({ filters, title, iconName }) {
     let subTitle = `Data from json file `;
 
     if (filters?.details?.affiliationOne?.query && !filters?.details?.affiliationTwo?.query) {
@@ -21,6 +21,7 @@ export default function GraphTitle({ filters, title }) {
     return (
         <p>
             <Title as="h2" look="h3" className="fr-mb-0">
+                <Icon name={iconName} />
                 {`${title}${years}`}
             </Title>
             <Text className="fr-mb-0">

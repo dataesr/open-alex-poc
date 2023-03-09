@@ -100,6 +100,7 @@ function ConceptByYear({ dataLoaded }) {
       type: "column",
       zoomType: "x",
     },
+    credits: { enabled: false },
     title: {
       text: "",
     },

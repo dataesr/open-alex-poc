@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, TextInput, Row, Col, Button, Select, Checkbox } from "@dataesr/react-dsfr";
+import { Container, TextInput, Row, Col, Button, Select, Checkbox, Icon, Title } from "@dataesr/react-dsfr";
 import countriesList from '../../assets/countriesList.json';
 
 export default function Filters({ onSetFiltersHandler }) {
@@ -63,20 +63,22 @@ export default function Filters({ onSetFiltersHandler }) {
     return (
         <section className="fr-mt-1w">
             <Container>
-              <Row gutters className='fr-my-2w'>
-                <Col n="12">
-	          <h2 className='fr-my-1w'> Which affiliation to analyze ? </h2>
-	        </Col>
-                <Col n="3">
+                <Row gutters className='fr-my-2w' alignItems="bottom">
+                    <Col n="12">
+                        <Title as="h2" className="fr-mb-0">
+                            <Icon name="ri-filter-2-fill" />
+                            Which affiliation to analyze ?
+                        </Title>
+                    </Col>
+                    <Col n="3">
                         <Select
                             label="Affiliation search type"
                             id="affiliation1_type"
                             onChange={(e) => [setAffiliation1Type(e.target.value), setAffiliation1Str(null)]}
                             options={types.map((el) => ({ label: el, name: el }))}
                             selected={affiliation1Type}
-	                    placeHolder='rrrr'
                         />
-                </Col>
+                    </Col>
                     <Col n="5">
                         {
                             (affiliation1Type === types[1]) ? (
@@ -97,12 +99,12 @@ export default function Filters({ onSetFiltersHandler }) {
                             )
                         }
                     </Col>
-                    <Col n="1">
+                    <Col n="2">
                         <Checkbox label="Random sampling " checked={onSample} onChange={() => setOnSample(!onSample)} />
                     </Col>
-                    <Col n="1">
+                    <Col n="2">
                         <TextInput
-	                    label='size'
+                            label='size'
                             name="sampleLength"
                             value={sampleLength}
                             onChange={(e) => setSampleLength(e.target.value)}
@@ -110,17 +112,17 @@ export default function Filters({ onSetFiltersHandler }) {
                         />
                     </Col>
                 </Row>
-                <Row gutters alignItems="bottom">
-                <Col n="12">
-	          <div className=''> In collaboration with ? (optional)</div>
-	        </Col>
-                <Col n="3">
-                  <Select
-                    label="Affiliation search type"
-                    id="affiliation2_type"
-                    onChange={(e) => [setAffiliation2Type(e.target.value), setAffiliation2Str(null)]}
-                    options={types.map((el) => ({ label: el, name: el }))}
-                    selected={affiliation2Type}
+                <Row gutters>
+                    <Col n="12" className="fr-pb-0">
+                        In collaboration with ? (optional)
+                    </Col>
+                    <Col n="3">
+                        <Select
+                            label="Affiliation search type"
+                            id="affiliation2_type"
+                            onChange={(e) => [setAffiliation2Type(e.target.value), setAffiliation2Str(null)]}
+                            options={types.map((el) => ({ label: el, name: el }))}
+                            selected={affiliation2Type}
                         />
                     </Col>
                     <Col n="5">
@@ -157,9 +159,10 @@ export default function Filters({ onSetFiltersHandler }) {
                         <TextInput
                             name="endDateInput"
                             value={endDate}
-                            label="End year (empty = max)"
+                            label="End year"
                             maxLength="4"
                             onChange={(e) => setEndDate(e.target.value)}
+                            hint="(empty = max)"
                         />
                     </Col>
                     <Col n="4">
@@ -170,9 +173,9 @@ export default function Filters({ onSetFiltersHandler }) {
                             onChange={(e) => setThematic(e.target.value)}
                         />
                     </Col>
-                    <Col>
-                        <Button onClick={createQuery}>
-                            Rechercher
+                    <Col n="4">
+                        <Button onClick={createQuery} icon="ri-search-line">
+                            Search
                         </Button>
                     </Col>
                 </Row>
