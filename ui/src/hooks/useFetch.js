@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { enrichWorksAuthorships } from '../utils/enrich';
 import defaultData from '../../data/huawei_france.json';
 
 const endpoint = import.meta.env.VITE_API_ENDPOINT;
@@ -32,5 +31,5 @@ export default function useFetch(filters) {
     }
   }, [filters]);
 
-  return { data: enrichWorksAuthorships(data), error, isLoading };
+  return { data, error, isLoading };
 }
