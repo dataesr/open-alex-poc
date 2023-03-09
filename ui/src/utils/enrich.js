@@ -1,5 +1,3 @@
-import data from '../../data/huawei_france.json' assert { type: 'json' };
-
 function normalize(string) {
   return string
     .normalize('NFD')
@@ -17,8 +15,8 @@ function isInAffiliation(query, affiliation) {
   return queryTokens.every((token) => affiliationTokens.includes(token))
 }
 
-function isInAuthorship(input, authorship) {
-  const { type, query } = input;
+function isInAuthorship(filter, authorship) {
+  const { type, query } = filter;
   const field = [...type.split('.')].pop();
   if (!field || !query) return false;
   if (field === 'raw_affiliation_string') return isInAffiliation(query, authorship['raw_affiliation_string']);
@@ -29,25 +27,16 @@ function isInAuthorship(input, authorship) {
     ?.length > 0);
 }
 
-export function enrichWorksAuthorships(data, inputs) {
+function enrichWorksAuthorships(data, filters) {
   return data.map((work) => {
     if (!work?.authorships?.length) return work;
     const enrichedAuthorships = work.authorships.map((authorship) => ({
       ...authorship,
-      isAffiliationOne: isInAuthorship(inputs.affiliationOne, authorship),
-      isAffiliationTwo: isInAuthorship(inputs.affiliationTwo, authorship),
+      isAffiliationOne: isInAuthorship(filters.details.affiliationOne, authorship),
+      isAffiliationTwo: filters?.details?.affiliationTwo ? isInAuthorship(filters.details.affiliationTwo, authorship) : false,
     }))
     return { ...work, authorships: enrichedAuthorships };
   })
 }
 
-const fakequery = {
-  affiliationOne: {type: "raw_affiliation_string", query: 'France'},
-  affiliationTwo: {type: "raw_affiliation_string", query: 'Huawei'},
-}
-const fakequery2 = {
-  affiliationOne: { type: "institutions.country_code", query: 'Fr'},
-  affiliationTwo: {type: "raw_affiliation_string", query: 'Huawei'},
-}
-console.log(JSON.stringify(enrichWorksAuthorships(data.results, fakequery)[0].authorships, null, 2))
-console.log(JSON.stringify(enrichWorksAuthorships(data.results, fakequery2)[0].authorships, null, 2))
+export default enrichWorksAuthorships;

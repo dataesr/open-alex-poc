@@ -1,10 +1,10 @@
 import React from "react";
-import data from "../../../data/huawei_france.json";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-function TopAuthors() {
-  let authors = data.results.reduce(function (acc, publication) {
+function TopAuthors({dataLoaded}) {
+
+  let authors = dataLoaded?.reduce(function (acc, publication) {
     publication.authorships.forEach((el) => {
       let authorName = el.author.display_name;
       if (!acc[authorName]) {

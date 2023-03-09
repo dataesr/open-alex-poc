@@ -1,12 +1,9 @@
 import React from "react";
-import dataJson from "../../../data/huawei_france.json";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 function PublicationByYear({ dataLoaded }) {
-  const data = (dataLoaded?.length > 0) ? dataLoaded : dataJson.results;
-
-  let publicationsGroupedByYear = data?.reduce(function (
+  let publicationsGroupedByYear = dataLoaded?.reduce(function (
     acc,
     publication
   ) {

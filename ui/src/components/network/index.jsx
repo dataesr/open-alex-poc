@@ -8,16 +8,6 @@ import forceAtlas2 from "graphology-layout-forceatlas2";
 import "./index.scss";
 import data from "../../../data/huawei_france.json";
 
-const colorByType = {
-  'company': '#a9983d',
-  'education': '#bc5bbc',
-  'facility': '#5ca759',
-  'government': '#7976c9',
-  'healthcare': '#cb673e',
-  'nonprofit': '#47b2c4',
-  'other': '#c95779',
-};
-
 const getColorFromInsitution = (institution) => {
   if (institution?.type === 'education' && institution?.country_code === 'FR') return '#000091';
   if (institution?.country_code === 'FR') return '#e1000f';
@@ -31,13 +21,14 @@ const getLabelFromInstitution = (institution) => {
   return label;
 }
 
-const DisplayGraph = () => {
+const Network = () => {
   let edges = [];
   const graph = new Graph();
 
   data?.results?.forEach((work) => {
     let coInstitutions = [];
     work?.authorships?.forEach((authorship) => {
+      // Filter works that have 25 or more authorship
       if (authorship?.institutions?.length <= 25) {
         authorship?.institutions?.forEach((institution) => {
           if (institution.id !== null) {
@@ -106,4 +97,4 @@ const DisplayGraph = () => {
   );
 };
 
-export default DisplayGraph;
+export default Network;

@@ -42,7 +42,6 @@ export default function Filters({ onSetFiltersHandler }) {
 
         if (thematic) q += '&search=' + thematic;
 
-        console.log('create query');
         // https://api.openalex.org/works?filter=publication_year:2016-,raw_affiliation_string.search:Huawei,raw_affiliation_string.search:france&sample=1000&seed=0
         setQuery(q);
         onSetFiltersHandler(

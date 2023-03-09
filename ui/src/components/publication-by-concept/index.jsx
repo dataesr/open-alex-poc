@@ -1,12 +1,10 @@
 import React from "react";
-import data from "../../../data/huawei_france.json";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-function ConceptByYear() {
-  // On crée une variable publicationsGroupedByYear qui utilise le résultat de l'objet data pour grouper les publications par année.
+function ConceptByYear({dataLoaded}) {
 
-  let publicationsGroupedByYear = data?.results?.reduce(function (
+  let publicationsGroupedByYear = dataLoaded?.reduce(function (
     acc,
     publication
   ) {

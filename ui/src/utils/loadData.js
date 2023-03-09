@@ -12,10 +12,8 @@ const loadData = async (filters) => {
     for (let page = 2; page <= nbPage; page++) {
         const res = await axios.get(`${url}&page=${page}`)
         results = results.concat(res.data.results);
-        if (page === nbPage) {
-            return results;
-        }
     }
+    return enrichWorksAuthorships(results, filters);
 }
 
 export default loadData

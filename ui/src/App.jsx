@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 import ConceptByYear from "./components/publication-by-concept";
-import DisplayGraph from "./components/network";
-import PublicationByYear from "./components/publication-by-year";
+import Network from "./components/network";
+import Signatures from "./components/signatures";
 import TopAuthors from "./components/top-authors";
-import TopRevues from "./components/top-revues";
 import Layout from "./layout";
 import load from "./load";
 import HomePage from "./pages/home";
@@ -43,7 +42,6 @@ function Draft() {
       const data = await load(
         "publication_year:2016-,raw_affiliation_string.search:beta cnrs"
       );
-      // console.log(data);
       setData(data);
     };
     getData();
@@ -51,11 +49,10 @@ function Draft() {
 
   return (
     <div>
-      <DisplayGraph />
-      <PublicationByYear />
-      <TopRevues />
-      <TopAuthors />
-      <ConceptByYear />
+      <Network />
+      <TopAuthors dataLoaded={data || []} />
+      <ConceptByYear dataLoaded={data || []} />
+      <Signatures filters={{ details: { affiliationOne: { type: "raw_affiliation_string", query: 'Huawei' } } }} />
     </div>
   );
 }
