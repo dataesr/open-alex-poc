@@ -1,3 +1,4 @@
 notebooks/cache
 notebooks/.ipynb_checkpoints
 node_modules
+*.env

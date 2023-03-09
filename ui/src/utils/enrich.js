@@ -8,7 +8,7 @@ function normalize(string) {
     .trim()
 }
 
-function isInputInAffiliation(query, affiliation) {
+function isInAffiliation(query, affiliation) {
   if (!query || !affiliation) return false;
   const queryTokens = normalize(query).split(' ');
   const affiliationTokens = normalize(affiliation).split(' ');
@@ -19,10 +19,10 @@ function isInAuthorship(filter, authorship) {
   const { type, query } = filter;
   const field = [...type.split('.')].pop();
   if (!field || !query) return false;
-  if (field === 'raw_affiliation_string') return isInputInAffiliation(query, authorship['raw_affiliation_string']);
+  if (field === 'raw_affiliation_string') return isInAffiliation(query, authorship['raw_affiliation_string']);
   if (!authorship?.institutions?.length) return false;
   return (authorship.institutions
-    .map((institution) => isInputInAffiliation(query, institution[field]))
+    .map((institution) => isInAffiliation(query, institution[field]))
     .filter((e) => e)
     ?.length > 0);
 }

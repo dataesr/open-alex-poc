@@ -6,8 +6,18 @@ import {
 import Filters from "../components/filters";
 import PublicationByYear from '../components/publication-by-year';
 import loadData from "../utils/loadData";
+import useFetch from '../hooks/useFetch';
+import { hashQuery } from '../utils/hash';
 
 export default function HomePage() {
+    console.log(import.meta.env.MODE);
+    const fakeFilters = {
+        affiliationOne: { type: "institutions.country_code", query: 'Fr' },
+        affiliationTwo: { type: "raw_affiliation_string", query: 'Thales' },
+    }
+    const { data, isLoading, error } = useFetch(hashQuery(fakeFilters));
+    if (isLoading) return 'Loading...';
+    if (error) return 'Error';
     return (
         <main>
             <section>
@@ -41,6 +51,9 @@ export default function HomePage() {
 	    </Row>
                 </Container>
             </section>
+            <pre>
+                {JSON.stringify(data, null, 2)}
+            </pre>
         </main>
     );
 }
