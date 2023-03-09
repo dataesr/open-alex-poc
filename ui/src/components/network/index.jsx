@@ -22,23 +22,47 @@ const getLabelFromInstitution = (institution) => {
 }
 
 const Network = () => {
+  // Filter works that have 25 or less distinct institutions by work
+  // console.log(`Nombre de publications : ${data?.results?.length}`);
+  const filteredData = data?.results?.filter((work) => {
+    let institutionsByWork = work?.authorships?.map((authorship) => authorship?.institutions.map((institution) => institution?.display_name.toLowerCase().trim()));
+    institutionsByWork = [...new Set(institutionsByWork.flat())];
+    if (institutionsByWork.length <= 25) return work
+  });
+  // console.log(`Nombre de publications qui ont 25 institutions ou moins: ${filteredData.length}`);
+  // Then filter institutions that have less than 5 works
+  const institutions = [];
+  filteredData?.forEach((work) => {
+    work?.authorships?.forEach((authorship) => {
+      authorship?.institutions.forEach((institution) => {
+        const institutionId = institution?.display_name?.toLowerCase().trim();
+        if (!institutions?.find((item) => item.id === institutionId)) {
+          institutions?.push({ id: institutionId, works: [] });
+        }
+        if(!institutions?.find((item) => item.id === institutionId).works.includes(work.id))
+          institutions?.find((item) => item.id === institutionId).works.push(work.id);
+      });
+    });
+  });
+  // console.log(`Nombre d'institutions : ${institutions.length}`);
+  const whiteListedInstitutions = institutions.filter((institution) => institution.works.length >= 5)
+  // console.log(`Nombre d'institutions qui valident le seuil : ${whiteListedInstitutionIds.length}`);
+
   let edges = [];
   const graph = new Graph();
 
-  data?.results?.forEach((work) => {
+  filteredData?.forEach((work) => {
     let coInstitutions = [];
     work?.authorships?.forEach((authorship) => {
-      // Filter works that have 25 or more authorship
-      if (authorship?.institutions?.length <= 25) {
-        authorship?.institutions?.forEach((institution) => {
-          if (institution.id !== null) {
-            const nodeId = institution.id;
-            // 1. Create the institution node if it does not exist
-            if (!graph.hasNode(nodeId)) graph.addNode(nodeId, { institution, label: getLabelFromInstitution(institution), color: getColorFromInsitution(institution) });
-            coInstitutions.push(institution.id);
-          }
-        });
-      }
+      authorship?.institutions?.forEach((institution) => {
+        // const institutionId = institution?.display_name?.toLowerCase().trim();
+        const institutionId = institution?.id;
+        if (whiteListedInstitutions.find((item) => item.id === institution?.display_name?.toLowerCase().trim())) {
+          // 1. Create the institution node if it does not exist
+          if (!graph.hasNode(institutionId)) graph.addNode(institutionId, { institution, label: getLabelFromInstitution(institution), color: getColorFromInsitution(institution) });
+          coInstitutions.push(institutionId);
+        }
+      });
     });
     // Remove duplicates
     coInstitutions = [...new Set(coInstitutions)];
@@ -51,16 +75,13 @@ const Network = () => {
     edges = edges.concat(pairs);
   });
 
-  // 2. Create the uniq coAuthorship edges
+  // 2. Create the coAuthorship edges
   edges.forEach((edge) => {
     const { source, target } = edge;
     if(source !== target && !graph.hasEdge(source, target)) graph.addEdge(source, target);
   });
 
-  // 3. Only keep the main connected component:
-  cropToLargestConnectedComponent(graph);
-
-  // 4. Use degrees for node sizes:
+  // 3. Use degrees for node sizes:
   const degrees = graph.nodes().map((node) => graph.degree(node));
   const minDegree = Math.min(...degrees);
   const maxDegree = Math.max(...degrees);
@@ -71,16 +92,14 @@ const Network = () => {
     graph.setNodeAttribute(node, 'size', minSize + ((degree - minDegree) / (maxDegree - minDegree)) * (maxSize - minSize));
   });
 
-  // 5. Remove nodes with degree inferior to 5
-  graph.forEachNode((node) => {
-    const degree = graph.degree(node);
-    if (degree < 5) graph.dropNode(node);
-  });
-
-  // 5. Position nodes on a circle, then run Force Atlas 2 for a while to get proper graph layout
+  // 4. Position nodes on a circle, then run Force Atlas 2 for a while to get proper graph layout
   circular.assign(graph);
   const settings = forceAtlas2.inferSettings(graph);
   forceAtlas2.assign(graph, { settings, iterations: 600 });
+
+  // 5. Displaying useful information about your graph
+  // console.log('Number of nodes', graph.order);
+  // console.log('Number of edges', graph.size);
 
   return (
     <div>
