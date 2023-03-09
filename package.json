@@ -17,7 +17,8 @@
     "url": "git+https://github.com/dataesr/OpenAlexPOC.git"
   },
   "keywords": [
-    "react", "OpenAlex"
+    "react",
+    "OpenAlex"
   ],
   "author": "dataesr",
   "license": "MIT",
