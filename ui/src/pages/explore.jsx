@@ -1,40 +1,51 @@
-import { useEffect, useState } from "react";
-import { Container, Row, Col } from "@dataesr/react-dsfr";
+import { useState } from "react";
+import {
+    Container, Row, Col, Highlight,
+} from '@dataesr/react-dsfr';
+
 import Filters from "../components/filters";
 import PublicationByYear from "../components/publication-by-year";
-import loadData from "../utils/loadData";
 import TopRevues from "../components/top-revues";
 import TopAuthors from "../components/top-authors";
 import ConceptByYear from "../components/publication-by-concept";
 import useFetch from "../hooks/useFetch";
 import enrichWorksAuthorships from "../utils/enrich";
+import GraphTitle from '../components/graph-title';
 
 export default function ExplorePage() {
-  const [filters, setFilters] = useState(null);
-  const {isLoading, error, data: fetchedData } = useFetch(filters?.details);
-  if (isLoading) return 'Loading...'
-  if (error) return 'Error';
-  if (!fetchedData) return <Filters onSetFiltersHandler={(f) => setFilters(f)} />;
-  const data = enrichWorksAuthorships(fetchedData?.results, filters)
+    const [filters, setFilters] = useState(null);
+    const { isLoading, error, data: fetchedData } = useFetch(filters?.details);
+    if (isLoading) return 'Loading...'
+    if (error) return 'Error';
+    if (!fetchedData) return <Filters onSetFiltersHandler={(f) => setFilters(f)} />;
+    const data = enrichWorksAuthorships(fetchedData?.results, filters)
 
-  return (
-    <main>
-      <Filters onSetFiltersHandler={(f) => setFilters(f)} />
-      <section>
-        <Container>
-          <Row>
-            <Col>
-              <PublicationByYear dataLoaded={data || []} />
-            </Col>
-            <Col>graph 2</Col>
-          </Row>
-          <Row>
-            <Col>
-              <TopRevues dataLoaded={data || []} />
-            </Col>
-          </Row>
-        </Container>
-      </section>
-    </main>
-  );
+    return (
+        <main>
+            <Filters onSetFiltersHandler={(f) => setFilters(f)} />
+            <Container as="section">
+                <Row alignItems='bottom'>
+                    <Col n="7">
+                        <GraphTitle filters={filters} title="Evolution of publications by year" />
+                        <PublicationByYear dataLoaded={data || []} />
+                    </Col>
+                    <Col>
+                        <Highlight colorFamily="yellow-tournesol">
+                            texte explicatif du graph
+                        </Highlight>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <GraphTitle filters={filters} title="Top sources with the most publications" />
+                        <TopRevues dataLoaded={data || []} />
+                        <Highlight colorFamily="yellow-tournesol">
+                            texte explicatif du graph
+                        </Highlight>
+                    </Col>
+                </Row>
+
+            </Container>
+        </main>
+    );
 }

@@ -24,9 +24,9 @@ function TopRevues({ dataLoaded }) {
     series: [
       { data: topRevues.map((item) => item.y), name: "Nombre de publications" },
     ],
-    title: { text: "Top des revues avec le plus de publications" },
+    title: { text: "" },
     xAxis: { categories: topRevues.map((item) => item.name) },
-    yAxis: { title: { text: "Nombre de publications" } },
+    yAxis: { title: { text: "Number of publications" } },
   };
 
   return (

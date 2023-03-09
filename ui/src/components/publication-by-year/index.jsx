@@ -27,12 +27,12 @@ function PublicationByYear({ dataLoaded }) {
     credits: { enabled: false },
     legend: { enabled: false },
     series: [{ name: "Nombre de publications", data: years }],
-    title: { text: "Évolution des publications par année" },
+    title: { text: "" },
     xAxis: {
-      title: { text: "Année" },
+      title: { text: "Years" },
       categories: Object.keys(publicationsGroupedByYear),
     },
-    yAxis: { title: { text: "Nombre de publications" } },
+    yAxis: { title: { text: "Number of publications" } },
   };
 
   return (
