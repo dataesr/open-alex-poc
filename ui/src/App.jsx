@@ -52,7 +52,7 @@ function Draft() {
       <Network />
       <TopAuthors dataLoaded={data || []} />
       <ConceptByYear dataLoaded={data || []} />
-      <Signatures filters={{ details: { affiliationOne: { type: "raw_affiliation_string", query: 'Huawei' } } }} />
+      <Signatures filters={{ details: { affiliationOne: { type: "raw_affiliation_string", query: 'Paris Research Center' } } }} />
     </div>
   );
 }

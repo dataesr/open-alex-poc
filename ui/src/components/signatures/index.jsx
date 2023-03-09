@@ -3,23 +3,41 @@ import React from "react";
 import data from "../../../data/huawei_france.json";
 import enrichWorksAuthorships from '../../utils/enrich'
 
+const SIGNATURE_TOP_SIZE = 10;
+
 const Signatures = ({ filters }) => {
-  const enrichedData = enrichWorksAuthorships(data.results, filters);
-  const authorsAffiliationOne = [];
-  enrichedData.forEach((work) => {
-    work.authorships.forEach((author) => {
-      if (author.isAffiliationOne) authorsAffiliationOne.push(author)
-    })
-  })
-  const signatures = authorsAffiliationOne.reduce((accumulator, author) => accumulator.concat([author.raw_affiliation_string]), []);
-  const uniqSignatures = [...new Set(signatures)];
+  const works = enrichWorksAuthorships(data.results, filters);
+
+  let signatures = []
+  works.filter((work) => work?.doi).forEach((work) => {
+    work.authorships.forEach((authorship) => {
+      if (authorship.isAffiliationOne) {
+        // TODO, can be improve by removing ", ***" ou "[***]"
+        const affiliations = authorship.raw_affiliation_string.split(';')
+          .map((affiliation) => affiliation.trim())
+          .filter((affilition) => affilition.length > 0);
+        affiliations.forEach((affiliation) => {
+          if (!signatures?.find((item) => item.name === affiliation)) {
+            signatures?.push({ name: affiliation, dois: [] });
+          }
+          signatures?.find((item) => item.name === affiliation).dois.push(work.doi);
+        });
+      };
+    });
+  });
+  signatures.sort((a, b) => b.dois.length - a.dois.length);
+  signatures = signatures.slice(0, SIGNATURE_TOP_SIZE);
 
   return (
     <>
-      <div>Signatures</div>
-      {uniqSignatures.map((signature) => (
-        <div>
-          {signature}
+      <div>
+        <b>
+          Signatures
+        </b>
+      </div>
+      {signatures.map((signature, index) => (
+        <div key={index}>
+          {signature.name} ({signature.dois.length})
         </div>
       ))}
     </>
