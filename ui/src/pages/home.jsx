@@ -15,7 +15,7 @@ export default function HomePage() {
     return (
         <main>
             <section>
-	      <Container className='fr-my-5w'>
+	      <Container className='fr-my-4w'>
                     <Row gutters>
 	              <h1>What is OpenAlex ?</h1>
                     </Row>
