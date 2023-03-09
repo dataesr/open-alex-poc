@@ -7,12 +7,12 @@ export default function useFetch(filters) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    const fetchData = async () => axios.get(`/api?oaq=${filters}`)
+    const fetchData = async () => axios.get('https://open-alex-poccache.s3.gra.io.cloud.ovh.net/eyJhZmZpbGlhdGlvbk9uZSI6eyJxdWVyeSI6IkZyIiwidHlwZSI6Imluc3RpdHV0aW9ucy5jb3VudHJ5X2NvZGUifSwiYWZmaWxpYXRpb25Ud28iOnsicXVlcnkiOiJUaGFsZXMiLCJ0eXBlIjoicmF3X2FmZmlsaWF0aW9uX3N0cmluZyJ9fQ==.json')
     .then((response) => {
       setData(response.data);
       setIsLoading(false);
     })
-    .catch((e) => {
+    .catch(() => {
       setError(true);
       setIsLoading(false);
     });
