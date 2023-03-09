@@ -14,7 +14,7 @@ export default function ExplorePage() {
   const {isLoading, error, data: fetchedData } = useFetch(filters?.details);
   if (isLoading) return 'Loading...'
   if (error) return 'Error';
-  if (!fetchedData) return 'NULL';
+  if (!fetchedData) return <Filters onSetFiltersHandler={(f) => setFilters(f)} />;
   const data = enrichWorksAuthorships(fetchedData?.results, filters)
 
   return (
