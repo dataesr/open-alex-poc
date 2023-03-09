@@ -6,7 +6,7 @@ export default function Filters({ onSetFiltersHandler }) {
     const [startDate, setStartDate] = useState(2016);
     const [endDate, setEndDate] = useState(2022);
 
-    const types = ["raw_affiliation_string", "institutions.country_code", "institutions.ror"];
+    const types = ["Raw affiliation contains", "Country (from parsed institution)", "RoR (from pared institution)"];
     const [affiliation1Type, setAffiliation1Type] = useState(types[0]);
     const [affiliation1ISO, setAffiliation1ISO] = useState(null);
     const [affiliation1Str, setAffiliation1Str] = useState(null);
@@ -63,6 +63,87 @@ export default function Filters({ onSetFiltersHandler }) {
     return (
         <section className="fr-mt-1w">
             <Container>
+              <Row gutters className='fr-my-2w'>
+                <Col n="12">
+	          <h2 className='fr-my-1w'> Which affiliation to analyze ? </h2>
+	        </Col>
+                <Col n="3">
+                        <Select
+                            label="Affiliation search type"
+                            id="affiliation1_type"
+                            onChange={(e) => [setAffiliation1Type(e.target.value), setAffiliation1Str(null)]}
+                            options={types.map((el) => ({ label: el, name: el }))}
+                            selected={affiliation1Type}
+	                    placeHolder='rrrr'
+                        />
+                </Col>
+                    <Col n="5">
+                        {
+                            (affiliation1Type === types[1]) ? (
+                                <Select
+                                    label="Value"
+                                    id="affiliation1ISO"
+                                    onChange={(e) => setAffiliation1ISO(e.target.value)}
+                                    options={countriesList.map((el) => ({ label: el.name, value: el.code }))}
+                                    selected={affiliation1ISO}
+                                />
+                            ) : (
+                                <TextInput
+                                    label="Value"
+                                    name="affiliation1_str"
+                                    value={affiliation1Str}
+                                    onChange={(e) => setAffiliation1Str(e.target.value)}
+                                />
+                            )
+                        }
+                    </Col>
+                    <Col n="1">
+                        <Checkbox label="Random sampling " checked={onSample} onChange={() => setOnSample(!onSample)} />
+                    </Col>
+                    <Col n="1">
+                        <TextInput
+	                    label='size'
+                            name="sampleLength"
+                            value={sampleLength}
+                            onChange={(e) => setSampleLength(e.target.value)}
+                            disabled={!onSample}
+                        />
+                    </Col>
+                </Row>
+                <Row gutters alignItems="bottom">
+                <Col n="12">
+	          <div className=''> In collaboration with ? (optional)</div>
+	        </Col>
+                <Col n="3">
+                  <Select
+                    label="Affiliation search type"
+                    id="affiliation2_type"
+                    onChange={(e) => [setAffiliation2Type(e.target.value), setAffiliation2Str(null)]}
+                    options={types.map((el) => ({ label: el, name: el }))}
+                    selected={affiliation2Type}
+                        />
+                    </Col>
+                    <Col n="5">
+                        {
+                            (affiliation2Type === types[1]) ? (
+                                <Select
+                                    label="Value"
+                                    id="affiliation2ISO"
+                                    onChange={(e) => setAffiliation2ISO(e.target.value)}
+                                    options={countriesList.map((el) => ({ label: el.name, value: el.code }))}
+                                    selected={affiliation2ISO}
+                                />
+                            ) : (
+                                <TextInput
+                                    label="Value"
+                                    name="affiliation2_str"
+                                    value={affiliation2Str}
+                                    onChange={(e) => setAffiliation2Str(e.target.value)}
+                                />
+                            )
+                        }
+                    </Col>
+                </Row>
                 <Row gutters alignItems="bottom">
                     <Col n="2">
                         <TextInput
@@ -88,79 +169,6 @@ export default function Filters({ onSetFiltersHandler }) {
                             label="Thematic"
                             onChange={(e) => setThematic(e.target.value)}
                         />
-                    </Col>
-                    <Col n="1">
-                        <Checkbox label="Sample" checked={onSample} onChange={() => setOnSample(!onSample)} />
-                    </Col>
-                    <Col n="1">
-                        <TextInput
-                            name="sampleLength"
-                            value={sampleLength}
-                            onChange={(e) => setSampleLength(e.target.value)}
-                            disabled={!onSample}
-                        />
-                    </Col>
-                </Row>
-                <Row gutters>
-                    <Col n="3">
-                        <Select
-                            label="affiliation1_type"
-                            id="affiliation1_type"
-                            onChange={(e) => [setAffiliation1Type(e.target.value), setAffiliation1Str(null)]}
-                            options={types.map((el) => ({ label: el, name: el }))}
-                            selected={affiliation1Type}
-                        />
-                    </Col>
-                    <Col n="7">
-                        {
-                            (affiliation1Type === 'institutions.country_code') ? (
-                                <Select
-                                    label="Country selection"
-                                    id="affiliation1ISO"
-                                    onChange={(e) => setAffiliation1ISO(e.target.value)}
-                                    options={countriesList.map((el) => ({ label: el.name, value: el.code }))}
-                                    selected={affiliation1ISO}
-                                />
-                            ) : (
-                                <TextInput
-                                    name="affiliation1_str"
-                                    value={affiliation1Str}
-                                    label="affiliation1_str"
-                                    onChange={(e) => setAffiliation1Str(e.target.value)}
-                                />
-                            )
-                        }
-                    </Col>
-                </Row>
-                <Row gutters alignItems="bottom">
-                    <Col n="3">
-                        <Select
-                            label="affiliation2_type"
-                            id="affiliation2_type"
-                            onChange={(e) => [setAffiliation2Type(e.target.value), setAffiliation2Str(null)]}
-                            options={types.map((el) => ({ label: el, name: el }))}
-                            selected={affiliation2Type}
-                        />
-                    </Col>
-                    <Col n="7">
-                        {
-                            (affiliation2Type === 'institutions.country_code') ? (
-                                <Select
-                                    label="Country selection"
-                                    id="affiliation2ISO"
-                                    onChange={(e) => setAffiliation2ISO(e.target.value)}
-                                    options={countriesList.map((el) => ({ label: el.name, value: el.code }))}
-                                    selected={affiliation2ISO}
-                                />
-                            ) : (
-                                <TextInput
-                                    name="affiliation2_str"
-                                    value={affiliation2Str}
-                                    label="affiliation2_str"
-                                    onChange={(e) => setAffiliation2Str(e.target.value)}
-                                />
-                            )
-                        }
                     </Col>
                     <Col>
                         <Button onClick={createQuery}>
