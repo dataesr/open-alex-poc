@@ -11,6 +11,7 @@ import ConceptByYear from "../components/publication-by-concept";
 import useFetch from "../hooks/useFetch";
 import enrichWorksAuthorships from "../utils/enrich";
 import GraphTitle from '../components/graph-title';
+import Signatures from "../components/signatures";
 
 export default function ExplorePage() {
     const [filters, setFilters] = useState(null);
@@ -44,7 +45,15 @@ export default function ExplorePage() {
                         </Highlight>
                     </Col>
                 </Row>
-
+                <Row>
+                    <Col>
+                        <GraphTitle filters={filters} title="Top 10 of signatures" />
+                        <Signatures dataLoaded={data || []} filters={{ details: { affiliationOne: { type: "raw_affiliation_string", query: 'Paris Research Center' } } }} />
+                        <Highlight colorFamily="yellow-tournesol">
+                            texte explicatif du graph
+                        </Highlight>
+                    </Col>
+                </Row>
             </Container>
         </main>
     );

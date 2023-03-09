@@ -1,12 +1,15 @@
+import { Badge } from "@dataesr/react-dsfr";
 import React from "react";
 
-import data from "../../../data/huawei_france.json";
+import dataJson from "../../../data/huawei_france.json";
 import enrichWorksAuthorships from '../../utils/enrich'
 
 const SIGNATURE_TOP_SIZE = 10;
 
-const Signatures = ({ filters }) => {
-  const works = enrichWorksAuthorships(data.results, filters);
+const Signatures = ({ dataLoaded, filters }) => {
+  let data = dataJson.results;
+  if (dataLoaded && dataLoaded.length > 0) data = dataLoaded;
+  const works = enrichWorksAuthorships(data, filters);
 
   let signatures = []
   works.filter((work) => work?.doi).forEach((work) => {
@@ -30,16 +33,14 @@ const Signatures = ({ filters }) => {
 
   return (
     <>
-      <div>
-        <b>
-          Signatures
-        </b>
-      </div>
-      {signatures.map((signature, index) => (
-        <div key={index}>
-          {signature.name} ({signature.dois.length})
-        </div>
-      ))}
+      <ol>
+        {signatures.map((signature, index) => (
+          <li key={index}>
+            {signature.name} <Badge text={signature.dois.length} />
+          </li>
+        ))}
+
+      </ol>
     </>
   )
 }
