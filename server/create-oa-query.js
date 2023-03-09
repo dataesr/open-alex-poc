@@ -1,4 +1,7 @@
-function createOAQuery({ affiliationOne, affiliationTwo, startDate, endDate, thematic, onSample, sampleLength }) {
+const OA_API_ENDPOINT = 'https://api.openalex.org/works';
+const types = ["raw_affiliation_string", "institutions.country_code", "institutions.ror"];
+
+export function createOAQuery({ affiliationOne = {}, affiliationTwo = {}, startDate, endDate, thematic, onSample = true, sampleLength = 1000 }) {
   const { query: affiliation1Str, type: affiliation1Type } = affiliationOne;
   const { query: affiliation2Str, type: affiliation2Type } = affiliationTwo;
 
@@ -18,5 +21,5 @@ function createOAQuery({ affiliationOne, affiliationTwo, startDate, endDate, the
 
   if (thematic) q += '&search=' + thematic;
 
-  return q
+  return `${OA_API_ENDPOINT}?filter=${q}&seed=0`;
 }

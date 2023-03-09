@@ -1,32 +1,20 @@
-import { useEffect, useState } from 'react'
-
-import Filters from "../components/filters";
-import PublicationByYear from '../components/publication-by-year';
-import loadData from "../utils/loadData";
+import useFetch from '../hooks/useFetch';
+import { hashQuery } from '../utils/hash';
 
 export default function HomePage() {
-    const [data, setData] = useState(null);
-    const [filters, setFilters] = useState('publication_year:2016-,raw_affiliation_string.search:beta cnrs');
-    useEffect(() => {
-        const getData = async () => {
-            const data = await loadData(filters);
-            console.log(data);
-            setData(data);
-        }
-        getData();
-    }, [filters]);
-
-    const onSetFiltersHandler = (f) => {
-        console.log('my filters', f);
-        setFilters(f);
-    };
-
+    console.log(import.meta.env.MODE);
+    const fakeFilters = {
+        affiliationOne: { type: "institutions.country_code", query: 'Fr' },
+        affiliationTwo: { type: "raw_affiliation_string", query: 'Thales' },
+    }
+    const { data, isLoading, error } = useFetch(hashQuery(fakeFilters));
+    if (isLoading) return 'Loading...';
+    if (error) return 'Error';
     return (
         <main>
-            <Filters onSetFiltersHandler={onSetFiltersHandler} />
-            <section>
-                <PublicationByYear data={data} />
-            </section>
+            <pre>
+                {JSON.stringify(data, null, 2)}
+            </pre>
         </main>
     );
 }

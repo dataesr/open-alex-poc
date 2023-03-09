@@ -1,6 +1,7 @@
 import {
   S3Client,
   PutObjectCommand,
+  HeadObjectCommand,
 } from '@aws-sdk/client-s3';
 
 import config from './config';
@@ -15,5 +16,6 @@ export default {
     Body: buffer,
     ContentType: 'application/json',
     ACL: 'public-read',
-  }))
+  })),
+  get: async (key) => s3.send(new HeadObjectCommand({ Bucket: bucket, Key: key })),
 };
