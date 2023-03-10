@@ -58,6 +58,9 @@ export default function HomePage() {
                     <img style={{ width: '100%' }} src={openalex2} />
                 </Col>
             </Row>
+            <Row className='fr-mt-5w' gutters>
+	      <a href='https://docs.google.com/presentation/d/1w097UBD70Jfqdd1rKgFeYuNtH1DUdQnhymP5Ch9QnZ8/edit#slide=id.gc777749701_7_60' target='_blank'> Gslide  </a>
+            </Row>
         </Container>
     );
 }
