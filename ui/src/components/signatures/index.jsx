@@ -3,8 +3,6 @@ import React from "react";
 
 const SIGNATURE_TOP_SIZE = 10;
 
-// institution.display_name
-
 const isAuthorshipInPerimeter = (authorship, perimeter) => {
   let condition;
   switch (perimeter) {
@@ -23,23 +21,36 @@ const isAuthorshipInPerimeter = (authorship, perimeter) => {
   return !!condition;
 }
 
+// field can be "raw_affiliation" or "institution_name"
 // perimeter has to be one of ["affiliationOne", "affiliationTwo", "affiliationThree"]
-const Signatures = ({ dataLoaded, perimeter }) => {
+const Signatures = ({ dataLoaded, field, perimeter }) => {
   let signatures= [];
   const condition = 
   dataLoaded.filter((work) => work?.doi).forEach((work) => {
     work.authorships.forEach((authorship) => {
       if (isAuthorshipInPerimeter(authorship, perimeter)) {
-        // TODO, can be improve by removing ", ***" ou "[***]"
-        const affiliations = authorship.raw_affiliation_string.split(';')
-          .map((affiliation) => affiliation.trim())
-          .filter((affilition) => affilition.length > 0);
-        affiliations.forEach((affiliation) => {
-          if (!signatures?.find((item) => item.name === affiliation)) {
-            signatures?.push({ name: affiliation, dois: [] });
-          }
-          signatures?.find((item) => item.name === affiliation).dois.push(work.doi);
-        });
+        if (field === 'raw_affiliation') {
+          // TODO, can be improve by removing ", ***" ou "[***]" ou "(***)"
+          const affiliations = authorship.raw_affiliation_string.split(';')
+            .map((affiliation) => affiliation.trim())
+            .filter((affilition) => affilition.length > 0);
+          affiliations.forEach((affiliation) => {
+            if (!signatures?.find((item) => item.name === affiliation)) {
+              signatures?.push({ name: affiliation, dois: [] });
+            }
+            signatures?.find((item) => item.name === affiliation).dois.push(work.doi);
+          });
+        } else if (field === 'institution_name') {
+          const affiliations = authorship.institutions
+            .map((institution) => institution.display_name.trim())
+            .filter((affilition) => affilition.length > 0)
+          affiliations.forEach((affiliation) => {
+            if (!signatures?.find((item) => item.name === affiliation)) {
+              signatures?.push({ name: affiliation, dois: [] });
+            }
+            signatures?.find((item) => item.name === affiliation).dois.push(work.doi);
+          });
+        }
       };
     });
   });
