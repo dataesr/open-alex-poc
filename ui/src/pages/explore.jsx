@@ -61,14 +61,7 @@ export default function ExplorePage() {
               />
               <Signatures
                 dataLoaded={data || []}
-                filters={{
-                  details: {
-                    affiliationOne: {
-                      type: "raw_affiliation_string",
-                      query: "Paris Research Center",
-                    },
-                  },
-                }}
+                filters={filters}
               />
               <Highlight colorFamily="yellow-tournesol">
                 We are displaying the 10 most frequent signature affiliations

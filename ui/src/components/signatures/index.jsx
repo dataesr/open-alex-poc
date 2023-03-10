@@ -7,12 +7,8 @@ import enrichWorksAuthorships from '../../utils/enrich'
 const SIGNATURE_TOP_SIZE = 10;
 
 const Signatures = ({ dataLoaded, filters }) => {
-  let data = dataJson.results;
-  if (dataLoaded && dataLoaded.length > 0) data = dataLoaded;
-  const works = enrichWorksAuthorships(data, filters);
-
-  let signatures = []
-  works.filter((work) => work?.doi).forEach((work) => {
+  let signatures= [];
+  dataLoaded.filter((work) => work?.doi).forEach((work) => {
     work.authorships.forEach((authorship) => {
       if (authorship.isAffiliationOne) {
         // TODO, can be improve by removing ", ***" ou "[***]"

@@ -12,7 +12,6 @@ export default function useFetch(filters) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    console.log(filters);
     const fetchData = async () => axios.get(`${BASE_URL}/api?oaq=${hashQuery(filters)}`)
     .then(async (response) => {
       console.log(response.data);
