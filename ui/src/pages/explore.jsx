@@ -9,22 +9,18 @@ import TopRevues from "../components/top-revues";
 import TopAuthors from "../components/top-authors";
 import ConceptByYear from "../components/publication-by-concept";
 import useFetch from "../hooks/useFetch";
-import enrichWorksAuthorships from "../utils/enrich";
 import GraphTitle from '../components/graph-title';
 import Signatures from "../components/signatures";
 
 export default function ExplorePage() {
     const [filters, setFilters] = useState(null);
-    const { isLoading, error, data: fetchedData } = useFetch(filters?.details);
-    if (isLoading) return 'Loading...'
-    if (error) return 'Error';
-    if (!fetchedData) return <Filters onSetFiltersHandler={(f) => setFilters(f)} />;
-    const data = enrichWorksAuthorships(fetchedData?.results, filters)
-
+    const { isLoading, error, data } = useFetch(filters);
     return (
         <main>
             <Filters onSetFiltersHandler={(f) => setFilters(f)} />
-            <Container as="section">
+            {isLoading && <p>isLoading</p>}
+            {error && <p>Error</p>}
+            {(!error && !isLoading && data?.length > 0) && <Container as="section">
                 <Row alignItems='bottom'>
                     <Col n="7">
                         <GraphTitle filters={filters} title="Evolution of publications by year" iconName="ri-bar-chart-fill" />
@@ -72,7 +68,7 @@ export default function ExplorePage() {
                         </Highlight>
                     </Col>
                 </Row>
-            </Container>
+            </Container>}
         </main>
     );
 }

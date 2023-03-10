@@ -15,13 +15,16 @@ if (process.env.NODE_ENV === 'development') {
 }
 app.get('/api', async (req, res) => {
   const { oaq } = req.query;
-  const key = Buffer.from(oaq).toString('base64');
-  const hasCache = await S3Cache.get(`${key}.json`).then(() => true).catch(() => false);
-  if (hasCache) return res.redirect(`https://open-alex-poccache.s3.gra.io.cloud.ovh.net/${key}.json`)
+  console.log(oaq);
+  if (!oaq) return res.json({});
+  console.log(typeof oaq);
+  // const key = Buffer.from(oaq).toString('base64');
+  // const hasCache = await S3Cache.get(`${key}.json`).then(() => true).catch(() => false);
+  // if (hasCache) return res.redirect(`https://open-alex-poccache.s3.gra.io.cloud.ovh.net/${key}.json`)
   
   const data = await fetchOA(JSON.parse(oaq));
-  S3Cache.set(`${key}.json`, Buffer.from(JSON.stringify(data)))
-  return res.json(data);
+  // S3Cache.set(`${key}.json`, Buffer.from(JSON.stringify(data)));
+  return res.json({ results: data, filters: JSON.parse(oaq) });
 });
 
 // SERVE REACT BUILD

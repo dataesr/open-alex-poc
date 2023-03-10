@@ -1,15 +1,21 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import defaultData from '../../data/huawei_france.json';
+import enrichWorksAuthorships from '../utils/enrich';
+import { hashQuery } from '../utils/hash';
+
+const USE_DEFAULT_VALUES = false;
+const BASE_URL = (import.meta.env.DEV && !USE_DEFAULT_VALUES) ? "http://localhost:3000" : ""
 
 export default function useFetch(filters) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    const fetchData = async () => axios.get('https://open-alex-poccache.s3.gra.io.cloud.ovh.net/eyJhZmZpbGlhdGlvbk9uZSI6eyJxdWVyeSI6IkZyIiwidHlwZSI6Imluc3RpdHV0aW9ucy5jb3VudHJ5X2NvZGUifSwiYWZmaWxpYXRpb25Ud28iOnsicXVlcnkiOiJUaGFsZXMiLCJ0eXBlIjoicmF3X2FmZmlsaWF0aW9uX3N0cmluZyJ9fQ==.json')
+    console.log(filters);
+    const fetchData = async () => axios.get(`${BASE_URL}/api?oaq=${hashQuery(filters)}`)
     .then((response) => {
-      setData(response.data);
+      setData(enrichWorksAuthorships(response.data?.results, filters));
       setIsLoading(false);
     })
     .catch(() => {
@@ -20,11 +26,11 @@ export default function useFetch(filters) {
     setIsLoading(true);
     setError(null);
     setData(null);
-    if (import.meta.env.DEV) {
+    if (import.meta.env.DEV && USE_DEFAULT_VALUES) {
       setIsLoading(false);
       setError(false);
-      setData(defaultData);
-    } else if (!filters){
+      setData(enrichWorksAuthorships(defaultData?.results, filters));
+    } else if (!filters) {
       setIsLoading(false);
       setError(false);
     } else {

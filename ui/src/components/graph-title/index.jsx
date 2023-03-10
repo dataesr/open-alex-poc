@@ -3,21 +3,20 @@ import { Icon, Text, Title } from "@dataesr/react-dsfr";
 export default function GraphTitle({ filters, title, iconName }) {
     let subTitle = `Data from json file `;
 
-    if (filters?.details?.affiliationOne?.query && !filters?.details?.affiliationTwo?.query) {
-        subTitle = `Search on affiliation "${filters.details.affiliationOne.query}"`;
+    if (filters?.affiliationOne?.query && !filters?.affiliationTwo?.query) {
+        subTitle = `Search on affiliation "${filters?.affiliationOne.query}"`;
     }
-    if (!filters?.details?.affiliationOne?.query && filters?.details?.affiliationTwo?.query) {
-        subTitle = `Search on affiliation "${filters.details.affiliationTwo.query}"`;
+    if (!filters?.affiliationOne?.query && filters?.affiliationTwo?.query) {
+        subTitle = `Search on affiliation "${filters?.affiliationTwo.query}"`;
     }
-    if (filters?.details?.affiliationOne?.query && filters?.details?.affiliationTwo?.query) {
-        subTitle = `Collaboration between ${filters.details.affiliationOne.query} and ${filters.details.affiliationTwo.query}`;
+    if (filters?.affiliationOne?.query && filters?.affiliationTwo?.query) {
+        subTitle = `Collaboration between ${filters?.affiliationOne.query} and ${filters?.affiliationTwo.query}`;
     }
 
     let years = '';
-    if (filters?.details?.startDate || filters?.details?.endDate) {
-        years = `(${filters?.details?.startDate} - ${filters?.details?.endDate})`;
+    if (filters?.startDate || filters?.endDate) {
+        years = `(${filters?.startDate} - ${filters?.endDate})`;
     }
-    console.log(filters);
     return (
         <p>
             <Title as="h2" look="h3" className="fr-mb-0">
@@ -30,11 +29,11 @@ export default function GraphTitle({ filters, title, iconName }) {
                 </strong>
             </Text>
             {
-                (filters?.details?.onSample && filters?.details?.sampleLength > 0) ? (
+                (filters?.onSample && filters?.sampleLength > 0) ? (
                     <Text className="fr-mb-0">
                         <Icon name="ri-error-warning-line" />
                         <i>
-                            {`sample of ${filters?.details?.sampleLength} elements`}
+                            {`sample of ${filters?.sampleLength} elements`}
                         </i>
                     </Text>
 

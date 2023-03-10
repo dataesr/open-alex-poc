@@ -16,10 +16,11 @@ function isInAffiliation(query, affiliation) {
 }
 
 function isInAuthorship(filter, authorship) {
+  if (!filter) return false;
   const { type, query } = filter;
   const field = [...type.split('.')].pop();
   if (!field || !query) return false;
-  if (field === 'raw_affiliation_string') return isInAffiliation(query, authorship['raw_affiliation_string']);
+  if (field === 'search') return isInAffiliation(query, authorship['raw_affiliation_string']);
   if (!authorship?.institutions?.length) return false;
   return (authorship.institutions
     .map((institution) => isInAffiliation(query, institution[field]))
@@ -33,8 +34,8 @@ function enrichWorksAuthorships(data, filters) {
     if (!work?.authorships?.length) return work;
     const enrichedAuthorships = work.authorships.map((authorship) => ({
       ...authorship,
-      isAffiliationOne: isInAuthorship(filters.details.affiliationOne, authorship),
-      isAffiliationTwo: filters?.details?.affiliationTwo ? isInAuthorship(filters.details.affiliationTwo, authorship) : false,
+      isAffiliationOne: isInAuthorship(filters?.affiliationOne, authorship),
+      isAffiliationTwo: filters?.affiliationTwo ? isInAuthorship(filters?.affiliationTwo, authorship) : false,
     }))
     return { ...work, authorships: enrichedAuthorships };
   })
