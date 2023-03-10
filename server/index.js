@@ -4,6 +4,7 @@ import express from 'express';
 import cors from 'cors';
 import S3Cache from './storage';
 import fetchOA from './fetch-oa';
+
 let httpServer;
 
 const app = express();
@@ -15,26 +16,23 @@ if (process.env.NODE_ENV === 'development') {
 }
 app.get('/api', async (req, res) => {
   const { oaq } = req.query;
-  console.log(oaq);
   if (!oaq) return res.json({});
   const key = Buffer.from(oaq).toString('base64');
   const hasCache = await S3Cache.exists(`${key}.json`).then(() => true).catch(() => false);
-  console.log('hasCache', hasCache);
   if (hasCache) {
-    const url = await S3Cache.get(`${key}.json`)
-    return res.redirect(url)
+    const file = await S3Cache.get(`${key}.json`)
+      .catch((e) => { console.log(e); });
+    res.setHeader('content-type', file.ContentType);
+    res.setHeader('content-length', file.ContentLength);
+    return file.Body.pipe(res);
   }
-  
-  const data = await fetchOA(JSON.parse(oaq))
-    .catch(() => {
-      console.log('error');
-      return null;
-    });
+
+  const data = await fetchOA(JSON.parse(oaq)).catch(() => null);
   if (data) {
-    S3Cache.set(`${key}.json`, Buffer.from(JSON.stringify(data)));
+    S3Cache.set(`${key}.json`, Buffer.from(JSON.stringify({ results: data, filters: JSON.parse(oaq) })));
     return res.json({ results: data, filters: JSON.parse(oaq) });
   }
-  return res.status(400).json({})
+  return res.status(400).json({});
 });
 
 // SERVE REACT BUILD
@@ -54,11 +52,9 @@ process.on('SIGTERM', cleanup);
 
 function createAPIServer(port) {
   httpServer = app.listen(port, () => {
-    console.log(`Server started. Port is 3000`);
+    console.log('Server started. Port is 3000');
     app.isReady = true;
   });
 }
 
-
 createAPIServer(3000);
-
