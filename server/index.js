@@ -27,7 +27,7 @@ app.get('/api', async (req, res) => {
     return file.Body.pipe(res);
   }
 
-  const data = await fetchOA(JSON.parse(oaq)).catch(() => null);
+  const data = await fetchOA(JSON.parse(oaq)).catch((e) => console.log(e));
   if (data) {
     S3Cache.set(`${key}.json`, Buffer.from(JSON.stringify({ results: data, filters: JSON.parse(oaq) })));
     return res.json({ results: data, filters: JSON.parse(oaq) });

@@ -14,7 +14,8 @@ export function createOAQuery({
   if (startDate || endDate) q += ',';
   if (affiliation1Type && affiliation1Str) q += `${affiliation1Type}:${affiliation1Str}`;
   if (affiliation2Type && affiliation2Str) q += `,${affiliation2Type}:${affiliation2Str}`;
-  if (onSample) q += `&seed=0&sample=${sampleLength}`;
   if (thematic) q += `&search=${thematic}`;
+  if (onSample) q += `&seed=0&sample=${sampleLength}`;
+  console.log(`${OA_API_ENDPOINT}?filter=${q}`);
   return `${OA_API_ENDPOINT}?filter=${q}`;
 }
