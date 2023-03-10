@@ -14,7 +14,8 @@ export default function useFetch(filters) {
   useEffect(() => {
     console.log(filters);
     const fetchData = async () => axios.get(`${BASE_URL}/api?oaq=${hashQuery(filters)}`)
-    .then((response) => {
+    .then(async (response) => {
+      console.log(response.data);
       setData(enrichWorksAuthorships(response.data?.results, filters));
       setIsLoading(false);
     })
