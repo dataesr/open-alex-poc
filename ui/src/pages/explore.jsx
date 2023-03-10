@@ -32,7 +32,8 @@ export default function ExplorePage() {
             </Col>
             <Col>
               <Highlight colorFamily="yellow-tournesol">
-                This graph shows evolution of number of publications over time.
+                This graph shows the evolution of the number of publications
+                over time.
               </Highlight>
             </Col>
           </Row>
@@ -45,7 +46,7 @@ export default function ExplorePage() {
               />
               <TopRevues dataLoaded={data || []} />
               <Highlight colorFamily="yellow-tournesol">
-                This graph displays the top 10 revue for a concept at level 0,
+                This graph displays the top 10 revues for a concept at level 0,
                 allowing for a visual comparison of the number of publications
                 in each revue.
               </Highlight>
@@ -72,7 +73,7 @@ export default function ExplorePage() {
               <Highlight colorFamily="yellow-tournesol">
                 We are displaying the 10 most frequent signature affiliations
                 among institutions. A signature is the way an author associates
-                their works with an institute.
+                their works with an institution.
               </Highlight>
             </Col>
           </Row>
@@ -100,7 +101,7 @@ export default function ExplorePage() {
               />
               <ConceptByYear dataLoaded={data || []} />
               <Highlight colorFamily="yellow-tournesol">
-                This chart shows the percentage of publications for each concept
+                This graph shows the percentage of publications for each concept
                 by year. We have established a top 5 of concepts with the
                 highest number of publications and grouped the rest under the
                 'Other' category.
