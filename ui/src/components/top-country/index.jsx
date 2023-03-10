@@ -16,6 +16,9 @@ function TopCountry({ dataLoaded, filters }) {
 
   const topCountries = institutions.reduce(function (acc, institution) {
     let C = institution.country_code;
+    if (C === null) {
+      return acc;
+    }
     if (!acc[C]) {
       acc[C] = 0;
     }
@@ -26,6 +29,7 @@ function TopCountry({ dataLoaded, filters }) {
   const sortedTopCountry = Object.fromEntries(
     Object.entries(topCountries).sort((a, b) => b[1] - a[1])
   );
+
   const options = {
     chart: { type: "column" },
     credits: { enabled: false },
