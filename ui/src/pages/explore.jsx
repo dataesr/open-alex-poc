@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Row, Col, Highlight } from "@dataesr/react-dsfr";
+import { Container, Row, Col, Highlight, Icon } from "@dataesr/react-dsfr";
 
 import Filters from "../components/filters";
 import PublicationByYear from "../components/publication-by-year";
@@ -10,6 +10,7 @@ import TopCountry from "../components/top-country";
 import useFetch from "../hooks/useFetch";
 import GraphTitle from "../components/graph-title";
 import Signatures from "../components/signatures";
+import export2txt from "../utils/export";
 
 export default function ExplorePage() {
   const [filters, setFilters] = useState(null);
@@ -21,6 +22,7 @@ export default function ExplorePage() {
       {error && <p>Error</p>}
       {!error && !isLoading && data?.length > 0 && (
         <Container as="section">
+          {export2txt(data)}
           <Row alignItems="bottom">
             <Col n="7">
               <GraphTitle
@@ -46,7 +48,7 @@ export default function ExplorePage() {
               />
               <TopRevues dataLoaded={data || []} />
               <Highlight colorFamily="yellow-tournesol">
-                This graph displays the top 15 venues (i.e journals) in which the publications. OpenAlex indexes many publications sources, including preprints. The venues listed here includes (peer-revied) journals but also preprint servers. We noticed that sometimes OpenAlex data misses the real publisher name and displays an open archive name (bug reported to the OpenAlex team). 
+                This graph displays the top 15 venues (i.e journals) in which the publications. OpenAlex indexes many publications sources, including preprints. The venues listed here includes (peer-revied) journals but also preprint servers. We noticed that sometimes OpenAlex data misses the real publisher name and displays an open archive name (bug reported to the OpenAlex team).
               </Highlight>
             </Col>
           </Row>
@@ -167,7 +169,7 @@ export default function ExplorePage() {
               />
               <TopAuthors dataLoaded={data || []} />
               <Highlight colorFamily="yellow-tournesol">
-                This graph shows the 10 most frequent authors in the works retrieved. These authors may not be affiliated to the input affiliation, but they appear as co-authors of the works retrieved. 
+                This graph shows the 10 most frequent authors in the works retrieved. These authors may not be affiliated to the input affiliation, but they appear as co-authors of the works retrieved.
               </Highlight>
             </Col>
           </Row>
