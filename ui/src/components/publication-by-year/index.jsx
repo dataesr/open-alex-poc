@@ -29,7 +29,7 @@ function PublicationByYear({ dataLoaded }) {
     series: [{ name: "Nombre de publications", data: years }],
     title: { text: "" },
     xAxis: {
-      title: { text: "Years" },
+      title: { text: "Publication year" },
       categories: Object.keys(publicationsGroupedByYear),
     },
     yAxis: { title: { text: "Number of publications" } },

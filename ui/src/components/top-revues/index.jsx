@@ -4,6 +4,7 @@ import HighchartsReact from "highcharts-react-official";
 
 function TopRevues({ dataLoaded }) {
 
+  const NB_TOP = 15;
   let revues = dataLoaded?.reduce(function (acc, publication) {
     let revue = publication.host_venue.display_name;
     if (!acc[revue]) {
@@ -15,8 +16,9 @@ function TopRevues({ dataLoaded }) {
 
   let topRevues = Object.entries(revues)
     .sort((a, b) => b[1] - a[1])
-    .map(([revue, count]) => ({ name: revue, y: count }));
-
+    .map(([revue, count]) => ({ name: revue, y: count }))
+    .filter((el) => el.name !== 'null')
+    .slice(0, NB_TOP);
   const options = {
     chart: { type: "bar" },
     credits: { enabled: false },

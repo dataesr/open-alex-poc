@@ -97,10 +97,11 @@ function ConceptByYear({ dataLoaded }) {
 
   const options = {
     chart: {
-      type: "column",
+      type: "area",
       zoomType: "x",
     },
     credits: { enabled: false },
+    legend: { reversed: true },
     title: {
       text: "",
     },
@@ -131,7 +132,7 @@ function ConceptByYear({ dataLoaded }) {
         },
       },
     },
-    series: seriesData,
+    series: seriesData.reverse(),
   };
 
   return (

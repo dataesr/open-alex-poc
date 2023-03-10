@@ -25,7 +25,7 @@ export default function ExplorePage() {
             <Col n="7">
               <GraphTitle
                 filters={filters}
-                title="Evolution of publications by year"
+                title="How many publications are retrieved?"
                 iconName="ri-bar-chart-fill"
               />
               <PublicationByYear dataLoaded={data || []} />
@@ -33,7 +33,7 @@ export default function ExplorePage() {
             <Col>
               <Highlight colorFamily="yellow-tournesol">
                 This graph shows the evolution of the number of publications
-                over time.
+                over time, from the search request made in OpenAlex. Beware by default the search is made on a random sampling of 1000 elements (cf 'more options' above), so the volume displayed is based on this sampling !
               </Highlight>
             </Col>
           </Row>
@@ -41,14 +41,12 @@ export default function ExplorePage() {
             <Col>
               <GraphTitle
                 filters={filters}
-                title="Top sources with the most publications"
+                title="Where are these works published?"
                 iconName="ri-file-list-line"
               />
               <TopRevues dataLoaded={data || []} />
               <Highlight colorFamily="yellow-tournesol">
-                This graph displays the top 10 revues for a concept at level 0,
-                allowing for a visual comparison of the number of publications
-                in each revue.
+                This graph displays the top 15 venues (i.e journals) in which the publications. OpenAlex indexes many publications sources, including preprints. The venues listed here includes (peer-revied) journals but also preprint servers. We noticed that sometimes OpenAlex data misses the real publisher name and displays an open archive name (bug reported to the OpenAlex team). 
               </Highlight>
             </Col>
           </Row>
@@ -56,7 +54,7 @@ export default function ExplorePage() {
             <Col>
               <GraphTitle
                 filters={filters}
-                title="Top 10 of signatures"
+                title="What signatures are used in the raw affiliation?"
                 iconName="ri-file-list-line"
               />
               <Signatures
@@ -81,14 +79,12 @@ export default function ExplorePage() {
             <Col>
               <GraphTitle
                 filters={filters}
-                title="Top 10 of authors with the most publications"
+                title="Which authors have the most publications?"
                 iconName="ri-bar-chart-fill"
               />
               <TopAuthors dataLoaded={data || []} />
               <Highlight colorFamily="yellow-tournesol">
-                This graph shows the 10 most frequent authors. The graph allows
-                for a visual comparison of the number of publications for each
-                author, helping to identify the most prolific ones.
+                This graph shows the 10 most frequent authors in the works retrieved. These authors may not be affiliated to the input affiliation, but they appear as co-authors of the works retrieved. 
               </Highlight>
             </Col>
           </Row>
@@ -96,7 +92,7 @@ export default function ExplorePage() {
             <Col>
               <GraphTitle
                 filters={filters}
-                title="Number of publications by concepts"
+                title="What are the research thematics?"
                 iconName="ri-bar-chart-fill"
               />
               <ConceptByYear dataLoaded={data || []} />
