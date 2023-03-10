@@ -2,7 +2,7 @@ import 'dotenv/config';
 import path from 'path';
 import express from 'express';
 import cors from 'cors';
-// import S3Cache from './storage';
+import S3Cache from './storage';
 import fetchOA from './fetch-oa';
 let httpServer;
 
@@ -17,17 +17,24 @@ app.get('/api', async (req, res) => {
   const { oaq } = req.query;
   console.log(oaq);
   if (!oaq) return res.json({});
-  // const key = Buffer.from(oaq).toString('base64');
-  // const hasCache = await S3Cache.get(`${key}.json`).then(() => true).catch(() => false);
-  // if (hasCache) return res.redirect(`https://open-alex-poccache.s3.gra.io.cloud.ovh.net/${key}.json`)
+  const key = Buffer.from(oaq).toString('base64');
+  const hasCache = await S3Cache.exists(`${key}.json`).then(() => true).catch(() => false);
+  console.log('hasCache', hasCache);
+  if (hasCache) {
+    const url = await S3Cache.get(`${key}.json`)
+    return res.redirect(url)
+  }
   
   const data = await fetchOA(JSON.parse(oaq))
     .catch(() => {
       console.log('error');
-      return res.status(400).json({})
+      return null;
     });
-  // S3Cache.set(`${key}.json`, Buffer.from(JSON.stringify(data)));
-  return res.json({ results: data, filters: JSON.parse(oaq) });
+  if (data) {
+    S3Cache.set(`${key}.json`, Buffer.from(JSON.stringify(data)));
+    return res.json({ results: data, filters: JSON.parse(oaq) });
+  }
+  return res.status(400).json({})
 });
 
 // SERVE REACT BUILD
