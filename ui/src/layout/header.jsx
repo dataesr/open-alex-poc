@@ -36,8 +36,8 @@ export default function Header() {
           current={pathname === '/'}
         />
         <NavItem
-          title="Explore"
-          asLink={<RouterLink to="/explore">Explore</RouterLink>}
+          title="Affiliation explorer"
+          asLink={<RouterLink to="/explore">Affiliation Explorer</RouterLink>}
           current={pathname === '/explore'}
         />
         <NavItem

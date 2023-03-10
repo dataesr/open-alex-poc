@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, TextInput, Row, Col, Button, Select, Checkbox, Icon, Title } from "@dataesr/react-dsfr";
+import { Container, TextInput, Row, Col, Button, Select, Checkbox, Icon, Title, Accordion, AccordionItem } from "@dataesr/react-dsfr";
 import countriesList from '../../assets/countriesList.json';
 
 export default function Filters({ onSetFiltersHandler }) {
@@ -53,7 +53,7 @@ export default function Filters({ onSetFiltersHandler }) {
                             selected={affiliation1Type}
                         />
                     </Col>
-                    <Col n="5">
+                    <Col n="9">
                         {
                             (affiliation1Type === 'institutions.country_code') ? (
                                 <Select
@@ -73,89 +73,99 @@ export default function Filters({ onSetFiltersHandler }) {
                             )
                         }
                     </Col>
-                    <Col n="2">
-                        <Checkbox label="Random sampling " checked={onSample} onChange={() => setOnSample(!onSample)} />
-                    </Col>
-                    <Col n="2">
-                        <TextInput
-                            label='size'
-                            name="sampleLength"
-                            value={sampleLength}
-                            onChange={(e) => setSampleLength(e.target.value)}
-                            disabled={!onSample}
-                        />
-                    </Col>
                 </Row>
-                <Row gutters>
-                    <Col n="12" className="fr-pb-0">
-                        In collaboration with ? (optional)
-                    </Col>
-                    <Col n="3">
-                        <Select
-                            label="Affiliation search type"
-                            id="affiliation2_type"
-                            onChange={(e) => [setAffiliation2Type(e.target.value), setAffiliation2Str(null)]}
-                            options={typesOptions}
-                            selected={affiliation2Type}
-                        />
-                    </Col>
-                    <Col n="5">
-                        {
-                            (affiliation2Type === 'institutions.country_code') ? (
+                <Accordion keepOpen>
+                    <AccordionItem
+                        initExpand={false}
+                        title="In collaboration with ? (optional)"
+                    >
+                        <Row gutters>
+                            <Col n="3">
                                 <Select
-                                    label="Value"
-                                    id="affiliation2ISO"
-                                    onChange={(e) => setAffiliation2ISO(e.target.value)}
-                                    options={countriesList.map((el) => ({ label: el.name, value: el.code }))}
-                                    selected={affiliation2ISO}
+                                    label="Affiliation search type"
+                                    id="affiliation2_type"
+                                    onChange={(e) => [setAffiliation2Type(e.target.value), setAffiliation2Str(null)]}
+                                    options={typesOptions}
+                                    selected={affiliation2Type}
                                 />
-                            ) : (
+                            </Col>
+                            <Col n="9">
+                                {
+                                    (affiliation2Type === "institutions.country_code") ? (
+                                        <Select
+                                            label="Value"
+                                            id="affiliation2ISO"
+                                            onChange={(e) => setAffiliation2ISO(e.target.value)}
+                                            options={countriesList.map((el) => ({ label: el.name, value: el.code }))}
+                                            selected={affiliation2ISO}
+                                        />
+                                    ) : (
+                                        <TextInput
+                                            label="Value"
+                                            name="affiliation2_str"
+                                            value={affiliation2Str}
+                                            onChange={(e) => setAffiliation2Str(e.target.value)}
+                                        />
+                                    )
+                                }
+                            </Col>
+                        </Row>
+                    </AccordionItem>
+                    <AccordionItem title="more options">
+                        <Row gutters alignItems="bottom">
+                            <Col n="2">
                                 <TextInput
-                                    label="Value"
-                                    name="affiliation2_str"
-                                    value={affiliation2Str}
-                                    onChange={(e) => setAffiliation2Str(e.target.value)}
+                                    name="startDateInput"
+                                    value={startDate} label="Start year"
+                                    maxLength="4"
+                                    onChange={(e) => setStartDate(e.target.value)}
                                 />
-                            )
-                        }
-                    </Col>
-                </Row>
-                <Row gutters alignItems="bottom">
-                    <Col n="2">
-                        <TextInput
-                            name="startDateInput"
-                            value={startDate} label="Start year"
-                            maxLength="4"
-                            onChange={(e) => setStartDate(e.target.value)}
-                        />
-                    </Col>
-                    <Col n="2">
-                        <TextInput
-                            name="endDateInput"
-                            value={endDate}
-                            label="End year"
-                            maxLength="4"
-                            onChange={(e) => setEndDate(e.target.value)}
-                            hint="(empty = max)"
-                        />
-                    </Col>
-                    <Col n="4">
-                        <TextInput
-                            name="thematic"
-                            value={thematic}
-                            label="Thematic"
-                            onChange={(e) => setThematic(e.target.value)}
-                        />
-                    </Col>
-                    <Col n="4">
-                        <Button onClick={handleSearch} icon="ri-search-line">
-                            Search
-                        </Button>
+                            </Col>
+                            <Col n="2">
+                                <TextInput
+                                    name="endDateInput"
+                                    value={endDate}
+                                    label="End year"
+                                    maxLength="4"
+                                    onChange={(e) => setEndDate(e.target.value)}
+                                    hint="(empty = max)"
+                                />
+                            </Col>
+                            <Col n="4">
+                                <TextInput
+                                    name="thematic"
+                                    value={thematic}
+                                    label="Thematic"
+                                    onChange={(e) => setThematic(e.target.value)}
+                                />
+                            </Col>
+                            <Col n="2">
+                                <Checkbox label="Random sampling " checked={onSample} onChange={() => setOnSample(!onSample)} />
+                            </Col>
+                            <Col n="2">
+                                <TextInput
+                                    label='size'
+                                    name="sampleLength"
+                                    value={sampleLength}
+                                    onChange={(e) => setSampleLength(e.target.value)}
+                                    disabled={!onSample}
+                                />
+                            </Col>
+                        </Row>
+                    </AccordionItem>
+                </Accordion>
+
+                <Row gutters>
+                    <Col n="12" className="fr-pt-3w">
+                        <div style={{ textAlign: 'right' }}>
+                            <Button onClick={handleSearch} icon="ri-search-line">
+                                Search
+                            </Button>
+                        </div>
                     </Col>
                 </Row>
             </Container>
             <br />
-            <hr />
         </section>
     )
 }
