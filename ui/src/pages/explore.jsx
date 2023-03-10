@@ -32,8 +32,8 @@ export default function ExplorePage() {
             </Col>
             <Col>
               <Highlight colorFamily="yellow-tournesol">
-                This graph allows for a quick analysis of trends and variations
-                in publications over time.
+                This graph shows the evolution of the number of publications
+                over time.
               </Highlight>
             </Col>
           </Row>
@@ -46,9 +46,9 @@ export default function ExplorePage() {
               />
               <TopRevues dataLoaded={data || []} />
               <Highlight colorFamily="yellow-tournesol">
-                This chart can help identify the most popular scientific revues
-                in a given field by allowing for a visual comparison of the
-                number of publications in each revue.
+                This graph displays the top 10 revues for a concept at level 0,
+                allowing for a visual comparison of the number of publications
+                in each revue.
               </Highlight>
             </Col>
           </Row>
@@ -71,8 +71,9 @@ export default function ExplorePage() {
                 }}
               />
               <Highlight colorFamily="yellow-tournesol">
-                What we are displaying here is an analysis of the most frequent
-                affiliations among authors of research articles.
+                We are displaying the 10 most frequent signature affiliations
+                among institutions. A signature is the way an author associates
+                their works with an institution.
               </Highlight>
             </Col>
           </Row>
@@ -85,10 +86,9 @@ export default function ExplorePage() {
               />
               <TopAuthors dataLoaded={data || []} />
               <Highlight colorFamily="yellow-tournesol">
-                What we display here is an analysis of the most frequent authors
-                of research articles. The chart allows for a visual comparison
-                of the number of publications for each author, helping to
-                identify the most prolific ones.
+                This graph shows the 10 most frequent authors. The graph allows
+                for a visual comparison of the number of publications for each
+                author, helping to identify the most prolific ones.
               </Highlight>
             </Col>
           </Row>
@@ -101,8 +101,10 @@ export default function ExplorePage() {
               />
               <ConceptByYear dataLoaded={data || []} />
               <Highlight colorFamily="yellow-tournesol">
-                This chart shows the percentage of publications for each concept
-                by year.
+                This graph shows the percentage of publications for each concept
+                by year. We have established a top 5 of concepts with the
+                highest number of publications and grouped the rest under the
+                'Other' category.
               </Highlight>
             </Col>
           </Row>
@@ -129,7 +131,7 @@ export default function ExplorePage() {
                 }}
               />
               <Highlight colorFamily="yellow-tournesol">
-                texte explicatif du graph
+                Top 20 co-authorships countries
               </Highlight>
             </Col>
           </Row>
