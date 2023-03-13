@@ -12,14 +12,14 @@ export default function Filters({ onSetFiltersHandler }) {
         { label: "RoR (from pared institution)", value: "institutions.ror"}
     ] 
     const [affiliation1Type, setAffiliation1Type] = useState(typesOptions[0]?.value);
-    const [affiliation1ISO, setAffiliation1ISO] = useState(null);
-    const [affiliation1Str, setAffiliation1Str] = useState(null);
+    const [affiliation1ISO, setAffiliation1ISO] = useState(undefined);
+    const [affiliation1Str, setAffiliation1Str] = useState(undefined);
 
     const [affiliation2Type, setAffiliation2Type] = useState(typesOptions[0]?.value);
-    const [affiliation2ISO, setAffiliation2ISO] = useState(null);
-    const [affiliation2Str, setAffiliation2Str] = useState(null);
+    const [affiliation2ISO, setAffiliation2ISO] = useState(undefined);
+    const [affiliation2Str, setAffiliation2Str] = useState(undefined);
 
-    const [thematic, setThematic] = useState(null);
+    const [thematic, setThematic] = useState(undefined);
 
     const [onSample, setOnSample] = useState(true);
     const [sampleLength, setSampleLength] = useState(1000);
