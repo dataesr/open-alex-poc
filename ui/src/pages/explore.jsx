@@ -58,7 +58,7 @@ export default function ExplorePage() {
               <Col n="6">
                 <GraphTitle
                   filters={filters}
-                  title="What signatures are used in the raw affiliation?"
+                  title="What signatures are used in the raw affiliation field?"
                   iconName="ri-file-list-line"
                 />
                 <Signatures
@@ -76,7 +76,7 @@ export default function ExplorePage() {
               <Col n="6">
                 <GraphTitle
                   filters={filters}
-                  title="What signatures are used in the raw affiliation?"
+                  title="What signatures are used in the institution name field?"
                   iconName="ri-file-list-line"
                 />
                 <Signatures
@@ -98,7 +98,7 @@ export default function ExplorePage() {
               <Col n="6">
                 <GraphTitle
                   filters={filters}
-                  title="What signatures are used in the raw affiliation for the partners in collaboration?"
+                  title="What signatures are used in the raw affiliation field for the partners in collaboration?"
                   iconName="ri-file-list-line"
                 />
                 <Signatures
@@ -116,7 +116,7 @@ export default function ExplorePage() {
               <Col n="6">
                 <GraphTitle
                   filters={filters}
-                  title="What signatures are used in the raw affiliation for the partners in collaboration?"
+                  title="What signatures are used in the institution name field for the partners in collaboration?"
                   iconName="ri-file-list-line"
                 />
                 <Signatures
@@ -138,7 +138,7 @@ export default function ExplorePage() {
               <Col n="6">
                 <GraphTitle
                   filters={filters}
-                  title="What signatures are used in the raw affiliation for the other partners?"
+                  title="What signatures are used in the raw affiliation field for the other partners?"
                   iconName="ri-file-list-line"
                 />
                 <Signatures
@@ -156,7 +156,7 @@ export default function ExplorePage() {
               <Col n="6">
                 <GraphTitle
                   filters={filters}
-                  title="What signatures are used in the raw affiliation for the other partners?"
+                  title="What signatures are used in the institution name field for the other partners?"
                   iconName="ri-file-list-line"
                 />
                 <Signatures
