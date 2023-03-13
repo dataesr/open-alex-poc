@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { Container, Row, Col, Highlight, Icon } from "@dataesr/react-dsfr";
+import { Col, Container, Highlight, Row } from "@dataesr/react-dsfr";
 
 import Filters from "../components/filters";
-import PublicationByYear from "../components/publication-by-year";
-import TopRevues from "../components/top-revues";
-import TopAuthors from "../components/top-authors";
-import ConceptByYear from "../components/publication-by-concept";
-import TopCountry from "../components/top-country";
-import useFetch from "../hooks/useFetch";
 import GraphTitle from "../components/graph-title";
+import ConceptByYear from "../components/publication-by-concept";
+import PublicationByYear from "../components/publication-by-year";
 import Signatures from "../components/signatures";
-import export2txt from "../utils/export";
+import TopAuthors from "../components/top-authors";
+import TopCountry from "../components/top-country";
+import TopRevues from "../components/top-revues";
+import useFetch from "../hooks/useFetch";
+import export2file from "../utils/export";
 
 export default function ExplorePage() {
   const [filters, setFilters] = useState(null);
@@ -22,7 +22,7 @@ export default function ExplorePage() {
       {error && <p>Error</p>}
       {!error && !isLoading && data?.length > 0 && (
         <Container as="section">
-          {export2txt(data)}
+          {export2file({ data })}
           <Row alignItems="bottom">
             <Col n="7">
               <GraphTitle

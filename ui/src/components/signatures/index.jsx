@@ -1,6 +1,8 @@
 import { Badge } from "@dataesr/react-dsfr";
 import React from "react";
 
+import export2file from "../../utils/export";
+
 const SIGNATURE_TOP_SIZE = 10;
 
 const isAuthorshipInPerimeter = (authorship, perimeter) => {
@@ -24,8 +26,7 @@ const isAuthorshipInPerimeter = (authorship, perimeter) => {
 // field can be "raw_affiliation" or "institution_name"
 // perimeter has to be one of ["affiliationOne", "affiliationTwo", "affiliationThree"]
 const Signatures = ({ dataLoaded, field, perimeter }) => {
-  let signatures= [];
-  const condition = 
+  const signatures= [];
   dataLoaded.filter((work) => work?.doi).forEach((work) => {
     work.authorships.forEach((authorship) => {
       if (isAuthorshipInPerimeter(authorship, perimeter)) {
@@ -55,17 +56,18 @@ const Signatures = ({ dataLoaded, field, perimeter }) => {
     });
   });
   signatures.sort((a, b) => b.dois.length - a.dois.length);
-  signatures = signatures.slice(0, SIGNATURE_TOP_SIZE);
 
   return (
     <>
+      <div>
+        {export2file({ data: signatures, type: 'csv' })}
+      </div>
       <ol>
-        {signatures.map((signature, index) => (
+        {signatures.slice(0, SIGNATURE_TOP_SIZE).map((signature, index) => (
           <li key={index}>
             {signature.name} <Badge text={signature.dois.length} />
           </li>
         ))}
-
       </ol>
     </>
   )
