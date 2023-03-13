@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
 import Network from "./components/network";
 import Layout from "./layout";
 import load from "./load";
-import HomePage from "./pages/home";
 import ExplorePage from "./pages/explore";
+import HomePage from "./pages/home";
 
 export default function App() {
   return (
