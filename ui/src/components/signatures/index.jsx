@@ -25,13 +25,14 @@ const isAuthorshipInPerimeter = (authorship, perimeter) => {
 
 // field can be "raw_affiliation" or "institution_name"
 // perimeter has to be one of ["affiliationOne", "affiliationTwo", "affiliationThree"]
-const Signatures = ({ dataLoaded, field, perimeter }) => {
+const Signatures = ({ dataLoaded, field, filters, perimeter }) => {
+  const name = filters?.[perimeter]?.query || 'affiliationThree';
   const signatures= [];
   dataLoaded.filter((work) => work?.doi).forEach((work) => {
     work.authorships.forEach((authorship) => {
       if (isAuthorshipInPerimeter(authorship, perimeter)) {
         if (field === 'raw_affiliation') {
-          // TODO, can be improve by removing ", ***" ou "[***]" ou "(***)"
+          // TODO, can be improve by removing ", ***" or "[***]" or "(***)" or "*** ()"
           const affiliations = authorship.raw_affiliation_string.split(';')
             .map((affiliation) => affiliation.trim())
             .filter((affilition) => affilition.length > 0);
@@ -60,7 +61,7 @@ const Signatures = ({ dataLoaded, field, perimeter }) => {
   return (
     <>
       <div>
-        {export2file({ data: signatures, type: 'csv' })}
+        {export2file({ data: signatures, filename: `export_openalex_${field}_${name}.csv`, type: 'csv' })}
       </div>
       <ol>
         {signatures.slice(0, SIGNATURE_TOP_SIZE).map((signature, index) => (

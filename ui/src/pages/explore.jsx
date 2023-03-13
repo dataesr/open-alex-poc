@@ -13,8 +13,9 @@ import useFetch from "../hooks/useFetch";
 import export2file from "../utils/export";
 
 export default function ExplorePage() {
-  const [filters, setFilters] = useState(null);
-  const { isLoading, error, data } = useFetch(filters);
+  const [filters, setFilters] = useState(undefined);
+  const { data, error, isLoading } = useFetch(filters);
+
   return (
     <main>
       <Filters onSetFiltersHandler={(f) => setFilters(f)} />
@@ -22,7 +23,7 @@ export default function ExplorePage() {
       {error && <p>Error</p>}
       {!error && !isLoading && data?.length > 0 && (
         <Container as="section">
-          {export2file({ data })}
+          {export2file({ data, filename: 'export_openalex_all_data.json', type: 'json' })}
           <Row alignItems="bottom">
             <Col n="7">
               <GraphTitle
@@ -62,6 +63,7 @@ export default function ExplorePage() {
               <Signatures
                 dataLoaded={data || []}
                 field="raw_affiliation"
+                filters={filters}
                 perimeter="affiliationOne"
               />
               <Highlight colorFamily="yellow-tournesol">
@@ -79,6 +81,7 @@ export default function ExplorePage() {
               <Signatures
                 dataLoaded={data || []}
                 field="institution_name"
+                filters={filters}
                 perimeter="affiliationOne"
               />
               <Highlight colorFamily="yellow-tournesol">
@@ -98,6 +101,7 @@ export default function ExplorePage() {
               <Signatures
                 dataLoaded={data || []}
                 field="raw_affiliation"
+                filters={filters}
                 perimeter="affiliationTwo"
               />
               <Highlight colorFamily="yellow-tournesol">
@@ -115,6 +119,7 @@ export default function ExplorePage() {
               <Signatures
                 dataLoaded={data || []}
                 field="institution_name"
+                filters={filters}
                 perimeter="affiliationTwo"
               />
               <Highlight colorFamily="yellow-tournesol">
@@ -134,6 +139,7 @@ export default function ExplorePage() {
               <Signatures
                 dataLoaded={data || []}
                 field="raw_affiliation"
+                filters={filters}
                 perimeter="affiliationThree"
               />
               <Highlight colorFamily="yellow-tournesol">
@@ -151,6 +157,7 @@ export default function ExplorePage() {
               <Signatures
                 dataLoaded={data || []}
                 field="institution_name"
+                filters={filters}
                 perimeter="affiliationThree"
               />
               <Highlight colorFamily="yellow-tournesol">
@@ -164,8 +171,8 @@ export default function ExplorePage() {
             <Col>
               <GraphTitle
                 filters={filters}
-                title="Which authors have the most publications?"
                 iconName="ri-bar-chart-fill"
+                title="Which authors have the most publications?"
               />
               <TopAuthors dataLoaded={data || []} />
               <Highlight colorFamily="yellow-tournesol">

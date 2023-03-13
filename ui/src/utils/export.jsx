@@ -1,16 +1,14 @@
 import { Icon } from "@dataesr/react-dsfr";
 import Papa from "papaparse";
 
-export default function export2file({ data, type }) {
-  let download, href;
+export default function export2file({ data, filename, type }) {
+  let href;
   switch (type) {
     case 'csv':
-      download = 'data.csv';
       href = URL.createObjectURL(new Blob([Papa.unparse(data)], { type: 'text/csv' }));
       break;
     default:
       type = 'json';
-      download = 'data.json';
       href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
       break;
   }
@@ -18,7 +16,7 @@ export default function export2file({ data, type }) {
   return (
     <div>
       <a
-        download={download}
+        download={filename}
         href={href}
       >
         Export data to {type.toUpperCase()} file
