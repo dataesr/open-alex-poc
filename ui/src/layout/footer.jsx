@@ -17,6 +17,11 @@ export default function Footer() {
           Gouvernement
         </Logo>
         <FooterBodyItem>
+          <Link target="_blank" href="https://github.com/dataesr/open-alex-poc">
+            Github du POC
+          </Link>
+        </FooterBodyItem>
+        <FooterBodyItem>
           <Link target="_blank" href="https://legifrance.gouv.fr">
             legifrance.gouv.fr
           </Link>
