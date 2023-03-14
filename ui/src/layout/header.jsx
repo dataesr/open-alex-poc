@@ -1,4 +1,5 @@
 import {
+  Badge,
   Header as HeaderWrapper,
   HeaderBody,
   HeaderNav,
@@ -23,7 +24,8 @@ export default function Header() {
         <Service
           title={(
             <>
-              OpenAlex POC
+              OpenAlex explorer
+              <Badge text="POC" isSmall colorFamily="green-emeraude" />
             </>
           )}
           description=""
@@ -37,18 +39,13 @@ export default function Header() {
         />
         <NavItem
           title="Affiliation explorer"
-          asLink={<RouterLink to="/explore">Affiliation Explorer</RouterLink>}
-          current={pathname === '/explore'}
+          asLink={<RouterLink to="/explore/affiliations">Affiliation explorer</RouterLink>}
+          current={pathname === '/explore/affiliations'}
         />
         <NavItem
-          title="About"
-          asLink={<RouterLink to="/about">About</RouterLink>}
-          current={pathname === '/about'}
-        />
-        <NavItem
-          title="Draft"
-          asLink={<RouterLink to="/draft">Draft</RouterLink>}
-          current={pathname === '/draft'}
+          title="Affiliation explorer"
+          asLink={<RouterLink to="/explore/signatures">Signatures explorer</RouterLink>}
+          current={pathname === '/explore/signatures'}
         />
       </HeaderNav>
     </HeaderWrapper>

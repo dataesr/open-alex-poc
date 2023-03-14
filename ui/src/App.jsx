@@ -5,7 +5,8 @@ import Network from "./components/network";
 import Layout from "./layout";
 import load from "./load";
 import HomePage from "./pages/home";
-import ExplorePage from "./pages/explore";
+import AffiliationsExplorerPage from "./pages/affiliations";
+import SignaturesExplorerPage from "./pages/signatures";
 
 export default function App() {
   return (
@@ -14,7 +15,8 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="about" element={<About />} />
-          <Route path="explore" element={<ExplorePage />} />
+          <Route path="explore/affiliations" element={<AffiliationsExplorerPage />} />
+          <Route path="explore/signatures" element={<SignaturesExplorerPage />} />
           <Route path="draft" element={<Draft />} />
           <Route path="*" element={<NoMatch />} />
         </Route>

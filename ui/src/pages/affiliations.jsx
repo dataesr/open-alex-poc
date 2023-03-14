@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Row, Col, Highlight, Icon } from "@dataesr/react-dsfr";
+import { Container, Row, Col, Highlight, Icon, Title } from "@dataesr/react-dsfr";
 
 import Filters from "../components/filters";
 import PublicationByYear from "../components/publication-by-year";
@@ -10,15 +10,22 @@ import TopCountry from "../components/top-country";
 import useFetch from "../hooks/useFetch";
 import GraphTitle from "../components/graph-title";
 import Signatures from "../components/signatures";
+import { PageSpinner } from "../components/spinner";
 import export2txt from "../utils/export";
 
-export default function ExplorePage() {
+export default function AffiliationsExplorePage() {
   const [filters, setFilters] = useState(null);
   const { isLoading, error, data } = useFetch(filters);
   return (
     <main>
+      <Container className="fr-mt-5w">
+        <Title as="h2" className="fr-mb-0">
+          <Icon name="ri-filter-2-fill" />
+          Which affiliation to analyze ?
+        </Title>
+      </Container>
       <Filters onSetFiltersHandler={(f) => setFilters(f)} />
-      {isLoading && <p>isLoading</p>}
+      {isLoading && <PageSpinner />}
       {error && <p>Error</p>}
       {!error && !isLoading && data?.length > 0 && (
         <Container as="section">

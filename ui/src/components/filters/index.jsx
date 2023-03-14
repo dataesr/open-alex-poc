@@ -38,12 +38,6 @@ export default function Filters({ onSetFiltersHandler }) {
         <section className="fr-mt-1w">
             <Container>
                 <Row gutters className='fr-my-2w' alignItems="bottom">
-                    <Col n="12">
-                        <Title as="h2" className="fr-mb-0">
-                            <Icon name="ri-filter-2-fill" />
-                            Which affiliation to analyze ?
-                        </Title>
-                    </Col>
                     <Col n="3">
                         <Select
                             label="Affiliation search type"
@@ -57,6 +51,7 @@ export default function Filters({ onSetFiltersHandler }) {
                         {
                             (affiliation1Type === 'institutions.country_code') ? (
                                 <Select
+                                    required
                                     label="Value"
                                     id="affiliation1ISO"
                                     onChange={(e) => setAffiliation1ISO(e.target.value)}
@@ -65,6 +60,7 @@ export default function Filters({ onSetFiltersHandler }) {
                                 />
                             ) : (
                                 <TextInput
+                                    required
                                     label="Value"
                                     name="affiliation1_str"
                                     value={affiliation1Str}

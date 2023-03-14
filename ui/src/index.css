@@ -1,0 +1,9 @@
+.alt-bg {
+  background-color: var(--backgroudn-alt-grey);
+}
+
+.title-hero {
+  font-size: 4rem !important;
+  line-height: 5rem !important;
+  font-weight: 700;
+}
