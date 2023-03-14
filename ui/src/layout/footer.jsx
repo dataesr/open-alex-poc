@@ -8,7 +8,7 @@ import {
 
 export default function Footer() {
   return (
-    <FooterWrapper>
+    <FooterWrapper className="fr-mt-4w">
       <FooterBody description="">
         <Logo
           asLink={<Link href="https://www.enseignementsup-recherche.gouv.fr/fr" />}

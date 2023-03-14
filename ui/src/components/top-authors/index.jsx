@@ -5,7 +5,7 @@ import HighchartsReact from "highcharts-react-official";
 function TopAuthors({ dataLoaded }) {
   let authors = dataLoaded?.reduce(function (acc, publication) {
     publication.authorships.forEach((el) => {
-      let authorName = el.author.display_name;
+      let authorName = el.author?.display_name;
       if (!acc[authorName]) {
         acc[authorName] = 0;
       }

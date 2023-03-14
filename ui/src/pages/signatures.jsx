@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Row, Col, Highlight, Icon, Title } from "@dataesr/react-dsfr";
+import { Container, Row, Col, Highlight, Icon, Title, Text } from "@dataesr/react-dsfr";
 
 import Filters from "../components/filters";
 import useFetch from "../hooks/useFetch";
@@ -7,9 +7,24 @@ import GraphTitle from "../components/graph-title";
 import Signatures from "../components/signatures";
 import { PageSpinner } from "../components/spinner";
 
+function resultText(count, sample, aff1, aff2 = null) {
+  const result = aff2 ? `Results for "${aff1}": ${count} scholarly papers` : `Results for "${aff1}" and "${aff2}": ${count} scholarly papers`;
+  return (
+    <>
+      <Text className="fr-mb-1w fr-text--bold">{result}</Text>
+    {(sample && (sample <= count)) && (
+      <Text className="fr-mb-0">
+        <Icon name="ri-error-warning-line" />
+        <i>{`sample of ${sample} elements (you may be increased sample in the query options with a maximum of 10000)`}</i>
+      </Text>
+    )}
+    </>
+  )
+}
+
 export default function SignaturesExplorePage() {
   const [filters, setFilters] = useState(null);
-  const { isLoading, error, data } = useFetch(filters);
+  const { isLoading, error, data, count } = useFetch(filters);
   return (
     <main>
       <Container className="fr-mt-5w">
@@ -23,8 +38,9 @@ export default function SignaturesExplorePage() {
       {error && <p>Error</p>}
       {!error && !isLoading && data?.length > 0 && (
         <Container as="section">
-          <Row className="fr-mt-5w">
-            <Col n="6">
+          {resultText(count, filters?.sampleLength, filters?.affiliationOne?.query, filters?.affiliationOne?.query)}
+          <Row gutters className="fr-mt-5w">
+            <Col n="12 md-6">
               <GraphTitle
                 filters={filters}
                 title="What signatures are used in the raw affiliation?"
@@ -41,10 +57,10 @@ export default function SignaturesExplorePage() {
                 their works with an institution.
               </Highlight>
             </Col>
-            <Col n="6">
+            <Col n="12 md-6">
               <GraphTitle
                 filters={filters}
-                title="What signatures are used in the raw affiliation?"
+                title="What signatures are used in the matched affiliation?"
                 iconName="ri-file-list-line"
               />
               <Signatures
@@ -59,8 +75,8 @@ export default function SignaturesExplorePage() {
               </Highlight>
             </Col>
           </Row>
-          <Row className="fr-mt-5w">
-            <Col n="6">
+          {filters?.affiliationTwo?.query && (<Row gutters className="fr-mt-5w">
+            <Col n="12 md-6">
               <GraphTitle
                 filters={filters}
                 title="What signatures are used in the raw affiliation for the partners in collaboration?"
@@ -77,10 +93,10 @@ export default function SignaturesExplorePage() {
                 their works with an institution.
               </Highlight>
             </Col>
-            <Col n="6">
+            <Col n="12 md-6">
               <GraphTitle
                 filters={filters}
-                title="What signatures are used in the raw affiliation for the partners in collaboration?"
+                title="What signatures are used in the matched affiliation for the partners in collaboration?"
                 iconName="ri-file-list-line"
               />
               <Signatures
@@ -94,9 +110,9 @@ export default function SignaturesExplorePage() {
                 their works with an institution.
               </Highlight>
             </Col>
-          </Row>
-          <Row className="fr-mt-5w">
-            <Col n="6">
+          </Row>)}
+          <Row gutters className="fr-mt-5w">
+            <Col n="12 md-6">
               <GraphTitle
                 filters={filters}
                 title="What signatures are used in the raw affiliation for the other partners?"
@@ -113,10 +129,10 @@ export default function SignaturesExplorePage() {
                 their works with an institution.
               </Highlight>
             </Col>
-            <Col n="6">
+            <Col n="12 md-6">
               <GraphTitle
                 filters={filters}
-                title="What signatures are used in the raw affiliation for the other partners?"
+                title="What signatures are used in the matched affiliation for the other partners?"
                 iconName="ri-file-list-line"
               />
               <Signatures

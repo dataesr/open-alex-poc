@@ -39,9 +39,9 @@ const Signatures = ({ dataLoaded, field, filters, perimeter }) => {
             .map((affiliation) => affiliation.trim());
         } else if (field === 'institution_name') {
           affiliations = authorship.institutions
-            .map((institution) => institution.display_name.trim());
+            .map((institution) => institution?.display_name?.trim());
         }
-        affiliations.filter((affilition) => affilition.length > 0).forEach((affiliation) => {
+        affiliations.filter((affilition) => affilition?.length > 0).forEach((affiliation) => {
           if (!signatures?.find((item) => item.name === affiliation)) {
             signatures?.push({ name: affiliation, dois: [] });
           }

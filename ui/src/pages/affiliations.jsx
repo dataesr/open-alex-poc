@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Container, Row, Col, Highlight, Icon, Title } from "@dataesr/react-dsfr";
 
 import Filters from "../components/filters";
-import GraphTitle from "../components/graph-title";
 import ConceptByYear from "../components/publication-by-concept";
 import PublicationByYear from "../components/publication-by-year";
 import Signatures from "../components/signatures";
@@ -11,9 +10,8 @@ import TopCountry from "../components/top-country";
 import TopRevues from "../components/top-revues";
 import useFetch from "../hooks/useFetch";
 import GraphTitle from "../components/graph-title";
-import Signatures from "../components/signatures";
 import { PageSpinner } from "../components/spinner";
-import export2txt from "../utils/export";
+import export2file from "../utils/export";
 
 export default function AffiliationsExplorePage() {
   const [filters, setFilters] = useState(null);

@@ -9,15 +9,20 @@ const BASE_URL = (import.meta.env.DEV && !USE_DEFAULT_VALUES) ? "http://localhos
 
 export default function useFetch(filters) {
   const [data, setData] = useState(null);
+  const [count, setCount] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => axios.get(`${BASE_URL}/api?oaq=${hashQuery(filters)}`)
     .then(async (response) => {
+      console.log(response);
       setData(enrichWorksAuthorships(response.data?.results, filters));
+      console.log(response.data);
+      setCount(response.data?.meta?.count);
       setIsLoading(false);
     })
-    .catch(() => {
+    .catch((e) => {
+      console.log(e);
       setError(true);
       setIsLoading(false);
     });
@@ -29,6 +34,7 @@ export default function useFetch(filters) {
       setIsLoading(false);
       setError(false);
       setData(enrichWorksAuthorships(defaultData?.results, filters));
+      setCount(defaultData?.results?.length);
     } else if (!filters) {
       setIsLoading(false);
       setError(false);
@@ -37,5 +43,5 @@ export default function useFetch(filters) {
     }
   }, [filters]);
 
-  return { data, error, isLoading };
+  return { data, count, error, isLoading };
 }

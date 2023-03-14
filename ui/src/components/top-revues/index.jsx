@@ -6,7 +6,7 @@ function TopRevues({ dataLoaded }) {
 
   const NB_TOP = 15;
   let revues = dataLoaded?.reduce(function (acc, publication) {
-    let revue = publication.host_venue.display_name;
+    let revue = publication.host_venue?.display_name;
     if (!acc[revue]) {
       acc[revue] = 0;
     }
