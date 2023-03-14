@@ -3,36 +3,36 @@ import { Container, TextInput, Row, Col, Button, Select, Checkbox, Icon, Title, 
 import countriesList from '../../assets/countriesList.json';
 
 export default function Filters({ onSetFiltersHandler }) {
-    const [startDate, setStartDate] = useState(2016);
-    const [endDate, setEndDate] = useState(2022);
+  const [startDate, setStartDate] = useState(2016);
+  const [endDate, setEndDate] = useState(2022);
 
-    const typesOptions = [
-        { label: "Raw affiliation contains", value: "raw_affiliation_string.search"}, 
-        { label: "Country (from parsed institution)", value: "institutions.country_code"}, 
-        { label: "RoR (from pared institution)", value: "institutions.ror"}
-    ] 
-    const [affiliation1Type, setAffiliation1Type] = useState(typesOptions[0]?.value);
-    const [affiliation1ISO, setAffiliation1ISO] = useState(null);
-    const [affiliation1Str, setAffiliation1Str] = useState(null);
+  const typesOptions = [
+    { label: "Raw affiliation contains", value: "raw_affiliation_string.search" },
+    { label: "Country (from parsed institution)", value: "institutions.country_code" },
+    { label: "RoR (from parsed institution)", value: "institutions.ror" }
+  ]
+  const [affiliation1Type, setAffiliation1Type] = useState(typesOptions[0]?.value);
+  const [affiliation1ISO, setAffiliation1ISO] = useState(undefined);
+  const [affiliation1Str, setAffiliation1Str] = useState(undefined);
 
-    const [affiliation2Type, setAffiliation2Type] = useState(typesOptions[0]?.value);
-    const [affiliation2ISO, setAffiliation2ISO] = useState(null);
-    const [affiliation2Str, setAffiliation2Str] = useState(null);
+  const [affiliation2Type, setAffiliation2Type] = useState(typesOptions[0]?.value);
+  const [affiliation2ISO, setAffiliation2ISO] = useState(undefined);
+  const [affiliation2Str, setAffiliation2Str] = useState(undefined);
 
-    const [thematic, setThematic] = useState(null);
+  const [thematic, setThematic] = useState(undefined);
 
-    const [onSample, setOnSample] = useState(true);
-    const [sampleLength, setSampleLength] = useState(1000);
+  const [onSample, setOnSample] = useState(true);
+  const [sampleLength, setSampleLength] = useState(1000);
 
-    const handleSearch = () => onSetFiltersHandler({
-        affiliationOne: { type: affiliation1Type, query: (affiliation1Type === 'institutions.country_code') ? affiliation1ISO : affiliation1Str },
-        affiliationTwo: { type: affiliation2Type, query: (affiliation2Type === 'institutions.country_code') ? affiliation2ISO : affiliation2Str },
-        startDate,
-        endDate,
-        thematic,
-        onSample,
-        sampleLength,
-    })
+  const handleSearch = () => onSetFiltersHandler({
+    affiliationOne: { type: affiliation1Type, query: (affiliation1Type === 'institutions.country_code') ? affiliation1ISO : affiliation1Str },
+    affiliationTwo: { type: affiliation2Type, query: (affiliation2Type === 'institutions.country_code') ? affiliation2ISO : affiliation2Str },
+    startDate,
+    endDate,
+    thematic,
+    onSample,
+    sampleLength,
+  })
 
     return (
         <section className="fr-mt-1w">
@@ -151,17 +151,17 @@ export default function Filters({ onSetFiltersHandler }) {
                     </AccordionItem>
                 </Accordion>
 
-                <Row gutters>
-                    <Col n="12" className="fr-pt-3w">
-                        <div style={{ textAlign: 'right' }}>
-                            <Button onClick={handleSearch} icon="ri-search-line">
-                                Search
-                            </Button>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-            <br />
-        </section>
-    )
+        <Row gutters>
+          <Col n="12" className="fr-pt-3w">
+            <div style={{ textAlign: 'right' }}>
+              <Button onClick={handleSearch} icon="ri-search-line">
+                Search
+              </Button>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+      <br />
+    </section>
+  )
 }

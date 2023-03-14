@@ -2,11 +2,13 @@ import { useState } from "react";
 import { Container, Row, Col, Highlight, Icon, Title } from "@dataesr/react-dsfr";
 
 import Filters from "../components/filters";
-import PublicationByYear from "../components/publication-by-year";
-import TopRevues from "../components/top-revues";
-import TopAuthors from "../components/top-authors";
+import GraphTitle from "../components/graph-title";
 import ConceptByYear from "../components/publication-by-concept";
+import PublicationByYear from "../components/publication-by-year";
+import Signatures from "../components/signatures";
+import TopAuthors from "../components/top-authors";
 import TopCountry from "../components/top-country";
+import TopRevues from "../components/top-revues";
 import useFetch from "../hooks/useFetch";
 import GraphTitle from "../components/graph-title";
 import Signatures from "../components/signatures";
@@ -29,7 +31,7 @@ export default function AffiliationsExplorePage() {
       {error && <p>Error</p>}
       {!error && !isLoading && data?.length > 0 && (
         <Container as="section">
-          {export2txt(data)}
+          {export2file({ data, filename: 'export_openalex_all_data.json', type: 'json' })}
           <Row alignItems="bottom">
             <Col n="7">
               <GraphTitle
@@ -59,120 +61,132 @@ export default function AffiliationsExplorePage() {
               </Highlight>
             </Col>
           </Row>
-          <Row className="fr-mt-5w">
-            <Col n="6">
-              <GraphTitle
-                filters={filters}
-                title="What signatures are used in the raw affiliation?"
-                iconName="ri-file-list-line"
-              />
-              <Signatures
-                dataLoaded={data || []}
-                field="raw_affiliation"
-                perimeter="affiliationOne"
-              />
-              <Highlight colorFamily="yellow-tournesol">
-                We are displaying the 10 most frequent signature affiliations
-                among institutions. A signature is the way an author associates
-                their works with an institution.
-              </Highlight>
-            </Col>
-            <Col n="6">
-              <GraphTitle
-                filters={filters}
-                title="What signatures are used in the raw affiliation?"
-                iconName="ri-file-list-line"
-              />
-              <Signatures
-                dataLoaded={data || []}
-                field="institution_name"
-                perimeter="affiliationOne"
-              />
-              <Highlight colorFamily="yellow-tournesol">
-                We are displaying the 10 most frequent signature affiliations
-                among institutions. A signature is the way an author associates
-                their works with an institution.
-              </Highlight>
-            </Col>
-          </Row>
-          <Row className="fr-mt-5w">
-            <Col n="6">
-              <GraphTitle
-                filters={filters}
-                title="What signatures are used in the raw affiliation for the partners in collaboration?"
-                iconName="ri-file-list-line"
-              />
-              <Signatures
-                dataLoaded={data || []}
-                field="raw_affiliation"
-                perimeter="affiliationTwo"
-              />
-              <Highlight colorFamily="yellow-tournesol">
-                We are displaying the 10 most frequent signature affiliations
-                among institutions. A signature is the way an author associates
-                their works with an institution.
-              </Highlight>
-            </Col>
-            <Col n="6">
-              <GraphTitle
-                filters={filters}
-                title="What signatures are used in the raw affiliation for the partners in collaboration?"
-                iconName="ri-file-list-line"
-              />
-              <Signatures
-                dataLoaded={data || []}
-                field="institution_name"
-                perimeter="affiliationTwo"
-              />
-              <Highlight colorFamily="yellow-tournesol">
-                We are displaying the 10 most frequent signature affiliations
-                among institutions. A signature is the way an author associates
-                their works with an institution.
-              </Highlight>
-            </Col>
-          </Row>
-          <Row className="fr-mt-5w">
-            <Col n="6">
-              <GraphTitle
-                filters={filters}
-                title="What signatures are used in the raw affiliation for the other partners?"
-                iconName="ri-file-list-line"
-              />
-              <Signatures
-                dataLoaded={data || []}
-                field="raw_affiliation"
-                perimeter="affiliationThree"
-              />
-              <Highlight colorFamily="yellow-tournesol">
-                We are displaying the 10 most frequent signature affiliations
-                among institutions. A signature is the way an author associates
-                their works with an institution.
-              </Highlight>
-            </Col>
-            <Col n="6">
-              <GraphTitle
-                filters={filters}
-                title="What signatures are used in the raw affiliation for the other partners?"
-                iconName="ri-file-list-line"
-              />
-              <Signatures
-                dataLoaded={data || []}
-                field="institution_name"
-                perimeter="affiliationThree"
-              />
-              <Highlight colorFamily="yellow-tournesol">
-                We are displaying the 10 most frequent signature affiliations
-                among institutions. A signature is the way an author associates
-                their works with an institution.
-              </Highlight>
-            </Col>
-          </Row>
+          {filters?.affiliationOne?.query && (
+            <Row className="fr-mt-5w">
+              <Col n="6">
+                <GraphTitle
+                  filters={filters}
+                  title="What signatures are used in the raw affiliation field?"
+                  iconName="ri-file-list-line"
+                />
+                <Signatures
+                  dataLoaded={data || []}
+                  field="raw_affiliation"
+                  filters={filters}
+                  perimeter="affiliationOne"
+                />
+                <Highlight colorFamily="yellow-tournesol">
+                  We are displaying the 10 most frequent signature affiliations
+                  among institutions. A signature is the way an author associates
+                  their works with an institution.
+                </Highlight>
+              </Col>
+              <Col n="6">
+                <GraphTitle
+                  filters={filters}
+                  title="What signatures are used in the institution name field?"
+                  iconName="ri-file-list-line"
+                />
+                <Signatures
+                  dataLoaded={data || []}
+                  field="institution_name"
+                  filters={filters}
+                  perimeter="affiliationOne"
+                />
+                <Highlight colorFamily="yellow-tournesol">
+                  We are displaying the 10 most frequent signature affiliations
+                  among institutions. A signature is the way an author associates
+                  their works with an institution.
+                </Highlight>
+              </Col>
+            </Row>
+          )}
+          {filters?.affiliationTwo?.query && (
+            <Row className="fr-mt-5w">
+              <Col n="6">
+                <GraphTitle
+                  filters={filters}
+                  title="What signatures are used in the raw affiliation field for the partners in collaboration?"
+                  iconName="ri-file-list-line"
+                />
+                <Signatures
+                  dataLoaded={data || []}
+                  field="raw_affiliation"
+                  filters={filters}
+                  perimeter="affiliationTwo"
+                />
+                <Highlight colorFamily="yellow-tournesol">
+                  We are displaying the 10 most frequent signature affiliations
+                  among institutions. A signature is the way an author associates
+                  their works with an institution.
+                </Highlight>
+              </Col>
+              <Col n="6">
+                <GraphTitle
+                  filters={filters}
+                  title="What signatures are used in the institution name field for the partners in collaboration?"
+                  iconName="ri-file-list-line"
+                />
+                <Signatures
+                  dataLoaded={data || []}
+                  field="institution_name"
+                  filters={filters}
+                  perimeter="affiliationTwo"
+                />
+                <Highlight colorFamily="yellow-tournesol">
+                  We are displaying the 10 most frequent signature affiliations
+                  among institutions. A signature is the way an author associates
+                  their works with an institution.
+                </Highlight>
+              </Col>
+            </Row>
+          )}
+          {(filters?.affiliationOne?.query || filters?.affiliationTwo?.query) && (
+            <Row className="fr-mt-5w">
+              <Col n="6">
+                <GraphTitle
+                  filters={filters}
+                  title="What signatures are used in the raw affiliation field for the other partners?"
+                  iconName="ri-file-list-line"
+                />
+                <Signatures
+                  dataLoaded={data || []}
+                  field="raw_affiliation"
+                  filters={filters}
+                  perimeter="affiliationThree"
+                />
+                <Highlight colorFamily="yellow-tournesol">
+                  We are displaying the 10 most frequent signature affiliations
+                  among institutions. A signature is the way an author associates
+                  their works with an institution.
+                </Highlight>
+              </Col>
+              <Col n="6">
+                <GraphTitle
+                  filters={filters}
+                  title="What signatures are used in the institution name field for the other partners?"
+                  iconName="ri-file-list-line"
+                />
+                <Signatures
+                  dataLoaded={data || []}
+                  field="institution_name"
+                  filters={filters}
+                  perimeter="affiliationThree"
+                />
+                <Highlight colorFamily="yellow-tournesol">
+                  We are displaying the 10 most frequent signature affiliations
+                  among institutions. A signature is the way an author associates
+                  their works with an institution.
+                </Highlight>
+              </Col>
+            </Row>
+          )}
           <Row className="fr-mt-5w">
             <Col>
               <GraphTitle
                 filters={filters}
-                title="Which authors have the most publications?"
                 iconName="ri-bar-chart-fill"
+                title="Which authors have the most publications?"
               />
               <TopAuthors dataLoaded={data || []} />
               <Highlight colorFamily="yellow-tournesol">

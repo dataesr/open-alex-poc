@@ -2,16 +2,10 @@ import { useState } from "react";
 import { Container, Row, Col, Highlight, Icon, Title } from "@dataesr/react-dsfr";
 
 import Filters from "../components/filters";
-import PublicationByYear from "../components/publication-by-year";
-import TopRevues from "../components/top-revues";
-import TopAuthors from "../components/top-authors";
-import ConceptByYear from "../components/publication-by-concept";
-import TopCountry from "../components/top-country";
 import useFetch from "../hooks/useFetch";
 import GraphTitle from "../components/graph-title";
 import Signatures from "../components/signatures";
 import { PageSpinner } from "../components/spinner";
-import export2txt from "../utils/export";
 
 export default function SignaturesExplorePage() {
   const [filters, setFilters] = useState(null);
