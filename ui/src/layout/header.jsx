@@ -18,9 +18,6 @@ export default function Header() {
   return (
     <HeaderWrapper>
       <HeaderBody>
-        <Logo splitCharacter={9}>
-          Gouvernement
-        </Logo>
         <Service
           title={(
             <>

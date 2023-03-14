@@ -154,7 +154,7 @@ export default function Filters({ onSetFiltersHandler }) {
         <Row gutters>
           <Col n="12" className="fr-pt-3w">
             <div style={{ textAlign: 'right' }}>
-              <Button onClick={handleSearch} icon="ri-search-line">
+              <Button disabled={!affiliation1Str || !affiliation1ISO} onClick={handleSearch} icon="ri-search-line">
                 Search
               </Button>
             </div>

@@ -1,9 +1,6 @@
-import { useState } from "react";
 import { Link } from "@dataesr/react-dsfr";
 
 export default function PocBanner() {
-  const [display, setDisplay] = useState(true);
-  if (!display) return null;
   return (
     <div class="fr-notice fr-notice--info">
       <div class="fr-container">
@@ -22,9 +19,6 @@ export default function PocBanner() {
               <Link href="https://github.com/dataesr/openalex-affiliation-country" target='_blank'>https://github.com/dataesr/openalex-affiliation-country</Link>
             </i>
           </p>
-          <button class="fr-btn--close fr-btn" title="Masquer le message" onClick={() => setDisplay(false)}>
-            Masquer le message
-          </button>
         </div>
       </div>
     </div>
