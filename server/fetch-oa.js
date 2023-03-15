@@ -5,20 +5,21 @@ import { createOAQuery } from './create-oa-query';
 const limit = pLimit(10);
 
 export default async function fetchOA(filters) {
+  let sampleSize = filters?.sampleLength || 1000;
+  if (sampleSize && sampleSize > 10000) {
+    sampleSize = 1000;
+  }
   const baseUrl = createOAQuery(filters);
-  const url = `${baseUrl}&per-page=200`;
-  const response = await axios.get(url);
+  const response = await axios.get(`${baseUrl}&per-page=1`);
+  const totalCount = response?.data?.meta?.count;
   console.log(response?.data?.meta);
-  const nbResults = (response?.data?.meta?.count > 10000)
-    ? 10000
-    : response?.data?.meta?.count;
-  const perPage = response?.data?.meta?.per_page;
+  const nbResults = (totalCount > sampleSize) ? sampleSize : totalCount;
+  const perPage = 200;
   const nbPage = Math.ceil(nbResults / perPage);
-  const results = response?.data?.results;
-  if (nbPage === 1) return results;
-  const pages = Array(nbPage - 1)
+  const results = [];
+  const pages = Array(nbPage)
     .fill()
-    .map((_, index) => limit(() => axios.get(`${url}&page=${index + 2}`)));
+    .map((_, index) => limit(() => axios.get(`${baseUrl}&per-page=200&seed=0&sample=${sampleSize}&page=${index + 1}`)));
   const res = await Promise.all(pages).catch((e) => console.log(e));
   const rest = res.map((r) => r?.data?.results).flat();
   return { results: [...results, ...rest], meta: response?.data?.meta, filters };

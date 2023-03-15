@@ -3,24 +3,10 @@ import { Container, Row, Col, Highlight, Icon, Title, Text } from "@dataesr/reac
 
 import Filters from "../components/filters";
 import useFetch from "../hooks/useFetch";
-import GraphTitle from "../components/graph-title";
 import Signatures from "../components/signatures";
 import { PageSpinner } from "../components/spinner";
 
-function resultText(count, sample, aff1, aff2 = null) {
-  const result = aff2 ? `Results for "${aff1}": ${count} scholarly papers` : `Results for "${aff1}" and "${aff2}": ${count} scholarly papers`;
-  return (
-    <>
-      <Text className="fr-mb-1w fr-text--bold">{result}</Text>
-    {(sample && (sample <= count)) && (
-      <Text className="fr-mb-0">
-        <Icon name="ri-error-warning-line" />
-        <i>{`sample of ${sample} elements (you may be increased sample in the query options with a maximum of 10000)`}</i>
-      </Text>
-    )}
-    </>
-  )
-}
+
 
 export default function SignaturesExplorePage() {
   const [filters, setFilters] = useState(null);
@@ -32,121 +18,116 @@ export default function SignaturesExplorePage() {
         <Icon name="ri-filter-2-fill" />
         Which signatures to analyze ?
       </Title>
+        <Text size="sm" className="fr-ml-5w fr-mr-15w">
+        <i>
+        A signature is the way an author associates his work with an institution.
+        <br />
+        They may differ for two authors in the same institution and even for a single author in a single institution in two different works.
+        <br />
+        Query the OpenAlex database with your institution name and discover the raw signature that are used the most by it's authors.
+        </i>
+        </Text>
       </Container>
-      <Filters onSetFiltersHandler={(f) => setFilters(f)} />
+      <Container fluid className={filters ? '' : 'fr-mb-15w'}>
+        <Filters onSetFiltersHandler={(f) => setFilters(f)} />
+      </Container>
       {isLoading && <PageSpinner />}
-      {error && <p>Error</p>}
+      {error && (
+        <Container>
+          <Highlight className="fr-my-15w">
+            An error occured while fetching the data.
+          </Highlight>
+        </Container>
+      )}
       {!error && !isLoading && data?.length > 0 && (
+        <Container fluid>
+          <div class="fr-notice fr-notice--info fr-mt-2w fr-py-2w">
+            <Container className="fr-my-2w">
+              <Text className="fr-mb-0 fr-text--bold">
+                {
+                  filters?.affiliationOne?.query
+                    ? `Results for "${filters.affiliationOne.query}": ${count} scholarly papers in the period ${filters.startDate}-${filters.endDate}`
+                    : `Results for "${filters.affiliationOne.query}" and "${filters?.affiliationOne?.query}": ${count} scholarly papers in the period ${filters.startDate}-${filters.endDate}`
+                }
+              </Text>
+              {(filters?.sampleLength && (filters?.sampleLength <= count)) && (
+                <Text size="sm" className="fr-mb-0">
+                  <Icon name="ri-error-warning-line" />
+                  <i>{`Results are based on a sample of ${filters.sampleLength} elements (you may change sample size in the query options)`}</i>
+                </Text>
+              )}
+              <Highlight size="sm" className="fr-ml-0 fr-mt-2w">
+                We are displaying the 10 most frequent signatures and matched institutions.
+                <br />
+                For each list, you may download complete results as csv files.
+              </Highlight>
+            </Container>
+          </div>
         <Container as="section">
-          {resultText(count, filters?.sampleLength, filters?.affiliationOne?.query, filters?.affiliationOne?.query)}
-          <Row gutters className="fr-mt-5w">
-            <Col n="12 md-6">
-              <GraphTitle
-                filters={filters}
-                title="What signatures are used in the raw affiliation?"
-                iconName="ri-file-list-line"
-              />
+          <Title as="h2" look="h4" className="fr-mb-2w fr-mt-4w">
+            {`Signatures for "${filters?.affiliationOne?.query}"`}
+          </Title>
+          <Row gutters>
+            <Col n="12">
               <Signatures
                 dataLoaded={data || []}
                 field="raw_affiliation"
                 perimeter="affiliationOne"
               />
-              <Highlight colorFamily="yellow-tournesol">
-                We are displaying the 10 most frequent signature affiliations
-                among institutions. A signature is the way an author associates
-                their works with an institution.
-              </Highlight>
             </Col>
-            <Col n="12 md-6">
-              <GraphTitle
-                filters={filters}
-                title="What signatures are used in the matched affiliation?"
-                iconName="ri-file-list-line"
-              />
+            <Col n="12">
               <Signatures
                 dataLoaded={data || []}
                 field="institution_name"
                 perimeter="affiliationOne"
               />
-              <Highlight colorFamily="yellow-tournesol">
-                We are displaying the 10 most frequent signature affiliations
-                among institutions. A signature is the way an author associates
-                their works with an institution.
-              </Highlight>
             </Col>
           </Row>
-          {filters?.affiliationTwo?.query && (<Row gutters className="fr-mt-5w">
-            <Col n="12 md-6">
-              <GraphTitle
-                filters={filters}
-                title="What signatures are used in the raw affiliation for the partners in collaboration?"
-                iconName="ri-file-list-line"
-              />
+          {filters?.affiliationTwo?.query && (
+          <>
+            <hr className="fr-col-xs-10 fr-col-7 fr-my-6w" />
+            <Title as="h2" look="h4" className="fr-mb-2w">
+              {`Signatures for "${filters?.affiliationTwo?.query}"`}
+            </Title>
+          <Row gutters>
+            <Col n="12">
               <Signatures
                 dataLoaded={data || []}
                 field="raw_affiliation"
                 perimeter="affiliationTwo"
               />
-              <Highlight colorFamily="yellow-tournesol">
-                We are displaying the 10 most frequent signature affiliations
-                among institutions. A signature is the way an author associates
-                their works with an institution.
-              </Highlight>
             </Col>
-            <Col n="12 md-6">
-              <GraphTitle
-                filters={filters}
-                title="What signatures are used in the matched affiliation for the partners in collaboration?"
-                iconName="ri-file-list-line"
-              />
+            <Col n="12">
               <Signatures
                 dataLoaded={data || []}
                 field="institution_name"
                 perimeter="affiliationTwo"
               />
-              <Highlight colorFamily="yellow-tournesol">
-                We are displaying the 10 most frequent signature affiliations
-                among institutions. A signature is the way an author associates
-                their works with an institution.
-              </Highlight>
             </Col>
-          </Row>)}
-          <Row gutters className="fr-mt-5w">
-            <Col n="12 md-6">
-              <GraphTitle
-                filters={filters}
-                title="What signatures are used in the raw affiliation for the other partners?"
-                iconName="ri-file-list-line"
-              />
+          </Row>
+          </>
+          )}
+          <hr className="fr-col-xs-10 fr-col-7 fr-my-6w" />
+          <Title as="h2" look="h4" className="fr-mb-2w fr-mt-4w">
+            {`Signatures for other collaborators`}
+          </Title>
+          <Row gutters>
+            <Col n="12">
               <Signatures
                 dataLoaded={data || []}
                 field="raw_affiliation"
                 perimeter="affiliationThree"
               />
-              <Highlight colorFamily="yellow-tournesol">
-                We are displaying the 10 most frequent signature affiliations
-                among institutions. A signature is the way an author associates
-                their works with an institution.
-              </Highlight>
             </Col>
-            <Col n="12 md-6">
-              <GraphTitle
-                filters={filters}
-                title="What signatures are used in the matched affiliation for the other partners?"
-                iconName="ri-file-list-line"
-              />
+            <Col n="12">
               <Signatures
                 dataLoaded={data || []}
                 field="institution_name"
                 perimeter="affiliationThree"
               />
-              <Highlight colorFamily="yellow-tournesol">
-                We are displaying the 10 most frequent signature affiliations
-                among institutions. A signature is the way an author associates
-                their works with an institution.
-              </Highlight>
             </Col>
           </Row>
+        </Container>
         </Container>
       )}
     </main>

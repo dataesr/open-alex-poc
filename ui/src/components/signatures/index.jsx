@@ -1,7 +1,7 @@
-import { Badge } from "@dataesr/react-dsfr";
+import { Badge, Icon, Row, Title } from "@dataesr/react-dsfr";
 import React from "react";
-
-import export2file from "../../utils/export";
+import Button from "../button";
+import export2csv from "../../utils/export";
 
 const SIGNATURE_TOP_SIZE = 10;
 
@@ -55,9 +55,23 @@ const Signatures = ({ dataLoaded, field, filters, perimeter }) => {
 
   return (
     <>
-      <div>
-        {export2file({ data: allSignatures, filename: `export_openalex_${field}_${name}.csv`, type: 'csv' })}
-      </div>
+    <Row alignItems="middle">
+        <Icon size="lg" name="ri-file-list-line" />
+      <Title as="h2" look="h5" className="fr-mb-0">
+        {(field === "raw_affiliation") ? "Top 10 raw signatures" : "Top 10 matched institutions"}
+      </Title>
+        <Button
+          title="Export data to csv file"
+          className="fr-ml-1w"
+          rounded
+          tertiary
+          borderless
+          icon="ri-download-line"
+          onClick={() => export2csv({ data: allSignatures, filename: `export_openalex_${field}_${name}.csv`})}
+        >
+          Export to csv
+        </Button>
+    </Row>
       <ol>
         {signatures.slice(0, SIGNATURE_TOP_SIZE).map((signature, index) => (
           <li key={index}>

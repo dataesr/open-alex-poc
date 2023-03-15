@@ -11,7 +11,6 @@ import TopRevues from "../components/top-revues";
 import useFetch from "../hooks/useFetch";
 import GraphTitle from "../components/graph-title";
 import { PageSpinner } from "../components/spinner";
-import export2file from "../utils/export";
 
 export default function AffiliationsExplorePage() {
   const [filters, setFilters] = useState(null);
@@ -29,7 +28,7 @@ export default function AffiliationsExplorePage() {
       {error && <p>Error</p>}
       {!error && !isLoading && data?.length > 0 && (
         <Container as="section">
-          {export2file({ data, filename: 'export_openalex_all_data.json', type: 'json' })}
+          {/* {export2json({ data, filename: 'export_openalex_all_data.json', type: 'json' })} */}
           <Row alignItems="bottom">
             <Col n="7">
               <GraphTitle

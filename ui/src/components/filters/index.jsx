@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { Container, TextInput, Row, Col, Button, Select, Checkbox, Icon, Title, Accordion, AccordionItem } from "@dataesr/react-dsfr";
+import { Container, TextInput, Row, Col, Button, Select, Checkbox, Accordion, AccordionItem, ButtonGroup, Text } from "@dataesr/react-dsfr";
 import countriesList from '../../assets/countriesList.json';
+
+const thisYear = new Date().getFullYear();
 
 export default function Filters({ onSetFiltersHandler }) {
   const [startDate, setStartDate] = useState(2016);
-  const [endDate, setEndDate] = useState(2022);
+  const [endDate, setEndDate] = useState(2023);
 
   const typesOptions = [
     { label: "Raw affiliation contains", value: "raw_affiliation_string.search" },
@@ -40,14 +42,14 @@ export default function Filters({ onSetFiltersHandler }) {
                 <Row gutters className='fr-my-2w' alignItems="bottom">
                     <Col n="3">
                         <Select
-                            label="Affiliation search type"
+                            label="Signature search type"
                             id="affiliation1_type"
                             onChange={(e) => [setAffiliation1Type(e.target.value), setAffiliation1Str(null)]}
                             options={typesOptions}
                             selected={affiliation1Type}
                         />
                     </Col>
-                    <Col n="9">
+                    <Col n="6">
                         {
                             (affiliation1Type === 'institutions.country_code') ? (
                                 <Select
@@ -65,9 +67,18 @@ export default function Filters({ onSetFiltersHandler }) {
                                     name="affiliation1_str"
                                     value={affiliation1Str}
                                     onChange={(e) => setAffiliation1Str(e.target.value)}
+                                    withAutoValidation
                                 />
                             )
                         }
+                    </Col>
+                    <Col n="3">
+                    <ButtonGroup>
+
+                    <Button className="fr-my-0" disabled={!affiliation1Str && !affiliation1ISO} onClick={handleSearch} icon="ri-search-line">
+                        Search
+                    </Button>
+                    </ButtonGroup>
                     </Col>
                 </Row>
                 <Accordion keepOpen>
@@ -108,58 +119,70 @@ export default function Filters({ onSetFiltersHandler }) {
                         </Row>
                     </AccordionItem>
                     <AccordionItem title="more options">
-                        <Row gutters alignItems="bottom">
-                            <Col n="2">
-                                <TextInput
-                                    name="startDateInput"
-                                    value={startDate} label="Start year"
-                                    maxLength="4"
-                                    onChange={(e) => setStartDate(e.target.value)}
-                                />
-                            </Col>
-                            <Col n="2">
-                                <TextInput
-                                    name="endDateInput"
-                                    value={endDate}
-                                    label="End year"
-                                    maxLength="4"
-                                    onChange={(e) => setEndDate(e.target.value)}
-                                    hint="(empty = max)"
-                                />
-                            </Col>
-                            <Col n="4">
-                                <TextInput
-                                    name="thematic"
-                                    value={thematic}
-                                    label="Thematic"
-                                    onChange={(e) => setThematic(e.target.value)}
-                                />
-                            </Col>
-                            <Col n="2">
-                                <Checkbox label="Random sampling " checked={onSample} onChange={() => setOnSample(!onSample)} />
-                            </Col>
-                            <Col n="2">
-                                <TextInput
-                                    label='size'
-                                    name="sampleLength"
-                                    value={sampleLength}
-                                    onChange={(e) => setSampleLength(e.target.value)}
-                                    disabled={!onSample}
-                                />
+                        <Row gutters>
+                            <Col n="12 md-8">
+                                <Row className="fr-mb-2w" gutters alignItems="bottom">
+                                    <Col n="12">
+                                        <TextInput
+                                            name="thematic"
+                                            value={thematic}
+                                            label="Research field"
+                                            hint="Any query that must appear in the scholarly paper. Usefull to filter works for specific research field or thematics"
+                                            onChange={(e) => setThematic(e.target.value)}
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row className="fr-mb-2w" gutters alignItems="bottom">
+                                    <Col n="6">
+                                        <TextInput
+                                            name="startDateInput"
+                                            value={startDate}
+                                            label="First year of publication"
+                                            type="number"
+                                            min={2010}
+                                            max={thisYear}
+                                            onChange={(e) => setStartDate(e.target.value)}
+                                        />
+                                    </Col>
+                                    <Col n="6">
+                                        <TextInput
+                                            name="endDateInput"
+                                            value={endDate}
+                                            label="Last year of publication"
+                                            type="number"
+                                            min={2010}
+                                            max={thisYear}
+                                            onChange={(e) => setEndDate(e.target.value)}
+                                            hint="(empty = max)"
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row gutters alignItems="bottom">
+                                    <Col n="6">
+                                        <TextInput
+                                            label='Sample size'
+                                            hint="Maximum is 10000"
+                                            name="sampleLength"
+                                            value={sampleLength}
+                                            onChange={(e) => setSampleLength(e.target.value)}
+                                            disabled={!onSample}
+                                            required
+                                            withAutoValidation
+                                            type="number"
+                                            min={100}
+                                            max={10000}
+                                            step={100}
+                                        />
+                                    </Col>
+                                    <Col n="6">
+                                        <Checkbox label="Use random sampling" checked={onSample} onChange={() => setOnSample(!onSample)} />
+                                    </Col>
+                                </Row>
+                                
                             </Col>
                         </Row>
                     </AccordionItem>
                 </Accordion>
-
-        <Row gutters>
-          <Col n="12" className="fr-pt-3w">
-            <div style={{ textAlign: 'right' }}>
-              <Button disabled={!affiliation1Str || !affiliation1ISO} onClick={handleSearch} icon="ri-search-line">
-                Search
-              </Button>
-            </div>
-          </Col>
-        </Row>
       </Container>
       <br />
     </section>
