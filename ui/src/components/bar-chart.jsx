@@ -7,8 +7,39 @@ export default function BarChart({ data, orient='column', slice=10 }) {
     .slice(0, slice)
     .map((el) => ({ name: el.key_display_name, y: el.count }));
 
+  let plotOptions = {};
+  if (orient === 'area') {
+    plotOptions = {
+      area: {
+        fillColor: {
+          linearGradient: {
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: 1
+          },
+          stops: [
+            [0, Highcharts.getOptions().colors[0]],
+            [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+          ]
+        },
+        marker: {
+          radius: 2
+        },
+        lineWidth: 1,
+        states: {
+          hover: {
+            lineWidth: 1
+          }
+        },
+        threshold: null
+      }
+    };
+  }
+
   const options = {
     chart: { type: orient },
+    plotOptions,
     credits: { enabled: false },
     legend: { enabled: false },
     series: [

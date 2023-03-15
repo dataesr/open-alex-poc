@@ -54,7 +54,7 @@ export default function AffiliationsExplorePage() {
               title="How many publications are retrieved?"
               description="Evolution of the number of publications over time, from the search request made in OpenAlex."
             />
-            <BarChart data={data?.publication_year} slice={100} />
+            <BarChart data={data?.publication_year?.sort((a, b) => a.key - b.key)} slice={1000} orient='area' />
             <hr className="fr-col-xs-10 fr-col-7 fr-my-6w" />
             <GraphHeader
               icon="ri-file-list-line"
