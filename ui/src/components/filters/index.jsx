@@ -5,7 +5,7 @@ import countriesList from '../../assets/countriesList.json';
 const thisYear = new Date().getFullYear();
 
 export default function Filters({ onSetFiltersHandler }) {
-  const [startDate, setStartDate] = useState(2016);
+  const [startDate, setStartDate] = useState(2000);
   const [endDate, setEndDate] = useState(2023);
 
   const typesOptions = [
