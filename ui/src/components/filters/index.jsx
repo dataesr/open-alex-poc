@@ -10,8 +10,8 @@ export default function Filters({ onSetFiltersHandler }) {
 
   const typesOptions = [
     { label: "Raw affiliation contains", value: "raw_affiliation_string.search" },
-    { label: "Country (from parsed institution)", value: "institutions.country_code" },
-    { label: "RoR (from parsed institution)", value: "institutions.ror" }
+    { label: "Country (from parsed institution)", value: "institutions.country_code", disabled: true },
+    { label: "RoR (from parsed institution)", value: "institutions.ror", disabled: true }
   ]
   const [affiliation1Type, setAffiliation1Type] = useState(typesOptions[0]?.value);
   const [affiliation1ISO, setAffiliation1ISO] = useState(undefined);

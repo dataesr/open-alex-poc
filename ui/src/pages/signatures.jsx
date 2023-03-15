@@ -12,7 +12,7 @@ export default function SignaturesExplorePage() {
   const [filters, setFilters] = useState(null);
   const { isLoading, error, data, count } = useFetch(filters);
   return (
-    <main>
+    <>
       <Container className="fr-mt-5w">
       <Title as="h2" className="fr-mb-0">
         <Icon name="ri-filter-2-fill" />
@@ -40,8 +40,8 @@ export default function SignaturesExplorePage() {
         </Container>
       )}
       {!error && !isLoading && data?.length > 0 && (
-        <Container fluid>
-          <div class="fr-notice fr-notice--info fr-mt-2w fr-py-2w">
+        <Container fluid >
+          <div class="fr-notice fr-notice--info fr-mb-4w fr-mt-2w fr-py-2w">
             <Container className="fr-my-2w">
               <Text className="fr-mb-0 fr-text--bold">
                 {
@@ -64,20 +64,20 @@ export default function SignaturesExplorePage() {
             </Container>
           </div>
         <Container as="section">
-          <Title as="h2" look="h4" className="fr-mb-2w fr-mt-4w">
+          <Title as="h2" look="h4" className="fr-mb-2w">
             {`Signatures for "${filters?.affiliationOne?.query}"`}
           </Title>
           <Row gutters>
             <Col n="12">
               <Signatures
-                dataLoaded={data || []}
+                dataLoaded={data}
                 field="raw_affiliation"
                 perimeter="affiliationOne"
               />
             </Col>
             <Col n="12">
               <Signatures
-                dataLoaded={data || []}
+                dataLoaded={data}
                 field="institution_name"
                 perimeter="affiliationOne"
               />
@@ -92,14 +92,14 @@ export default function SignaturesExplorePage() {
           <Row gutters>
             <Col n="12">
               <Signatures
-                dataLoaded={data || []}
+                dataLoaded={data}
                 field="raw_affiliation"
                 perimeter="affiliationTwo"
               />
             </Col>
             <Col n="12">
               <Signatures
-                dataLoaded={data || []}
+                dataLoaded={data}
                 field="institution_name"
                 perimeter="affiliationTwo"
               />
@@ -114,14 +114,14 @@ export default function SignaturesExplorePage() {
           <Row gutters>
             <Col n="12">
               <Signatures
-                dataLoaded={data || []}
+                dataLoaded={data}
                 field="raw_affiliation"
                 perimeter="affiliationThree"
               />
             </Col>
             <Col n="12">
               <Signatures
-                dataLoaded={data || []}
+                dataLoaded={data}
                 field="institution_name"
                 perimeter="affiliationThree"
               />
@@ -130,6 +130,6 @@ export default function SignaturesExplorePage() {
         </Container>
         </Container>
       )}
-    </main>
+    </>
   );
 }

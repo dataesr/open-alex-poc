@@ -12,7 +12,6 @@ export default async function fetchOA(filters) {
   const baseUrl = createOAQuery(filters);
   const response = await axios.get(`${baseUrl}&per-page=1`);
   const totalCount = response?.data?.meta?.count;
-  console.log(response?.data?.meta);
   const nbResults = (totalCount > sampleSize) ? sampleSize : totalCount;
   const perPage = 200;
   const nbPage = Math.ceil(nbResults / perPage);
