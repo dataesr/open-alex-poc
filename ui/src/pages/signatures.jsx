@@ -1,15 +1,16 @@
+import { Col, Container, Highlight, Icon, Row, Text, Title } from '@dataesr/react-dsfr';
 import { useState } from 'react';
-import { Container, Row, Col, Highlight, Icon, Title, Text } from '@dataesr/react-dsfr';
 
 import Filters from '../components/filters';
-import useFetch from '../hooks/useFetch';
 import Signatures from '../components/signatures';
 import { PageSpinner } from '../components/spinner';
+import useFetch from '../hooks/useFetch';
 
 export default function SignaturesExplorePage() {
   const defaultStartYear = 2016;
   const [filters, setFilters] = useState(null);
-  const { isLoading, error, data, count } = useFetch(filters);
+  const { count, data, error, isLoading } = useFetch(filters);
+
   return (
     <>
       <Container className="fr-mt-5w">
@@ -70,18 +71,12 @@ export default function SignaturesExplorePage() {
               <Col n="12">
                 <Signatures
                   data={data}
+                  filters={filters}
                   field="raw_affiliation"
                   perimeter="affiliationOne"
                   topSize={30}
                 />
               </Col>
-              {/* <Col n="12">
-                <Signatures
-                  data={data}
-                  field="institution_name"
-                  perimeter="affiliationOne"
-                />
-              </Col> */}
             </Row>
             {filters?.affiliationTwo?.query && (
               <>
@@ -90,17 +85,11 @@ export default function SignaturesExplorePage() {
                   {`Signatures for "${filters?.affiliationTwo?.query}"`}
                 </Title>
                 <Row gutters>
-                  {/* <Col n="12">
-                    <Signatures
-                      data={data}
-                      field="raw_affiliation"
-                      perimeter="affiliationTwo"
-                    />
-                  </Col> */}
                   <Col n="12">
                     <Signatures
                       data={data}
                       field="institution_name"
+                      filters={filters}
                       perimeter="affiliationTwo"
                       topSize={15}
                     />
@@ -113,17 +102,11 @@ export default function SignaturesExplorePage() {
               Signatures for other collaborators
             </Title>
             <Row gutters>
-              {/* <Col n="12">
-                <Signatures
-                  data={data}
-                  field="raw_affiliation"
-                  perimeter="affiliationThree"
-                />
-              </Col> */}
               <Col n="12">
                 <Signatures
                   data={data}
                   field="institution_name"
+                  filters={filters}
                   perimeter="affiliationThree"
                   topSize={15}
                 />
