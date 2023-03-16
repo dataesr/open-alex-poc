@@ -16,7 +16,8 @@ export default function HomePage() {
                 OpenAlex database explorer
               </h1>
               <Text>
-                Query the OpenAlex database for one single affiliation, or for collaborations and get insights on topics, authors and partnerships of the scholarly papers retrieved.
+                Query the OpenAlex database for one single affiliation (in option, in collaboration with another one) and get
+                insights on number of publications, sources, authors, thematics and partnerships of the scholarly papers retrieved in OpenAlex.
               </Text>
               <Button size="md" secondary onClick={() => navigate('/explore/affiliations')}>
                 Try our affiliation explorer
@@ -66,7 +67,7 @@ export default function HomePage() {
               <br />
               The institution parsing in OpenAlex is still in development, which results in lots af raw affiliation not matched to any country/institution,
               or even mismatched to a wrong country/institution.
-              We exhibits a sample of theses cases in this repo
+              We exhibit a sample of theses cases in this repo
               &nbsp;
               <Link href="https://github.com/dataesr/openalex-affiliation-country" target="_blank">https://github.com/dataesr/openalex-affiliation-country</Link>
             </Text>

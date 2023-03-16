@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { createOAQuery } from '../utils/create-oa-query';
 
 const limit = pLimit(10);
-const groupBys = ['publication_year', 'concepts.id', 'authorships.author.id', 'authorships.institutions.country_code', 'host_venue.id'];
+const groupBys = ['publication_year', 'concepts.id', 'authorships.author.id', 'authorships.institutions.country_code', 'host_venue.id', 'authorships.institutions.id'];
 
 const getGraphQueries = (baseUrl) => groupBys.map((field) => limit(() => axios.get(`${baseUrl}&group_by=${field}`)));
 

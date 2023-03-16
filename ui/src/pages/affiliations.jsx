@@ -58,6 +58,13 @@ export default function AffiliationsExplorePage() {
             <BarChart data={data?.publication_year?.sort((a, b) => a.key - b.key)} slice={1000} type="area" categoriesText="Publication year" />
             <hr className="fr-col-xs-10 fr-col-7 fr-my-6w" />
             <GraphHeader
+              iconName="ri-bar-chart-fill"
+              title="Which institutions appear the most in the affiliations of these publications?"
+              description="Top 15 most frequent institutions in the works retrieved."
+            />
+            <BarChart data={data?.['authorships.institutions.id']} categoriesText="Institutions matched with OpenAlex affiliation parsing" type="bar" slice={15} />
+            <hr className="fr-col-xs-10 fr-col-7 fr-my-6w" />
+            <GraphHeader
               icon="ri-file-list-line"
               title="Where are these works published?"
               description="Top 15 sources (i.e journals) of the publications. OpenAlex indexes many publications sources, including preprints.
@@ -71,7 +78,7 @@ export default function AffiliationsExplorePage() {
               title="Which authors have the most publications?"
               description="Top 10 most frequent authors in the works retrieved. These authors may not be affiliated to the input affiliation, but they appear as co-authors of the works retrieved."
             />
-            <BarChart data={data?.['authorships.author.id']} categoriesText="Authors full name" />
+            <BarChart data={data?.['authorships.author.id']} categoriesText="Authors full name matched by OpenAlex disambiguation algorithm" />
             <hr className="fr-col-xs-10 fr-col-7 fr-my-6w" />
             <GraphHeader
               iconName="ri-bar-chart-fill"
@@ -93,7 +100,8 @@ export default function AffiliationsExplorePage() {
               title="Top Country Partner"
               iconName="ri-file-list-line"
             />
-            <BarChart data={data?.['authorships.institutions.country_code']} slice={20} />
+            <BarChart data={data?.['authorships.institutions.country_code']} slice={10} type="bar" />
+            <hr className="fr-col-xs-10 fr-col-7 fr-my-6w" />
           </Container>
         </>
       )}

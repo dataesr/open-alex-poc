@@ -14,7 +14,7 @@ export default function PocBanner() {
               <br />
               The institution parsing in OpenAlex is also still in development, which results in lots af raw affiliation not matched to any country/institution,
               or even mismatched to a wrong country/institution.
-              We exhibits a sample of theses cases in this repo
+              We exhibit a sample of theses cases in this repo
               &nbsp;
               <Link href="https://github.com/dataesr/openalex-affiliation-country" target="_blank">https://github.com/dataesr/openalex-affiliation-country</Link>
             </i>
