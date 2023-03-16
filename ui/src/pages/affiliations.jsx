@@ -42,9 +42,9 @@ export default function AffiliationsExplorePage() {
               <Container className="fr-my-2w">
                 <Text className="fr-mb-0 fr-text--bold">
                   {
-                    filters?.affiliationOne?.query
-                      ? `Results for "${filters.affiliationOne.query}" in the period ${filters.startDate}-${filters.endDate}`
-                      : `Results for "${filters.affiliationOne.query}" and "${filters?.affiliationOne?.query}" in the period ${filters.startDate}-${filters.endDate}`
+                    filters?.affiliationTwo?.query
+                      ? `Results for "${filters.affiliationOne.query}" in collaboration with "${filters?.affiliationTwo?.query}" in the period ${filters.startDate}-${filters.endDate}`
+                      : `Results for "${filters.affiliationOne.query}" in the period ${filters.startDate}-${filters.endDate}`
                   }
                 </Text>
               </Container>
