@@ -8,7 +8,6 @@ import { PageSpinner } from '../components/spinner';
 
 export default function SignaturesExplorePage() {
   const defaultStartYear = 2016;
-  const includeSampleOption = true;
   const [filters, setFilters] = useState(null);
   const { isLoading, error, data, count } = useFetch(filters);
   return (
@@ -29,7 +28,7 @@ export default function SignaturesExplorePage() {
         </Text>
       </Container>
       <Container fluid className={filters ? '' : 'fr-mb-15w'}>
-        <Filters onSearch={(f) => setFilters(f)} includeSampleOption={includeSampleOption} defaultStartYear={defaultStartYear} />
+        <Filters onSearch={(f) => setFilters(f)} includeSampleOption defaultStartYear={defaultStartYear} />
       </Container>
       {isLoading && <PageSpinner />}
       {error && (
