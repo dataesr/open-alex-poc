@@ -8,25 +8,23 @@ const USE_DEFAULT_VALUES = false;
 const BASE_URL = (import.meta.env.DEV && !USE_DEFAULT_VALUES) ? 'http://localhost:3000' : '';
 
 export default function useFetch(filters) {
-  const [data, setData] = useState(null);
-  const [count, setCount] = useState(null);
-  const [error, setError] = useState(null);
+  const [count, setCount] = useState(undefined);
+  const [data, setData] = useState(undefined);
+  const [error, setError] = useState(undefined);
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    const fetchData = async () => axios.get(`${BASE_URL}/api?oaq=${hashQuery(filters)}`)
-      .then(async (response) => {
+    const fetchData = () => axios.get(`${BASE_URL}/api?oaq=${hashQuery(filters)}`)
+      .then((response) => {
         setData(enrichWorksAuthorships(response.data?.results, filters));
         setCount(response.data?.meta?.count);
-        setIsLoading(false);
       })
-      .catch(() => {
-        setError(true);
-        setIsLoading(false);
-      });
+      .catch(() => setError(true))
+      .finally(() => setIsLoading(false));
 
     setIsLoading(true);
-    setError(null);
-    setData(null);
+    setError(undefined);
+    setData(undefined);
     if (import.meta.env.DEV && USE_DEFAULT_VALUES) {
       setIsLoading(false);
       setError(false);

@@ -1,16 +1,17 @@
-import { useState } from 'react';
 import { Container, Highlight, Icon, Title, Text } from '@dataesr/react-dsfr';
+import { useState } from 'react';
 
-import Filters from '../components/filters';
-import { PageSpinner } from '../components/spinner';
-import GraphHeader from '../components/graph-header';
-import useFetchGraphs from '../hooks/useFetchGraphs';
 import BarChart from '../components/bar-chart';
+import Filters from '../components/filters';
+import GraphHeader from '../components/graph-header';
+import { PageSpinner } from '../components/spinner';
+import useFetchGraphs from '../hooks/useFetchGraphs';
 
 export default function AffiliationsExplorePage() {
   const defaultStartYear = 2000;
-  const [filters, setFilters] = useState(null);
-  const { isLoading, error, data } = useFetchGraphs(filters);
+  const [filters, setFilters] = useState(undefined);
+  const { data, error, isLoading } = useFetchGraphs(filters);
+
   return (
     <>
       <Container className="fr-mt-5w">

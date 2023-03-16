@@ -86,7 +86,7 @@ export default function Signatures({ data, field, filters, perimeter, topSize })
 Signatures.propTypes = {
   data: PropTypes.array.isRequired,
   field: PropTypes.string.isRequired,
-  filters: PropTypes.shape.isRequired,
+  filters: PropTypes.object.isRequired,
   perimeter: PropTypes.oneOf(['affiliationOne', 'affiliationTwo', 'affiliationThree']).isRequired,
   topSize: PropTypes.number.isRequired,
 };

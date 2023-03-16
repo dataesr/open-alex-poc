@@ -8,7 +8,7 @@ import useFetch from '../hooks/useFetch';
 
 export default function SignaturesExplorePage() {
   const defaultStartYear = 2016;
-  const [filters, setFilters] = useState(null);
+  const [filters, setFilters] = useState(undefined);
   const { count, data, error, isLoading } = useFetch(filters);
 
   return (

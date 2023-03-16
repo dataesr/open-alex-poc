@@ -9,8 +9,8 @@ const groupBys = ['publication_year', 'concepts.id', 'authorships.author.id', 'a
 const getGraphQueries = (baseUrl) => groupBys.map((field) => limit(() => axios.get(`${baseUrl}&group_by=${field}`)));
 
 export default function useFetchGraphs(filters) {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState(undefined);
+  const [error, setError] = useState(undefined);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
@@ -28,8 +28,8 @@ export default function useFetchGraphs(filters) {
     };
 
     setIsLoading(true);
-    setError(null);
-    setData(null);
+    setError(undefined);
+    setData(undefined);
 
     if (!filters) {
       setIsLoading(false);
