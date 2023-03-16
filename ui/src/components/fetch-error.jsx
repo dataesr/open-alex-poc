@@ -1,4 +1,4 @@
-import { Container, Highlight } from "@dataesr/react-dsfr";
+import { Container, Highlight } from '@dataesr/react-dsfr';
 
 export default function FetchError() {
   return (
@@ -7,5 +7,5 @@ export default function FetchError() {
         An error occured while fetching the data.
       </Highlight>
     </Container>
-  )
+  );
 }

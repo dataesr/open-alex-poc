@@ -1,10 +1,11 @@
-import { Highlight, Icon, Title } from "@dataesr/react-dsfr";
+import PropTypes from 'prop-types';
+import { Highlight, Icon, Title } from '@dataesr/react-dsfr';
 
-export default function GraphHeader({title, description, icon}) {
+export default function GraphHeader({ title, description, icon }) {
   return (
     <>
       <Title as="h2" look="h5" className="fr-mb-2w">
-        <Icon name={icon || "ri-bar-chart-fill"} />
+        <Icon name={icon} />
         {title}
       </Title>
       {description && (
@@ -15,5 +16,16 @@ export default function GraphHeader({title, description, icon}) {
         </Highlight>
       )}
     </>
-  )
+  );
 }
+
+GraphHeader.defaultProps = {
+  description: null,
+  icon: 'ri-bar-chart-fill',
+};
+
+GraphHeader.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  icon: PropTypes.string,
+};

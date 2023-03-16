@@ -6,7 +6,6 @@ import ScrollToTop from './scroll-to-top-button';
 import PocBanner from './poc-banner';
 
 export default function Layout() {
-
   return (
     <>
       <Header />

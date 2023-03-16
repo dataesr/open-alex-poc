@@ -1,4 +1,10 @@
 {
+  "parserOptions": {
+    "ecmaVersion": 13
+  },
+  "env": {
+    "browser": true
+  },
   "rules": {
     "jsx-a11y/anchor-is-valid": "off",
     "react/jsx-filename-extension": 0,
@@ -24,5 +30,5 @@
       }
     ]
   },
-  "extends": ["react-app", "airbnb", "airbnb/hooks"]
+  "extends": ["airbnb", "airbnb/hooks"]
 }

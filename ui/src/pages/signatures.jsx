@@ -1,12 +1,10 @@
-import { useState } from "react";
-import { Container, Row, Col, Highlight, Icon, Title, Text } from "@dataesr/react-dsfr";
+import { useState } from 'react';
+import { Container, Row, Col, Highlight, Icon, Title, Text } from '@dataesr/react-dsfr';
 
-import Filters from "../components/filters";
-import useFetch from "../hooks/useFetch";
-import Signatures from "../components/signatures";
-import { PageSpinner } from "../components/spinner";
-
-
+import Filters from '../components/filters';
+import useFetch from '../hooks/useFetch';
+import Signatures from '../components/signatures';
+import { PageSpinner } from '../components/spinner';
 
 export default function SignaturesExplorePage() {
   const [filters, setFilters] = useState(null);
@@ -14,22 +12,22 @@ export default function SignaturesExplorePage() {
   return (
     <>
       <Container className="fr-mt-5w">
-      <Title as="h2" className="fr-mb-0">
-        <Icon name="ri-filter-2-fill" />
-        Which signatures to analyze ?
-      </Title>
+        <Title as="h2" className="fr-mb-0">
+          <Icon name="ri-filter-2-fill" />
+          Which signatures to analyze ?
+        </Title>
         <Text size="sm" className="fr-ml-5w fr-mr-15w">
-        <i>
-        A signature is the way an author associates his work with an institution.
-        <br />
-        They may differ for two authors in the same institution and even for a single author in a single institution in two different works.
-        <br />
-        Query the OpenAlex database with your institution name and discover the raw signature that are used the most by it's authors.
-        </i>
+          <i>
+            A signature is the way an author associates his work with an institution.
+            <br />
+            They may differ for two authors in the same institution and even for a single author in a single institution in two different works.
+            <br />
+            Query the OpenAlex database with your institution name and discover the raw signature that are used the most by it's authors.
+          </i>
         </Text>
       </Container>
       <Container fluid className={filters ? '' : 'fr-mb-15w'}>
-        <Filters onSetFiltersHandler={(f) => setFilters(f)} />
+        <Filters onSearch={(f) => setFilters(f)} includeSampleOption />
       </Container>
       {isLoading && <PageSpinner />}
       {error && (
@@ -40,8 +38,8 @@ export default function SignaturesExplorePage() {
         </Container>
       )}
       {!error && !isLoading && data?.length > 0 && (
-        <Container fluid >
-          <div class="fr-notice fr-notice--info fr-mb-4w fr-mt-2w fr-py-2w">
+        <Container fluid>
+          <div className="fr-notice fr-notice--info fr-mb-4w fr-mt-2w fr-py-2w">
             <Container className="fr-my-2w">
               <Text className="fr-mb-0 fr-text--bold">
                 {
@@ -63,71 +61,71 @@ export default function SignaturesExplorePage() {
               </Highlight>
             </Container>
           </div>
-        <Container as="section">
-          <Title as="h2" look="h4" className="fr-mb-2w">
-            {`Signatures for "${filters?.affiliationOne?.query}"`}
-          </Title>
-          <Row gutters>
-            <Col n="12">
-              <Signatures
-                dataLoaded={data}
-                field="raw_affiliation"
-                perimeter="affiliationOne"
-              />
-            </Col>
-            <Col n="12">
-              <Signatures
-                dataLoaded={data}
-                field="institution_name"
-                perimeter="affiliationOne"
-              />
-            </Col>
-          </Row>
-          {filters?.affiliationTwo?.query && (
-          <>
-            <hr className="fr-col-xs-10 fr-col-7 fr-my-6w" />
+          <Container as="section">
             <Title as="h2" look="h4" className="fr-mb-2w">
-              {`Signatures for "${filters?.affiliationTwo?.query}"`}
+              {`Signatures for "${filters?.affiliationOne?.query}"`}
             </Title>
-          <Row gutters>
-            <Col n="12">
-              <Signatures
-                dataLoaded={data}
-                field="raw_affiliation"
-                perimeter="affiliationTwo"
-              />
-            </Col>
-            <Col n="12">
-              <Signatures
-                dataLoaded={data}
-                field="institution_name"
-                perimeter="affiliationTwo"
-              />
-            </Col>
-          </Row>
-          </>
-          )}
-          <hr className="fr-col-xs-10 fr-col-7 fr-my-6w" />
-          <Title as="h2" look="h4" className="fr-mb-2w fr-mt-4w">
-            {`Signatures for other collaborators`}
-          </Title>
-          <Row gutters>
-            <Col n="12">
-              <Signatures
-                dataLoaded={data}
-                field="raw_affiliation"
-                perimeter="affiliationThree"
-              />
-            </Col>
-            <Col n="12">
-              <Signatures
-                dataLoaded={data}
-                field="institution_name"
-                perimeter="affiliationThree"
-              />
-            </Col>
-          </Row>
-        </Container>
+            <Row gutters>
+              <Col n="12">
+                <Signatures
+                  data={data}
+                  field="raw_affiliation"
+                  perimeter="affiliationOne"
+                />
+              </Col>
+              <Col n="12">
+                <Signatures
+                  data={data}
+                  field="institution_name"
+                  perimeter="affiliationOne"
+                />
+              </Col>
+            </Row>
+            {filters?.affiliationTwo?.query && (
+              <>
+                <hr className="fr-col-xs-10 fr-col-7 fr-my-6w" />
+                <Title as="h2" look="h4" className="fr-mb-2w">
+                  {`Signatures for "${filters?.affiliationTwo?.query}"`}
+                </Title>
+                <Row gutters>
+                  <Col n="12">
+                    <Signatures
+                      data={data}
+                      field="raw_affiliation"
+                      perimeter="affiliationTwo"
+                    />
+                  </Col>
+                  <Col n="12">
+                    <Signatures
+                      data={data}
+                      field="institution_name"
+                      perimeter="affiliationTwo"
+                    />
+                  </Col>
+                </Row>
+              </>
+            )}
+            <hr className="fr-col-xs-10 fr-col-7 fr-my-6w" />
+            <Title as="h2" look="h4" className="fr-mb-2w fr-mt-4w">
+              Signatures for other collaborators
+            </Title>
+            <Row gutters>
+              <Col n="12">
+                <Signatures
+                  data={data}
+                  field="raw_affiliation"
+                  perimeter="affiliationThree"
+                />
+              </Col>
+              <Col n="12">
+                <Signatures
+                  data={data}
+                  field="institution_name"
+                  perimeter="affiliationThree"
+                />
+              </Col>
+            </Row>
+          </Container>
         </Container>
       )}
     </>

@@ -3,7 +3,6 @@ import {
   Header as HeaderWrapper,
   HeaderBody,
   HeaderNav,
-  Logo,
   NavItem,
   Service,
 } from '@dataesr/react-dsfr';

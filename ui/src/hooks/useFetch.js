@@ -5,7 +5,7 @@ import enrichWorksAuthorships from '../utils/enrich';
 import { hashQuery } from '../utils/hash';
 
 const USE_DEFAULT_VALUES = false;
-const BASE_URL = (import.meta.env.DEV && !USE_DEFAULT_VALUES) ? "http://localhost:3000" : ""
+const BASE_URL = (import.meta.env.DEV && !USE_DEFAULT_VALUES) ? 'http://localhost:3000' : '';
 
 export default function useFetch(filters) {
   const [data, setData] = useState(null);
@@ -14,19 +14,16 @@ export default function useFetch(filters) {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => axios.get(`${BASE_URL}/api?oaq=${hashQuery(filters)}`)
-    .then(async (response) => {
-      console.log(response);
-      setData(enrichWorksAuthorships(response.data?.results, filters));
-      console.log(response.data);
-      setCount(response.data?.meta?.count);
-      setIsLoading(false);
-    })
-    .catch((e) => {
-      console.log(e);
-      setError(true);
-      setIsLoading(false);
-    });
-    
+      .then(async (response) => {
+        setData(enrichWorksAuthorships(response.data?.results, filters));
+        setCount(response.data?.meta?.count);
+        setIsLoading(false);
+      })
+      .catch(() => {
+        setError(true);
+        setIsLoading(false);
+      });
+
     setIsLoading(true);
     setError(null);
     setData(null);

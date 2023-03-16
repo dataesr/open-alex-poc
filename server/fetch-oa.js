@@ -19,7 +19,7 @@ export default async function fetchOA(filters) {
   const pages = Array(nbPage)
     .fill()
     .map((_, index) => limit(() => axios.get(`${baseUrl}&per-page=200&seed=0&sample=${sampleSize}&page=${index + 1}`)));
-  const res = await Promise.all(pages).catch((e) => console.log(e));
+  const res = await Promise.all(pages);
   const rest = res.map((r) => r?.data?.results).flat();
   return { results: [...results, ...rest], meta: response?.data?.meta, filters };
 }

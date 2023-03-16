@@ -3,7 +3,6 @@ import {
   FooterBody,
   FooterBodyItem,
   Link,
-  Logo,
 } from '@dataesr/react-dsfr';
 
 export default function Footer() {

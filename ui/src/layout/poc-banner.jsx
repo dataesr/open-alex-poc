@@ -1,11 +1,11 @@
-import { Link } from "@dataesr/react-dsfr";
+import { Link } from '@dataesr/react-dsfr';
 
 export default function PocBanner() {
   return (
-    <div class="fr-notice fr-notice--info">
-      <div class="fr-container">
-        <div class="fr-notice__body">
-          <p class="fr-notice__title">
+    <div className="fr-notice fr-notice--info">
+      <div className="fr-container">
+        <div className="fr-notice__body">
+          <p className="fr-notice__title">
             This app is ongoing development and is a proof of concept.
           </p>
           <p className="fr-text--sm">
@@ -16,7 +16,7 @@ export default function PocBanner() {
               or even mismatched to a wrong country/institution.
               We exhibits a sample of theses cases in this repo
               &nbsp;
-              <Link href="https://github.com/dataesr/openalex-affiliation-country" target='_blank'>https://github.com/dataesr/openalex-affiliation-country</Link>
+              <Link href="https://github.com/dataesr/openalex-affiliation-country" target="_blank">https://github.com/dataesr/openalex-affiliation-country</Link>
             </i>
           </p>
         </div>
