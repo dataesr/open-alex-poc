@@ -11,8 +11,11 @@ export default function Footer() {
       <FooterBody description="">
         <FooterBodyItem>
           <Link target="_blank" href="https://github.com/dataesr/open-alex-poc">
-            Github du POC
+            Link to the open source of this app (Github)
           </Link>
+        </FooterBodyItem>
+        <FooterBodyItem>
+          Webapp realized by the Decision Support Tools Department of the French Ministry of Higher Education and Research
         </FooterBodyItem>
       </FooterBody>
     </FooterWrapper>

@@ -8,6 +8,7 @@ import useFetchGraphs from '../hooks/useFetchGraphs';
 import BarChart from '../components/bar-chart';
 
 export default function AffiliationsExplorePage() {
+  const defaultStartYear = 2000;
   const [filters, setFilters] = useState(null);
   const { isLoading, error, data } = useFetchGraphs(filters);
   return (
@@ -24,7 +25,7 @@ export default function AffiliationsExplorePage() {
         </Text>
       </Container>
       <Container fluid className={filters ? '' : 'fr-mb-15w'}>
-        <Filters onSearch={(f) => setFilters(f)} />
+        <Filters onSearch={(f) => setFilters(f)} includeSampleOption={false} defaultStartYear={defaultStartYear} />
       </Container>
       {isLoading && <PageSpinner />}
       {error && (

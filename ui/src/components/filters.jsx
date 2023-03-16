@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Container, TextInput, Row, Col, Button, Select, Checkbox, Accordion, AccordionItem, ButtonGroup } from '@dataesr/react-dsfr';
 import countriesList from '../assets/countriesList.json';
 
-const DEFAULT_START_YEAR = 2000;
 const DEFAULT_SAMPLE_SIZE = 1000;
 const THIS_YEAR = new Date().getFullYear();
 const TYPE_OPTIONS = [
@@ -13,8 +12,8 @@ const TYPE_OPTIONS = [
 ];
 const DEFAULT_TYPE_OPTION_INDEX = 0;
 
-export default function Filters({ onSearch, includeSampleOption }) {
-  const [startDate, setStartDate] = useState(DEFAULT_START_YEAR);
+export default function Filters({ onSearch, includeSampleOption, defaultStartYear }) {
+  const [startDate, setStartDate] = useState(defaultStartYear);
   const [endDate, setEndDate] = useState(THIS_YEAR);
   const [affiliation1Type, setAffiliation1Type] = useState(TYPE_OPTIONS[DEFAULT_TYPE_OPTION_INDEX]?.value);
   const [affiliation1Str, setAffiliation1Str] = useState(undefined);
@@ -129,7 +128,7 @@ export default function Filters({ onSearch, includeSampleOption }) {
                       name="thematic"
                       value={thematic}
                       label="Research field"
-                      hint="Any query that must appear in the scholarly paper. Usefull to filter works for specific research field or thematics"
+                      hint="Any query that must appear in the scholarly paper (title, abstract, full-text). Useful to filter works for specific keyword search"
                       onChange={(e) => setThematic(e.target.value)}
                     />
                   </Col>
@@ -198,4 +197,5 @@ Filters.defaultProps = {
 Filters.propTypes = {
   onSearch: PropTypes.func.isRequired,
   includeSampleOption: PropTypes.bool,
+  defaultStartYear: PropTypes.number.isRequired,
 };
