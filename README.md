@@ -41,11 +41,23 @@ Développé par l'équipe OurResearch, les mêmes qui sont derrière Unpaywall
 * React
 * Vite
 * Highchart
+* Node
 
-### Install and run
+### Install
 
 ```sh
 cd ui
 npm i
+```
+
+### Run
+
+Run server
+```sh
+npm run start:dev
+```
+
+Run UI
+```sh
 npm run dev
 ```
