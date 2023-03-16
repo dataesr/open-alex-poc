@@ -16,7 +16,9 @@ export default function HomePage() {
                 OpenAlex database explorer
               </h1>
               <Text>
-                Query the OpenAlex database for one single affiliation (in option, in collaboration with another one) and get
+                Query the
+                <a href="http://openalex.org" rel="noreferrer" target="_blank"> OpenAlex </a>
+                database for one single affiliation (in option, in collaboration with another one) and get
                 insights on number of publications, sources, authors, thematics and partnerships of the scholarly papers retrieved in OpenAlex.
               </Text>
               <Button size="md" secondary onClick={() => navigate('/explore/affiliations')}>
@@ -25,7 +27,7 @@ export default function HomePage() {
               <hr className="fr-col-xs-10 fr-col-7 fr-my-3w fr-py-1w" />
 
               <Text>
-                Want to investigate papers' raw signatures further ?
+                Explore the raw affiliation strings and download the list of publications for each signature
               </Text>
               <Button size="md" secondary onClick={() => navigate('/explore/signatures')}>
                 Try our signature explorer
