@@ -72,15 +72,16 @@ export default function SignaturesExplorePage() {
                   data={data}
                   field="raw_affiliation"
                   perimeter="affiliationOne"
+                  topSize={30}
                 />
               </Col>
-              <Col n="12">
+              {/* <Col n="12">
                 <Signatures
                   data={data}
                   field="institution_name"
                   perimeter="affiliationOne"
                 />
-              </Col>
+              </Col> */}
             </Row>
             {filters?.affiliationTwo?.query && (
               <>
@@ -89,18 +90,19 @@ export default function SignaturesExplorePage() {
                   {`Signatures for "${filters?.affiliationTwo?.query}"`}
                 </Title>
                 <Row gutters>
-                  <Col n="12">
+                  {/* <Col n="12">
                     <Signatures
                       data={data}
                       field="raw_affiliation"
                       perimeter="affiliationTwo"
                     />
-                  </Col>
+                  </Col> */}
                   <Col n="12">
                     <Signatures
                       data={data}
                       field="institution_name"
                       perimeter="affiliationTwo"
+                      topSize={15}
                     />
                   </Col>
                 </Row>
@@ -111,21 +113,23 @@ export default function SignaturesExplorePage() {
               Signatures for other collaborators
             </Title>
             <Row gutters>
-              <Col n="12">
+              {/* <Col n="12">
                 <Signatures
                   data={data}
                   field="raw_affiliation"
                   perimeter="affiliationThree"
                 />
-              </Col>
+              </Col> */}
               <Col n="12">
                 <Signatures
                   data={data}
                   field="institution_name"
                   perimeter="affiliationThree"
+                  topSize={15}
                 />
               </Col>
             </Row>
+            <hr className="fr-col-xs-10 fr-col-7 fr-my-6w" />
           </Container>
         </Container>
       )}

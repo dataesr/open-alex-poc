@@ -3,8 +3,6 @@ import { Badge, Icon, Row, Title } from '@dataesr/react-dsfr';
 import Button from './button';
 import export2csv from '../utils/export';
 
-const SIGNATURE_TOP_SIZE = 10;
-
 const isAuthorshipInPerimeter = (authorship, perimeter) => {
   let condition;
   switch (perimeter) {
@@ -25,7 +23,7 @@ const isAuthorshipInPerimeter = (authorship, perimeter) => {
 
 // field can be "raw_affiliation" or "institution_name"
 // perimeter has to be one of ["affiliationOne", "affiliationTwo", "affiliationThree"]
-export default function Signatures({ data, field, filters, perimeter }) {
+export default function Signatures({ data, field, filters, perimeter, topSize }) {
   const name = filters?.[perimeter]?.query || 'affiliationThree';
   const signatures = [];
   const allSignatures = [];
@@ -58,7 +56,7 @@ export default function Signatures({ data, field, filters, perimeter }) {
       <Row alignItems="middle">
         <Icon size="lg" name="ri-file-list-line" />
         <Title as="h2" look="h5" className="fr-mb-0">
-          {(field === 'raw_affiliation') ? 'Top 10 raw signatures' : 'Top 10 matched institutions'}
+          {(field === 'raw_affiliation') ? 'Top '.concat(topSize, ' raw signatures') : 'Top '.concat(topSize, ' matched institutions')}
         </Title>
         <Button
           title="Export data to csv file"
@@ -73,7 +71,7 @@ export default function Signatures({ data, field, filters, perimeter }) {
         </Button>
       </Row>
       <ol>
-        {signatures.slice(0, SIGNATURE_TOP_SIZE).map((signature, index) => (
+        {signatures.slice(0, topSize).map((signature, index) => (
           <li key={index}>
             {signature.name}
             {' '}
@@ -90,4 +88,5 @@ Signatures.propTypes = {
   field: PropTypes.string.isRequired,
   filters: PropTypes.shape.isRequired,
   perimeter: PropTypes.oneOf(['affiliationOne', 'affiliationTwo', 'affiliationThree']).isRequired,
+  topSize: PropTypes.number.isRequired,
 };
