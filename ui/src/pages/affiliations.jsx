@@ -25,7 +25,7 @@ export default function AffiliationsExplorePage() {
         </Text>
       </Container>
       <Container fluid className={filters ? '' : 'fr-mb-15w'}>
-        <Filters onSearch={(f) => setFilters(f)} includeSampleOption={false} defaultStartYear={defaultStartYear} />
+        <Filters onSearch={(f) => setFilters(f)} defaultStartYear={defaultStartYear} />
       </Container>
       {isLoading && <PageSpinner />}
       {error && (
