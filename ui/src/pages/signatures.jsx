@@ -57,7 +57,7 @@ export default function SignaturesExplorePage() {
                 </Text>
               )}
               <Highlight size="sm" className="fr-ml-0 fr-mt-2w">
-                We are displaying the 10 most frequent signatures and matched institutions.
+                We are displaying the 30 most frequent signatures and matched institutions.
                 <br />
                 For each list, you may download complete results as csv files.
               </Highlight>
