@@ -14,5 +14,5 @@ export function createOAQuery({ affiliationOne = {}, affiliationTwo = {}, startD
   if (affiliation2Type && affiliation2Str) q += `,${affiliation2Type}:${affiliation2Str}`;
   if (thematic) q += `&search=${thematic}`;
   const filter = q.endsWith(',') ? q.slice(0, -1) : q;
-  return `${OA_API_ENDPOINT}?filter=${filter}`;
+  return `${OA_API_ENDPOINT}?mailto=bso@recherche.gouv.fr&filter=${filter}`;
 }

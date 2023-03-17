@@ -25,8 +25,8 @@ export default function useFetchGraphs(filters, groupBys = []) {
     };
 
     setIsLoading(true);
-    setError(null);
-    setData(null);
+    setError(undefined);
+    setData(undefined);
 
     if (!filters || !groupBys) {
       setIsLoading(false);

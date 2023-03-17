@@ -1,18 +1,18 @@
-import { useState } from 'react';
 import { Container, Highlight, Icon, Title, Text } from '@dataesr/react-dsfr';
+import { useState } from 'react';
 
-import Filters from '../components/filters';
-import { PageSpinner } from '../components/spinner';
-import GraphHeader from '../components/graph-header';
-import useFetchGraphs from '../hooks/useFetchGraphs';
 import BarChart from '../components/bar-chart';
+import Filters from '../components/filters';
+import GraphHeader from '../components/graph-header';
+import { PageSpinner } from '../components/spinner';
+import useFetchGraphs from '../hooks/useFetchGraphs';
 
-const groupBys = ['publication_year', 'concepts.id', 'authorships.author.id', 'authorships.institutions.country_code', 'host_venue.id', 'authorships.institutions.id'];
+const GROUP_BYS = ['publication_year', 'concepts.id', 'authorships.author.id', 'authorships.institutions.country_code', 'host_venue.id', 'authorships.institutions.id'];
 
 export default function AffiliationsExplorePage() {
   const defaultStartYear = 2000;
   const [filters, setFilters] = useState(null);
-  const { isLoading, error, data } = useFetchGraphs(filters, groupBys);
+  const { isLoading, error, data } = useFetchGraphs(filters, GROUP_BYS);
   return (
     <>
       <Container className="fr-mt-5w">
@@ -44,9 +44,9 @@ export default function AffiliationsExplorePage() {
               <Container className="fr-my-2w">
                 <Text className="fr-mb-0 fr-text--bold">
                   {
-                    filters?.affiliationOne?.query
-                      ? `Results for "${filters.affiliationOne.query}" in the period ${filters.startDate}-${filters.endDate}`
-                      : `Results for "${filters.affiliationOne.query}" and "${filters?.affiliationOne?.query}" in the period ${filters.startDate}-${filters.endDate}`
+                    filters?.affiliationTwo?.query
+                      ? `Results for "${filters.affiliationOne.query}" in collaboration with "${filters?.affiliationTwo?.query}" in the period ${filters.startDate}-${filters.endDate}`
+                      : `Results for "${filters.affiliationOne.query}" in the period ${filters.startDate}-${filters.endDate}`
                   }
                 </Text>
               </Container>

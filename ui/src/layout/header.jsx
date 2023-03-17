@@ -40,7 +40,7 @@ export default function Header() {
         />
         <NavItem
           title="Affiliation explorer"
-          asLink={<RouterLink to="/explore/signatures">Signatures explorer</RouterLink>}
+          asLink={<RouterLink to="/explore/signatures">Signature explorer</RouterLink>}
           current={pathname === '/explore/signatures'}
         />
       </HeaderNav>

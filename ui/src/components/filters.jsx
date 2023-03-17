@@ -55,7 +55,7 @@ export default function Filters({ onSearch, includeSampleOption, defaultStartYea
             <Select
               label="Signature search type"
               id="affiliation1_type"
-              onChange={(e) => [setAffiliation1Type(e.target.value), setAffiliation1Str(null)]}
+              onChange={(e) => [setAffiliation1Type(e.target.value), setAffiliation1Str(undefined)]}
               options={TYPE_OPTIONS}
               selected={affiliation1Type}
             />
@@ -101,7 +101,7 @@ export default function Filters({ onSearch, includeSampleOption, defaultStartYea
                 <Select
                   label="Affiliation search type"
                   id="affiliation2_type"
-                  onChange={(e) => [setAffiliation2Type(e.target.value), setAffiliation2Str(null)]}
+                  onChange={(e) => [setAffiliation2Type(e.target.value), setAffiliation2Str(undefined)]}
                   options={TYPE_OPTIONS}
                   selected={affiliation2Type}
                 />
@@ -128,7 +128,7 @@ export default function Filters({ onSearch, includeSampleOption, defaultStartYea
               </Col>
             </Row>
           </AccordionItem>
-          <AccordionItem title="more options">
+          <AccordionItem title="More options">
             <Row gutters>
               <Col n="12 md-8">
                 <Row className="fr-mb-2w" gutters alignItems="bottom">
@@ -204,7 +204,7 @@ Filters.defaultProps = {
 };
 
 Filters.propTypes = {
-  onSearch: PropTypes.func.isRequired,
-  includeSampleOption: PropTypes.bool,
   defaultStartYear: PropTypes.number.isRequired,
+  includeSampleOption: PropTypes.bool,
+  onSearch: PropTypes.func.isRequired,
 };

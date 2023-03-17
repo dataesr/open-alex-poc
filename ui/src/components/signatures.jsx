@@ -59,7 +59,7 @@ export default function Signatures({ data, field, filters, perimeter, topSize })
           {(field === 'raw_affiliation') ? 'Top '.concat(topSize, ' raw signatures') : 'Top '.concat(topSize, ' matched institutions')}
         </Title>
         <Button
-          title="Export data to csv file"
+          title="Export data to CSV file"
           className="fr-ml-1w"
           rounded
           tertiary
@@ -67,7 +67,7 @@ export default function Signatures({ data, field, filters, perimeter, topSize })
           icon="ri-download-line"
           onClick={() => export2csv({ data: allSignatures, filename: `export_openalex_${field}_${name}.csv` })}
         >
-          Export to csv
+          Export to CSV
         </Button>
       </Row>
       <ol>
@@ -86,7 +86,7 @@ export default function Signatures({ data, field, filters, perimeter, topSize })
 Signatures.propTypes = {
   data: PropTypes.array.isRequired,
   field: PropTypes.string.isRequired,
-  filters: PropTypes.shape.isRequired,
+  filters: PropTypes.object.isRequired,
   perimeter: PropTypes.oneOf(['affiliationOne', 'affiliationTwo', 'affiliationThree']).isRequired,
   topSize: PropTypes.number.isRequired,
 };
