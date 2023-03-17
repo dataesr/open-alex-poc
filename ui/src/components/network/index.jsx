@@ -22,13 +22,13 @@ const getLabelFromInstitution = (institution) => {
 
 function Network() {
   // Filter works that have 25 or less distinct institutions by work
-  // console.log(`Nombre de publications : ${data?.results?.length}`);
+  console.log(`Nombre de publications : ${data?.results?.length}`);
   const filteredData = data?.results?.filter((work) => {
     let institutionsByWork = work?.authorships?.map((authorship) => authorship?.institutions.map((institution) => institution?.display_name.toLowerCase().trim()));
     institutionsByWork = [...new Set(institutionsByWork.flat())];
     if (institutionsByWork.length <= 25) return work;
   });
-  // console.log(`Nombre de publications qui ont 25 institutions ou moins: ${filteredData.length}`);
+  console.log(`Nombre de publications qui ont 25 institutions ou moins: ${filteredData.length}`);
   // Then filter institutions that have less than 5 works
   const institutions = [];
   filteredData?.forEach((work) => {
@@ -42,9 +42,9 @@ function Network() {
       });
     });
   });
-  // console.log(`Nombre d'institutions : ${institutions.length}`);
+  console.log(`Nombre d'institutions : ${institutions.length}`);
   const whiteListedInstitutions = institutions.filter((institution) => institution.works.length >= 5);
-  // console.log(`Nombre d'institutions qui valident le seuil : ${whiteListedInstitutionIds.length}`);
+  console.log(`Nombre d'institutions qui valident le seuil : ${whiteListedInstitutions.length}`);
 
   let edges = [];
   const graph = new Graph();
@@ -94,8 +94,8 @@ function Network() {
   forceAtlas2.assign(graph, { settings, iterations: 600 });
 
   // 5. Displaying useful information about your graph
-  // console.log('Number of nodes', graph.order);
-  // console.log('Number of edges', graph.size);
+  console.log('Number of nodes', graph.order);
+  console.log('Number of edges', graph.size);
 
   return (
     <div>

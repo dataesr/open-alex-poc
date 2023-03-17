@@ -1,15 +1,21 @@
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import { createInstance, MatomoProvider } from '@jonkoops/matomo-tracker-react';
-import Layout from './layout';
-import HomePage from './pages/home';
-import AffiliationsExplorerPage from './pages/affiliations';
-import SignaturesExplorerPage from './pages/signatures';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+
 import Matomo from './components/matomo';
+import Network from './components/network';
+import Layout from './layout';
+import AffiliationsExplorerPage from './pages/affiliations';
+import HomePage from './pages/home';
+import SignaturesExplorerPage from './pages/signatures';
 
 const matomo = createInstance({
   urlBase: 'https://piwik.enseignementsup-recherche.pro/',
   siteId: 48,
 });
+
+function NetworkPage() {
+  return <Network />;
+}
 
 export default function App() {
   return (
@@ -21,6 +27,7 @@ export default function App() {
             <Route index element={<HomePage />} />
             <Route path="explore/affiliations" element={<AffiliationsExplorerPage />} />
             <Route path="explore/signatures" element={<SignaturesExplorerPage />} />
+            <Route path="draft" element={<NetworkPage />} />
             <Route path="*" element={<NoMatch />} />
           </Route>
         </Routes>
