@@ -107,7 +107,7 @@ export default function HomePage() {
             <BarChart data={data?.publication_year?.sort((a, b) => a.key - b.key)} slice={1000} type="area" categoriesText="Publication year" />
             <GraphHeader
               title="How are works linked to affiliation country in OpenAlex?"
-              description="Number of works, published since 2000, affiliated to a country. NB: one publication counts for each country is is affiliated to (no fractional count). The majority of works in OpenAlex have at least one unknown affiliation country."
+              description="Number of works, published since 2000, affiliated to a country. NB: one publication counts for each country it is affiliated to (no fractional count). The majority of works in OpenAlex have at least one unknown affiliation country."
             />
             <BarChart data={data?.['institutions.country_code']?.sort((a, b) => a.key - b.key)} slice={25} type="treemap" categoriesText="Publication year" />
           </Container>
