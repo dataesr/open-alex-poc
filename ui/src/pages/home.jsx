@@ -8,12 +8,13 @@ import GraphHeader from '../components/graph-header';
 import BarChart from '../components/bar-chart';
 import useFetchGraphs from '../hooks/useFetchGraphs';
 
-const GROUP_BYS = ['publication_year'];
+const GROUP_BYS = ['publication_year', 'institutions.country_code'];
 const HOME_FILTERS = { startDate: 2000, endDate: new Date().getFullYear() };
 
 export default function HomePage() {
   const navigate = useNavigate();
   const { isLoading, error, data } = useFetchGraphs(HOME_FILTERS, GROUP_BYS);
+  console.log('ttt', data);
   return (
     <>
       <Container fluid>
@@ -48,26 +49,9 @@ export default function HomePage() {
         </Container>
       </Container>
       <hr className="fr-col-xs-10 fr-col-7 fr-my-6w" />
-      <Container fluid>
-        <Container>
-          <Row>
-            <Title as="h2">
-              {/* <Icon name="ri-questionnaire-fill" /> */}
-              What is OpenAlex ?
-            </Title>
-            <Text>
-              <Link href="https://openalex.org/" target="_blank">OpenAlex</Link>
-              &nbsp;is an open catalog of scholarly papers, authors, institutions.
-              The OpenAlex data are available with an open license, as snapshots (a complete dump of the database) and with an API.
-            </Text>
-            {/* <Title as='h3' look="h5">
-                        OpenAlex in numbers...
-                    </Title> */}
-          </Row>
-        </Container>
-        <Container>
-          <Row className="fr-mt-5w">
-            <Title as="h2" look="h3">
+      {/* <Container>
+        <Row className="fr-mt-5w">
+          <Title as="h2" look="h3">
               <Icon name="ri-line-chart-fill" />
               Example of graphs created from OpenAlex data
             </Title>
@@ -91,9 +75,20 @@ export default function HomePage() {
               </Col>
             </Row>
           </Row>
-        </Container>
+        </Container> */}
+      <Container as="section">
+        <Row>
+          <Title as="h2">
+            {/* <Icon name="ri-questionnaire-fill" /> */}
+            What is OpenAlex ?
+          </Title>
+          <Text>
+            <Link href="https://openalex.org/" target="_blank">OpenAlex</Link>
+          &nbsp;is an open catalog of scholarly papers, authors, institutions.
+            The OpenAlex data are available with an open license, as snapshots (a complete dump of the database) and with an API.
+          </Text>
+        </Row>
       </Container>
-      <hr className="fr-col-xs-10 fr-col-7 fr-my-6w" />
       <Container fluid>
         {isLoading && <PageSpinner />}
         {error && (
@@ -106,10 +101,15 @@ export default function HomePage() {
         {(!error && !isLoading && data && Object.keys(data)?.length > 0) && (
           <Container as="section">
             <GraphHeader
-              title="How many publications are retrieved?"
+              title="How many publications are in OpenAlex?"
               description="Evolution of the number of publications over time, from the search request made in OpenAlex."
             />
             <BarChart data={data?.publication_year?.sort((a, b) => a.key - b.key)} slice={1000} type="area" categoriesText="Publication year" />
+            <GraphHeader
+              title="How are works linked to affiliation country in OpenAlex?"
+              description="Number of works, published since 2000, affiliated to a country. NB: one publication counts for each country is is affiliated to (no fractional count). The majority of works in OpenAlex have at least one unknown affiliation country."
+            />
+            <BarChart data={data?.['institutions.country_code']?.sort((a, b) => a.key - b.key)} slice={25} type="treemap" categoriesText="Publication year" />
           </Container>
         )}
       </Container>

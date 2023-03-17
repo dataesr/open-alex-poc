@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Highcharts from 'highcharts';
+import treemapModule from 'highcharts/modules/treemap';
 import HighchartsReact from 'highcharts-react-official';
 import { Highlight } from '@dataesr/react-dsfr';
+
+treemapModule(Highcharts);
 
 export default function BarChart({ data, categoriesText, type, slice }) {
   const top = data
@@ -38,15 +41,39 @@ export default function BarChart({ data, categoriesText, type, slice }) {
       },
     };
   }
-
+  const colors = ['#cecece', '#3366cc', '#dc3912', '#ff9900', '#109618', '#00006d',
+    '#990099', '#0099c6', '#dd4477', '#66aa00', '#b82e2e', '#316395', '#994499', '#22aa99', '#aaaa11', '#6633cc', '#e67300', '#8b0707', '#651067', '#329262', '#5574a6', '#3b3eac'];
+  let series = [{ data: top.map((item) => item.y), name: 'Number of publications' }];
+  if (type === 'treemap') {
+    const treemapData = [];
+    data.forEach((el, idx) => {
+      treemapData.push({
+        value: el.count,
+        name: el.key_display_name,
+        color: colors[idx],
+      });
+    });
+    series = [{ data: treemapData, layoutAlgorithm: 'squarified' }];
+  }
+  let tooltip = {
+    formatter: function () {
+      return 'Number of publications for <b>' + this.x + '</b> is <b>' + this.y + '</b> works';
+    }
+   };
+  if (type === 'treemap') {
+    tooltip = {
+      formatter: function () {
+        return 'Number of publications since 2000 affiliated to <b>' + this.x + '</b> is <b>' + this.point.value + '</b> works';
+      }
+     };
+  }
   const options = {
     chart: { type },
     plotOptions,
     credits: { enabled: false },
     legend: { enabled: false },
-    series: [
-      { data: top.map((item) => item.y), name: 'Number of publications' },
-    ],
+    series,
+    tooltip,
     title: { text: '' },
     xAxis: { categories: top.map((item) => item.name), title: { text: categoriesText } },
     yAxis: { title: { text: 'Number of publications' } },
