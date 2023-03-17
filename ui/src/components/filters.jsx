@@ -46,7 +46,9 @@ export default function Filters({ onSearch, includeSampleOption, defaultStartYea
     }
     onSearch(filters);
   };
-
+  const hintRawAff = "For raw affiliations, the text input will be searched in the affiliations signatures, as they harvested by OpenAlex. This a raw text field, without normalization, before OpenAlex affiliation parsing happens. Searching for 'Massachusetts Institute of Technology' or for 'MIT, USA' will output different results.";
+  const hintRoRAff = 'Input a RoR id. It will look up works that OpenAlex affiliation parsing algorithm matched to this RoR.';
+  const hintCountryAff = 'Choose a country. It will look up works that OpenAlex affiliation parsing algorithm matched to this country.';
   return (
     <section className="fr-mt-1w">
       <Container>
@@ -70,6 +72,7 @@ export default function Filters({ onSearch, includeSampleOption, defaultStartYea
                   onChange={(e) => setAffiliation1Str(e.target.value)}
                   options={countriesList.map((el) => ({ label: el.name, value: el.code }))}
                   selected={affiliation1Str}
+                  hint={hintCountryAff}
                 />
               ) : (
                 <TextInput
@@ -79,6 +82,7 @@ export default function Filters({ onSearch, includeSampleOption, defaultStartYea
                   value={affiliation1Str}
                   onChange={(e) => setAffiliation1Str(e.target.value)}
                   withAutoValidation
+                  hint={(affiliation1Type === 'raw_affiliation_string.search') ? hintRawAff : hintRoRAff}
                 />
               )
             }
@@ -115,6 +119,7 @@ export default function Filters({ onSearch, includeSampleOption, defaultStartYea
                       onChange={(e) => setAffiliation2Str(e.target.value)}
                       options={countriesList.map((el) => ({ label: el.name, value: el.code }))}
                       selected={affiliation2Str}
+                      hint={hintCountryAff}
                     />
                   ) : (
                     <TextInput
@@ -122,6 +127,7 @@ export default function Filters({ onSearch, includeSampleOption, defaultStartYea
                       name="affiliation2_str"
                       value={affiliation2Str}
                       onChange={(e) => setAffiliation2Str(e.target.value)}
+                      hint={(affiliation2Type === 'raw_affiliation_string.search') ? hintRawAff : hintRoRAff}
                     />
                   )
                 }
