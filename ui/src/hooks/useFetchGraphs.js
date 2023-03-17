@@ -4,25 +4,22 @@ import { useEffect, useState } from 'react';
 import { createOAQuery } from '../utils/create-oa-query';
 
 const limit = pLimit(10);
-const groupBys = ['publication_year', 'concepts.id', 'authorships.author.id', 'authorships.institutions.country_code', 'host_venue.id', 'authorships.institutions.id'];
 
-const getGraphQueries = (baseUrl) => groupBys.map((field) => limit(() => axios.get(`${baseUrl}&group_by=${field}`)));
-
-export default function useFetchGraphs(filters) {
+export default function useFetchGraphs(filters, groupBys = []) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
       const baseUrl = createOAQuery(filters);
-      const queries = getGraphQueries(baseUrl);
+      const queries = groupBys.map((field) => limit(() => axios.get(`${baseUrl}&group_by=${field}`)));
       const responses = await Promise.all(queries)
         .catch(() => {
           setError(true);
           setIsLoading(false);
         });
-      const goups = groupBys.reduce((o, field, i) => ({ ...o, [field]: responses[i]?.data?.group_by }), {});
-      setData(goups);
+      const groups = groupBys.reduce((o, field, i) => ({ ...o, [field]: responses[i]?.data?.group_by }), {});
+      setData(groups);
       setIsLoading(false);
       setError(false);
     };
@@ -31,13 +28,13 @@ export default function useFetchGraphs(filters) {
     setError(null);
     setData(null);
 
-    if (!filters) {
+    if (!filters || !groupBys) {
       setIsLoading(false);
       setError(false);
     } else {
       fetchData();
     }
-  }, [filters]);
+  }, [filters, groupBys]);
 
   return { data, error, isLoading };
 }

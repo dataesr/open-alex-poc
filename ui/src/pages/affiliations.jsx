@@ -7,10 +7,12 @@ import GraphHeader from '../components/graph-header';
 import useFetchGraphs from '../hooks/useFetchGraphs';
 import BarChart from '../components/bar-chart';
 
+const groupBys = ['publication_year', 'concepts.id', 'authorships.author.id', 'authorships.institutions.country_code', 'host_venue.id', 'authorships.institutions.id'];
+
 export default function AffiliationsExplorePage() {
   const defaultStartYear = 2000;
   const [filters, setFilters] = useState(null);
-  const { isLoading, error, data } = useFetchGraphs(filters);
+  const { isLoading, error, data } = useFetchGraphs(filters, groupBys);
   return (
     <>
       <Container className="fr-mt-5w">

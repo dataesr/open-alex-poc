@@ -12,6 +12,15 @@ const TYPE_OPTIONS = [
 ];
 const DEFAULT_TYPE_OPTION_INDEX = 0;
 
+function makeQueryStringSearchable(str) {
+  if (!str) return null;
+  return str
+    .replaceAll(',', ' ')
+    .replace(/  +/g, ' ')
+    .toLowerCase()
+    .trim();
+}
+
 export default function Filters({ onSearch, includeSampleOption, defaultStartYear }) {
   const [startDate, setStartDate] = useState(defaultStartYear);
   const [endDate, setEndDate] = useState(THIS_YEAR);
@@ -25,8 +34,8 @@ export default function Filters({ onSearch, includeSampleOption, defaultStartYea
 
   const handleSearch = () => {
     const filters = {
-      affiliationOne: { type: affiliation1Type, query: affiliation1Str },
-      affiliationTwo: { type: affiliation2Type, query: affiliation2Str },
+      affiliationOne: { type: affiliation1Type, query: makeQueryStringSearchable(affiliation1Str) },
+      affiliationTwo: { type: affiliation2Type, query: makeQueryStringSearchable(affiliation2Str) },
       startDate,
       endDate,
       thematic,

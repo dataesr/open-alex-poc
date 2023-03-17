@@ -8,7 +8,7 @@ import './footer.scss';
 
 export default function Footer() {
   return (
-    <FooterWrapper>
+    <FooterWrapper className="fr-mt-5w">
       <FooterBody description="">
         <FooterBodyItem>
           <Link target="_blank" href="https://frenchopensciencemonitor.esr.gouv.fr">

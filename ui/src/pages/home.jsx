@@ -1,11 +1,19 @@
-import { Container, Row, Col, Button, Title, Link, Text, Icon } from '@dataesr/react-dsfr';
+import { Container, Row, Col, Button, Title, Link, Text, Icon, Highlight } from '@dataesr/react-dsfr';
 import { useNavigate } from 'react-router-dom';
 import openalex1 from '../assets/images/openalex1.png';
 import openalex2 from '../assets/images/openalex2.png';
 import dataAnalysis from '../assets/images/data-analysis.svg';
+import useFetchGraphs from '../hooks/useFetchGraphs';
+import { PageSpinner } from '../components/spinner';
+import GraphHeader from '../components/graph-header';
+import BarChart from '../components/bar-chart';
+
+const GROUP_BYS = ['publication_year'];
+const HOME_FILTERS = { startDate: 2000, endDate: new Date().getFullYear() };
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const { isLoading, error, data } = useFetchGraphs(HOME_FILTERS, GROUP_BYS);
   return (
     <>
       <Container fluid>
@@ -82,6 +90,26 @@ export default function HomePage() {
             </Row>
           </Row>
         </Container>
+      </Container>
+      <hr className="fr-col-xs-10 fr-col-7 fr-my-6w" />
+      <Container fluid>
+        {isLoading && <PageSpinner />}
+        {error && (
+          <Container>
+            <Highlight className="fr-my-15w">
+              An error occured while fetching the data.
+            </Highlight>
+          </Container>
+        )}
+        {(!error && !isLoading && data && Object.keys(data)?.length > 0) && (
+          <Container as="section">
+            <GraphHeader
+              title="How many publications are retrieved?"
+              description="Evolution of the number of publications over time, from the search request made in OpenAlex."
+            />
+            <BarChart data={data?.publication_year?.sort((a, b) => a.key - b.key)} slice={1000} type="area" categoriesText="Publication year" />
+          </Container>
+        )}
       </Container>
     </>
   );
