@@ -7,13 +7,18 @@ import forceAtlas2 from 'graphology-layout-forceatlas2';
 import './index.scss';
 import data from '../../../data/huawei_france.json';
 
-const getColorFromInsitution = (institution) => {
+const DEFAULT_NODE_COLOR = '#999999';
+
+const getInsitutionColor = (institution) => {
   if (institution?.type === 'education' && institution?.country_code === 'FR') return '#000091';
   if (institution?.country_code === 'FR') return '#e1000f';
-  return '#999999';
+  return DEFAULT_NODE_COLOR;
 };
 
-const getLabelFromInstitution = (institution) => {
+// const getInstitutionId = (institution) => `${institution?.display_name?.toLowerCase()?.trim() || ''}-${institution?.country_code?.toLowerCase()?.trim() || ''}`;
+const getInstitutionId = (institution) => institution?.display_name?.toLowerCase()?.trim() || '';
+
+const getInstitutionLabel = (institution) => {
   let label = '';
   label += institution?.display_name ? institution.display_name : institution.id;
   label += institution?.country_code ? ` (${institution.country_code})` : '';
@@ -22,19 +27,17 @@ const getLabelFromInstitution = (institution) => {
 
 function Network() {
   // Filter works that have 25 or less distinct institutions by work
-  console.log(`Nombre de publications : ${data?.results?.length}`);
   const filteredData = data?.results?.filter((work) => {
-    let institutionsByWork = work?.authorships?.map((authorship) => authorship?.institutions.map((institution) => institution?.display_name.toLowerCase().trim()));
+    let institutionsByWork = work?.authorships?.map((authorship) => authorship?.institutions.map((institution) => getInstitutionId(institution)));
     institutionsByWork = [...new Set(institutionsByWork.flat())];
     if (institutionsByWork.length <= 25) return work;
   });
-  console.log(`Nombre de publications qui ont 25 institutions ou moins: ${filteredData.length}`);
   // Then filter institutions that have less than 5 works
   const institutions = [];
   filteredData?.forEach((work) => {
     work?.authorships?.forEach((authorship) => {
       authorship?.institutions.forEach((institution) => {
-        const institutionId = institution?.display_name?.toLowerCase().trim();
+        const institutionId = getInstitutionId(institution);
         if (!institutions?.find((item) => item.id === institutionId)) {
           institutions?.push({ id: institutionId, works: [] });
         }
@@ -42,9 +45,7 @@ function Network() {
       });
     });
   });
-  console.log(`Nombre d'institutions : ${institutions.length}`);
   const whiteListedInstitutions = institutions.filter((institution) => institution.works.length >= 5);
-  console.log(`Nombre d'institutions qui valident le seuil : ${whiteListedInstitutions.length}`);
 
   let edges = [];
   const graph = new Graph();
@@ -53,11 +54,10 @@ function Network() {
     let coInstitutions = [];
     work?.authorships?.forEach((authorship) => {
       authorship?.institutions?.forEach((institution) => {
-        // const institutionId = institution?.display_name?.toLowerCase().trim();
-        const institutionId = institution?.id;
-        if (whiteListedInstitutions.find((item) => item.id === institution?.display_name?.toLowerCase().trim())) {
+        const institutionId = getInstitutionId(institution);
+        if (whiteListedInstitutions.find((item) => item.id === institutionId)) {
           // 1. Create the institution node if it does not exist
-          if (!graph.hasNode(institutionId)) graph.addNode(institutionId, { institution, label: getLabelFromInstitution(institution), color: getColorFromInsitution(institution) });
+          if (!graph.hasNode(institutionId)) graph.addNode(institutionId, { institution, label: getInstitutionId(institution) });
           coInstitutions.push(institutionId);
         }
       });
@@ -93,20 +93,25 @@ function Network() {
   const settings = forceAtlas2.inferSettings(graph);
   forceAtlas2.assign(graph, { settings, iterations: 600 });
 
-  // 5. Displaying useful information about your graph
-  console.log('Number of nodes', graph.order);
-  console.log('Number of edges', graph.size);
-
   return (
     <div>
+      <div>
+        {`Number of nodes (distinct institutions) : ${graph.order}  //  Number of edges : ${graph.size}`}
+      </div>
       <SigmaContainer style={{ height: '1000px', width: '1000px' }} className="network" graph={graph}>
-        <div className="legend">
+        {/* <div className="legend">
           <ul>
-            <li style={{ backgroundColor: '#000091' }}>Université française</li>
-            <li style={{ backgroundColor: '#e1000f' }}>Autre français</li>
-            <li style={{ backgroundColor: '#999999' }}>Autre</li>
+            <li style={{ backgroundColor: '#000091' }}>
+              French university
+            </li>
+            <li style={{ backgroundColor: '#e1000f' }}>
+              French
+            </li>
+            <li style={{ backgroundColor: DEFAULT_NODE_COLOR }}>
+              Other
+            </li>
           </ul>
-        </div>
+        </div> */}
       </SigmaContainer>
     </div>
   );

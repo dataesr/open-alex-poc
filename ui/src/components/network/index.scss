@@ -1,11 +1,16 @@
 .network {
   .legend {
-    margin-left: -250px;
-    margin-top: -800px;
+    color: white;
+    margin-left: 1000px;
+    margin-top: -1000px;
     width: 200px;
 
     ul {
       list-style-type: none;
+
+      li {
+        padding-left: 5px;
+      }
     }
   }
 }
