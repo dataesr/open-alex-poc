@@ -91,8 +91,13 @@ function Network() {
   // 4. Position nodes on a circle, then run Force Atlas 2 for a while to get proper graph layout
   circular.assign(graph);
   const settings = forceAtlas2.inferSettings(graph);
+  settings.linLogMode = false;
+  settings.gravity = 1;
+  settings.outboundAttractionDistribution = true;
+  settings.scalingRatio = 1;
+  settings.adjustSizes = false;
+  settings.edgeWeightInfluence = 2;
   forceAtlas2.assign(graph, { settings, iterations: 600 });
-
   return (
     <div>
       <div>
