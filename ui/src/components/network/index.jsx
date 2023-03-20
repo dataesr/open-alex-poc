@@ -1,10 +1,11 @@
 import '@react-sigma/core/lib/react-sigma.min.css';
-import { SigmaContainer } from '@react-sigma/core';
+import { SigmaContainer, useRegisterEvents } from '@react-sigma/core';
 import Graph from 'graphology';
 import circular from 'graphology-layout/circular';
 import forceAtlas2 from 'graphology-layout-forceatlas2';
 
 import './index.scss';
+import { useEffect, useState } from 'react';
 import data from '../../../data/huawei_france.json';
 
 const DEFAULT_NODE_COLOR = '#999999';
@@ -26,6 +27,35 @@ const getInstitutionLabel = (institution) => {
 };
 
 function Network() {
+  const [hoveredNode, setHoveredNode] = useState(undefined);
+  const graph = new Graph();
+
+  function GraphEvents() {
+    const registerEvents = useRegisterEvents();
+    useEffect(() => {
+      registerEvents({
+        enterNode: (event) => {
+          console.log('enterNode', event.node);
+          setHoveredNode(event.node);
+          graph.setNodeAttribute(event.node, 'color', '#000091');
+          graph.forEachNeighbor(event.node, (neighbor, attributes) => {
+            graph.setNodeAttribute(neighbor, 'color', '#e1000f');
+          });
+        },
+        leaveNode: (event) => {
+          console.log('leaveNode', event.node);
+          setHoveredNode(undefined);
+          graph.setNodeAttribute(event.node, 'color', DEFAULT_NODE_COLOR);
+          graph.forEachNeighbor(event.node, (neighbor, attributes) => {
+            graph.setNodeAttribute(neighbor, 'color', DEFAULT_NODE_COLOR);
+          });
+        },
+      });
+    }, [registerEvents]);
+
+    return null;
+  }
+
   // Filter works that have 25 or less distinct institutions by work
   const filteredData = data?.results?.filter((work) => {
     let institutionsByWork = work?.authorships?.map((authorship) => authorship?.institutions.map((institution) => getInstitutionId(institution)));
@@ -48,7 +78,6 @@ function Network() {
   const whiteListedInstitutions = institutions.filter((institution) => institution.works.length >= 5);
 
   let edges = [];
-  const graph = new Graph();
 
   filteredData?.forEach((work) => {
     let coInstitutions = [];
@@ -81,8 +110,8 @@ function Network() {
   const degrees = graph.nodes().map((node) => graph.degree(node));
   const minDegree = Math.min(...degrees);
   const maxDegree = Math.max(...degrees);
-  const minSize = 2;
-  const maxSize = 15;
+  const minSize = 5;
+  const maxSize = 25;
   graph.forEachNode((node) => {
     const degree = graph.degree(node);
     graph.setNodeAttribute(node, 'size', minSize + ((degree - minDegree) / (maxDegree - minDegree)) * (maxSize - minSize));
@@ -101,9 +130,10 @@ function Network() {
   return (
     <div>
       <div>
-        {`Number of nodes (distinct institutions) : ${graph.order}  //  Number of edges : ${graph.size}`}
+        {`Number of nodes (distinct institutions names) : ${graph.order}  //  Number of edges : ${graph.size}`}
       </div>
       <SigmaContainer style={{ height: '1000px', width: '1000px' }} className="network" graph={graph}>
+        <GraphEvents />
         {/* <div className="legend">
           <ul>
             <li style={{ backgroundColor: '#000091' }}>
