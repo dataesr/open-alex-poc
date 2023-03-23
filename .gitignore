@@ -3,3 +3,4 @@ notebooks/.ipynb_checkpoints
 node_modules
 *.env
 .vscode
+notebooks/data
