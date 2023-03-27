@@ -103,7 +103,14 @@ function Network() {
   // 2. Create the coAuthorship edges
   edges.forEach((edge) => {
     const { source, target } = edge;
-    if (source !== target && !graph.hasEdge(source, target)) graph.addEdge(source, target);
+    if (source !== target) {
+      if (!graph.hasEdge(source, target)) {
+        graph.addEdge(source, target, { weight: 1 });
+      } else {
+        const weight = graph.getEdgeAttribute(source, target, 'weight');
+        graph.setEdgeAttribute(source, target, 'weight', weight + 1);
+      }
+    }
   });
 
   // 3. Use degrees for node sizes:
@@ -132,7 +139,7 @@ function Network() {
       <div>
         {`Number of nodes (distinct institutions names) : ${graph.order}  //  Number of edges : ${graph.size}`}
       </div>
-      <SigmaContainer style={{ height: '1000px', width: '1000px' }} className="network" graph={graph}>
+      <SigmaContainer style={{ height: '750px', width: '750px' }} className="network" graph={graph}>
         <GraphEvents />
         {/* <div className="legend">
           <ul>
