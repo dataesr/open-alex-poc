@@ -4,7 +4,7 @@ import Graph from 'graphology';
 import circular from 'graphology-layout/circular';
 import forceAtlas2 from 'graphology-layout-forceatlas2';
 
-import './index.scss';
+import './sigma.scss';
 import data from '../../../data/huawei_france.json';
 
 const getColorFromInsitution = (institution) => {
@@ -20,7 +20,7 @@ const getLabelFromInstitution = (institution) => {
   return label;
 };
 
-function Network() {
+function SigmaNetwork() {
   // Filter works that have 25 or less distinct institutions by work
   console.log(`Nombre de publications : ${data?.results?.length}`);
   const filteredData = data?.results?.filter((work) => {
@@ -99,6 +99,9 @@ function Network() {
 
   return (
     <div>
+      <span>
+        {`Number of nodes: ${graph?.order || 0} // Number of edges: ${graph?.size || 0}`}
+      </span>
       <SigmaContainer style={{ height: '1000px', width: '1000px' }} className="network" graph={graph}>
         <div className="legend">
           <ul>
@@ -112,4 +115,4 @@ function Network() {
   );
 }
 
-export default Network;
+export default SigmaNetwork;
