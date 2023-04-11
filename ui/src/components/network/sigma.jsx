@@ -10,16 +10,15 @@ import data from '../../../data/huawei_france.json';
 
 const DEFAULT_NODE_COLOR = '#999999';
 
-const getInsitutionColor = (institution) => {
+const getColorFromInsitution = (institution) => {
   if (institution?.type === 'education' && institution?.country_code === 'FR') return '#000091';
   if (institution?.country_code === 'FR') return '#e1000f';
   return DEFAULT_NODE_COLOR;
 };
 
-// const getInstitutionId = (institution) => `${institution?.display_name?.toLowerCase()?.trim() || ''}-${institution?.country_code?.toLowerCase()?.trim() || ''}`;
 const getInstitutionId = (institution) => institution?.display_name?.toLowerCase()?.trim() || '';
 
-const getInstitutionLabel = (institution) => {
+const getLabelFromInstitution = (institution) => {
   let label = '';
   label += institution?.display_name ? institution.display_name : institution.id;
   label += institution?.country_code ? ` (${institution.country_code})` : '';
@@ -35,7 +34,6 @@ function SigmaNetwork() {
     useEffect(() => {
       registerEvents({
         enterNode: (event) => {
-          console.log('enterNode', event.node);
           setHoveredNode(event.node);
           graph.setNodeAttribute(event.node, 'color', '#000091');
           graph.forEachNeighbor(event.node, (neighbor, attributes) => {
@@ -43,7 +41,6 @@ function SigmaNetwork() {
           });
         },
         leaveNode: (event) => {
-          console.log('leaveNode', event.node);
           setHoveredNode(undefined);
           graph.setNodeAttribute(event.node, 'color', DEFAULT_NODE_COLOR);
           graph.forEachNeighbor(event.node, (neighbor, attributes) => {
@@ -86,7 +83,7 @@ function SigmaNetwork() {
         const institutionId = getInstitutionId(institution);
         if (whiteListedInstitutions.find((item) => item.id === institutionId)) {
           // 1. Create the institution node if it does not exist
-          if (!graph.hasNode(institutionId)) graph.addNode(institutionId, { institution, label: getInstitutionId(institution) });
+          if (!graph.hasNode(institutionId)) graph.addNode(institutionId, { institution, label: getLabelFromInstitution(institution), color: getColorFromInsitution(institution) });
           coInstitutions.push(institutionId);
         }
       });
