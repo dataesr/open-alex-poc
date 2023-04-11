@@ -2,7 +2,8 @@ import { createInstance, MatomoProvider } from '@jonkoops/matomo-tracker-react';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 import Matomo from './components/matomo';
-import Network from './components/network';
+import SigmaNetwork from './components/network/sigma';
+import VOSViewerNetwork from './components/network/vosviewer';
 import Layout from './layout';
 import AffiliationsExplorerPage from './pages/affiliations';
 import HomePage from './pages/home';
@@ -14,7 +15,12 @@ const matomo = createInstance({
 });
 
 function NetworkPage() {
-  return <Network />;
+  return (
+    <div>
+      <SigmaNetwork />
+      <VOSViewerNetwork />
+    </div>
+  );
 }
 
 export default function App() {

@@ -4,7 +4,7 @@ import Graph from 'graphology';
 import circular from 'graphology-layout/circular';
 import forceAtlas2 from 'graphology-layout-forceatlas2';
 
-import './index.scss';
+import './sigma.scss';
 import { useEffect, useState } from 'react';
 import data from '../../../data/huawei_france.json';
 
@@ -26,7 +26,7 @@ const getInstitutionLabel = (institution) => {
   return label;
 };
 
-function Network() {
+function SigmaNetwork() {
   const [hoveredNode, setHoveredNode] = useState(undefined);
   const graph = new Graph();
 
@@ -137,26 +137,13 @@ function Network() {
   return (
     <div>
       <div>
-        {`Number of nodes (distinct institutions names) : ${graph.order}  //  Number of edges : ${graph.size}`}
+        {`Number of nodes (distinct institutions names) : ${graph?.order || 0}  //  Number of edges : ${graph?.size || 0}`}
       </div>
       <SigmaContainer style={{ height: '750px', width: '750px' }} className="network" graph={graph}>
         <GraphEvents />
-        {/* <div className="legend">
-          <ul>
-            <li style={{ backgroundColor: '#000091' }}>
-              French university
-            </li>
-            <li style={{ backgroundColor: '#e1000f' }}>
-              French
-            </li>
-            <li style={{ backgroundColor: DEFAULT_NODE_COLOR }}>
-              Other
-            </li>
-          </ul>
-        </div> */}
       </SigmaContainer>
     </div>
   );
 }
 
-export default Network;
+export default SigmaNetwork;

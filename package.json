@@ -25,5 +25,12 @@
   "bugs": {
     "url": "https://github.com/dataesr/OpenAlexPOC/issues"
   },
-  "homepage": "https://github.com/dataesr/OpenAlexPOC#readme"
+  "homepage": "https://github.com/dataesr/OpenAlexPOC#readme",
+  "dependencies": {
+    "d3-array": "^3.2.3",
+    "d3-scale": "^4.0.2",
+    "d3-scale-chromatic": "^3.0.0",
+    "d3-selection": "^3.0.0",
+    "networkanalysis-ts": "^1.0.0"
+  }
 }
