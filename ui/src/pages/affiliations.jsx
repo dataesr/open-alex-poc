@@ -7,7 +7,7 @@ import GraphHeader from '../components/graph-header';
 import { PageSpinner } from '../components/spinner';
 import useFetchGraphs from '../hooks/useFetchGraphs';
 
-const GROUP_BYS = ['publication_year', 'concepts.id', 'authorships.author.id', 'authorships.institutions.country_code', 'host_venue.id', 'authorships.institutions.id'];
+const GROUP_BYS = ['publication_year', 'concepts.id', 'authorships.author.id', 'authorships.institutions.country_code', 'locations.id', 'authorships.institutions.id'];
 
 export default function AffiliationsExplorePage() {
   const defaultStartYear = 2000;
@@ -73,7 +73,7 @@ export default function AffiliationsExplorePage() {
               The venues listed here includes (peer-revied) journals but also preprint servers. We noticed that sometimes OpenAlex data misses
               the real publisher name and displays an open archive name (bug reported to the OpenAlex team)."
             />
-            <BarChart data={data?.['host_venue.id']} type="bar" slice={15} categoriesText="Top sources" />
+            <BarChart data={data?.['locations.id']} type="bar" slice={15} categoriesText="Top sources" />
             <hr className="fr-col-xs-10 fr-col-7 fr-my-6w" />
             <GraphHeader
               iconName="ri-bar-chart-fill"
